@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "build": "webpack",
-    "webpack": "webpack && webpack-dev-server --inline",
+    "hack": "webpack && webpack-dev-server --inline",
     "postinstall": "webpack",
-    "start": "webpack && node server/bin/www"
+    "start": "webpack && node server/bin/www",
+    "test": "jest"
   },
   "dependencies": {
     "babel": "^6.23.0",
