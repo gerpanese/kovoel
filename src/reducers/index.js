@@ -1,12 +1,36 @@
 const DefaultState = {
+  frontText: null,
+  backText: null,
 };
 
-function Reducer(state = DefaultState, action) {
+const reducer = (state = DefaultState, action) => {
   const getCopyOfState = _state => JSON.parse(JSON.stringify(_state));
   switch (action.type) {
+    case 'UPDATE_FRONT_TEXT': {
+      const newState = getCopyOfState(state);
+      newState.frontText = action.frontText;
+      return newState;
+    }
+    case 'UPDATE_BACK_TEXT': {
+      const newState = getCopyOfState(state);
+      newState.backText = action.backText;
+      return newState;
+    }
+    case 'SAVE_CARD': {
+      const newState = getCopyOfState(state);
+      newState.frontText = null;
+      newState.backText = null;
+      return newState;
+    }
+    case 'DISCARD_CARD': {
+      const newState = getCopyOfState(state);
+      newState.frontText = null;
+      newState.backText = null;
+      return newState;
+    }
     default:
       return state;
   }
-}
+};
 
-module.exports = Reducer;
+export default reducer;
