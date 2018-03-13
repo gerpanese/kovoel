@@ -7,7 +7,9 @@
     "hack": "webpack && webpack-dev-server --inline",
     "postinstall": "webpack",
     "start": "webpack && node server/bin/www",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "yarn test -- --watch"
+
   },
   "dependencies": {
     "babel": "^6.23.0",
