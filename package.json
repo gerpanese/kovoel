@@ -6,7 +6,7 @@
     "build": "webpack",
     "webpack": "webpack && webpack-dev-server --inline",
     "postinstall": "webpack",
-    "start": "webpack && node ./bin/www"
+    "start": "webpack && node server/bin/www"
   },
   "dependencies": {
     "babel": "^6.23.0",
