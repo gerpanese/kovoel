@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "build": "webpack",
-    "webpack": "webpack && webpack-dev-server --inline",
+    "hack": "webpack && webpack-dev-server --inline",
     "postinstall": "webpack",
-    "start": "webpack && node ./bin/www"
+    "start": "webpack && node server/bin/www",
+    "test": "jest"
   },
   "dependencies": {
     "babel": "^6.23.0",
@@ -62,7 +63,7 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "jest": "^22.4.0",
+    "jest": "^21.2.1",
     "json-loader": "^0.5.7",
     "react-addons-test-utils": "^15.6.2",
     "sinon": "^4.3.0"
