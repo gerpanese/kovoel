@@ -4,7 +4,7 @@ const updateFrontText = frontText => ({
 });
 
 const updateBackText = backText => ({
-  type: 'UPDATE_FRONT_TEXT',
+  type: 'UPDATE_BACK_TEXT',
   backText,
 });
 
