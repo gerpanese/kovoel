@@ -1,7 +1,9 @@
 import React from 'react';
+import sinon from 'sinon';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import CreateCard from '../../components/CreateCard';
+import WebSpeechApi from '../../utils/WebSpeechApi';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -43,6 +45,27 @@ describe('src/components/CreateCard.jsx', () => {
     backTextInput.instance().value = 'Updated BackText';
     backTextInput.simulate('change');
     expect(props.updateBackText.mock.calls.length).toBe(1);
+  });
+
+  it('should call discardCard if back side text is changed', () => {
+    const { enzymeWrapper, props } = setup();
+    const discardButton = enzymeWrapper.find('#discardButton');
+    expect(props.discardCard.mock.calls.length).toBe(0);
+    discardButton.simulate('click');
+    expect(props.discardCard.mock.calls.length).toBe(1);
+  });
+
+  it('should call Web Speech Api method on click', () => {
+    // Should be implemented later
+    expect(1).toBe(1);
+  });
+
+  it('should call saveCard if save button on click', () => {
+    const { enzymeWrapper, props } = setup();
+    const saveButton = enzymeWrapper.find('#saveButton');
+    expect(props.saveCard.mock.calls.length).toBe(0);
+    saveButton.simulate('click');
+    expect(props.saveCard.mock.calls.length).toBe(1);
   });
 });
 

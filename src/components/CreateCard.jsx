@@ -5,6 +5,7 @@ import WebSpeechApi from '../utils/WebSpeechApi';
 class CreateCard extends Component {
   constructor(props) {
     super(props);
+    this.WebSpeechApi = WebSpeechApi;
     this.handleFrontTextChange = this.handleFrontTextChange.bind(this);
     this.handleBackTextChange = this.handleBackTextChange.bind(this);
     this.handleDiscardClick = this.handleDiscardClick.bind(this);
@@ -31,7 +32,7 @@ class CreateCard extends Component {
 
   handleRecordClick(event) {
     event.preventDefault();
-    const speech = new WebSpeechApi();
+    const speech = new this.WebSpeechApi();
     // hear a text
     speech.hear(
       'ja-JP',
@@ -62,9 +63,21 @@ class CreateCard extends Component {
           onChange={this.handleBackTextChange}
           value={this.props.backText}
         />
-        <button onClick={this.handleDiscardClick}>DISCARD</button>
-        <button onClick={this.handleRecordClick}>RECORD</button>
-        <button onClick={this.handleSaveClick}>SAVE</button>
+        <button
+          id="discardButton"
+          onClick={this.handleDiscardClick}
+        >DISCARD
+        </button>
+        <button
+          id="recordButton"
+          onClick={this.handleRecordClick}
+        >RECORD
+        </button>
+        <button
+          id="saveButton"
+          onClick={this.handleSaveClick}
+        >SAVE
+        </button>
       </div>
     );
   }
