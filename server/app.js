@@ -11,6 +11,7 @@ const index = require('./routes/index');
 const db = require('./db');
 const app = express();
 
+//login
 passport.use(
   new Strategy(async (account, password, done) => {
     try {
@@ -30,7 +31,7 @@ passport.use(
       done(error);
     }
   })
-)
+);
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -61,7 +62,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.use(
   session({
-    secret: "kovoel",
+    secret: 'kovoel',
     resave: false,
     saveUninitialized: false
   })
@@ -71,15 +72,26 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+//go to a login page
+app.get('/login', (req, res) => {
+  return res.status(200).send('Login page!');
+});
+
 app.post(
-  "/login",
-  passport.authenticate("local", { failureRedirect: "/login" }),
+  '/login',
+  passport.authenticate('local', { failureRedirect: '/login' }),
   (req, res) => {
-    res.redirect("/");
+    res.redirect('/');
   }
 );
 
-app.post("/register", async (req, res) => {
+//go to a register page
+app.get('/register', (req, res) => {
+  return res.status(200).send('Register page!');
+});
+
+//add new user into users table
+app.post('/register', async (req, res) => {
   const newUser = req.body;
   newUser.password = await bcrypt.hash(newUser.password, 10);
   await db.users.addUser(newUser);
