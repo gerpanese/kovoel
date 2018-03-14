@@ -1,10 +1,9 @@
 const DefaultState = {
-  frontText: null,
-  backText: null,
+  frontText: '',
+  backText: '',
 };
 
 const reducer = (state = DefaultState, action) => {
-  console.log('this is current state in reducer: ', state);
   const getCopyOfState = _state => JSON.parse(JSON.stringify(_state));
   switch (action.type) {
     case 'UPDATE_FRONT_TEXT': {
@@ -19,14 +18,14 @@ const reducer = (state = DefaultState, action) => {
     }
     case 'SAVE_CARD': {
       const newState = getCopyOfState(state);
-      newState.frontText = null;
-      newState.backText = null;
+      newState.frontText = '';
+      newState.backText = '';
       return newState;
     }
     case 'DISCARD_CARD': {
       const newState = getCopyOfState(state);
-      newState.frontText = null;
-      newState.backText = null;
+      newState.frontText = '';
+      newState.backText = '';
       return newState;
     }
     default:

@@ -12,23 +12,8 @@ class CreateCard extends Component {
     this.handleSaveClick = this.handleSaveClick.bind(this);
   }
 
-  handleDiscardClick(event) {
-    event.preventDefault();
-    this.props.discardCard();
-  }
-
-  handleRecordClick(event) {
-    event.preventDefault();
-  }
-
-  handleSaveClick(event) {
-    event.preventDefault();
-    this.props.saveCard();
-  }
-
   handleFrontTextChange(event) {
     event.preventDefault();
-    console.log(this.props);
     const frontText = event.target.value;
     this.props.updateFrontText(frontText);
   }
@@ -39,16 +24,28 @@ class CreateCard extends Component {
     this.props.updateBackText(backText);
   }
 
+  handleDiscardClick(event) {
+    event.preventDefault();
+    this.props.discardCard();
+  }
+
+  handleRecordClick(event) {
+    event.preventDefault();
+    const speech = new WebSpeechApi();
+    // hear a text
+    speech.hear(
+      'ja-JP',
+      (frontText) => { this.props.updateFrontText(frontText); },
+      errorMessage => console.log(errorMessage),
+    );
+  }
+
+  handleSaveClick(event) {
+    event.preventDefault();
+    this.props.saveCard();
+  }
 
   render() {
-    // const test = new WebSpeechApi();
-    // // hear a text
-    // test.hear(
-    //   'ja-JP',
-    //   (text) => { test.speech(text, 'ja-JP'); },
-    //   errorMessage => console.log(errorMessage),
-    // );
-
     return (
       <div className="CreateCard">
         <input
@@ -56,7 +53,7 @@ class CreateCard extends Component {
           name="frontText"
           id="frontText"
           onChange={this.handleFrontTextChange}
-          defaultValue=""
+          value={this.props.frontText}
         />
         <input
           type="text"
