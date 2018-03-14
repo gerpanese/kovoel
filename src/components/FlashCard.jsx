@@ -3,7 +3,7 @@ import Fireworks from 'fireworks-react';
 import propTypes from 'prop-types';
 import WebSpeechApi from '../utils/WebSpeechApi';
 
-import '../assets/FlashCard.css';
+import '../assets/flashcard.css';
 
 class FlashCard extends Component {
   constructor(args) {
@@ -29,7 +29,7 @@ class FlashCard extends Component {
             setTimeout(() => {
               this.props.flashCardSuccessfullyLearned(this.props.flashCard.id);
             }, 300);
-          }, 1000);
+          }, 2000);
         } else {
           this.webSpeechApi.speech(this.props.errorMessage, this.props.languageCode);
           document.getElementById('flashCard').className = 'card';

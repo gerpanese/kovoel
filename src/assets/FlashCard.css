@@ -5,8 +5,6 @@
   position: relative;
   margin: auto;
   transition: ease-in;
-  width: 50%;
-  margin: auto;
   margin-top: 5%;
 }
 
@@ -56,12 +54,19 @@
 }
 
 .microphone {
-  background-image: url('microphone.png');
+  background-image: url('microphone.jpg');
   background-repeat: no-repeat;
   width: 50px;
   height: 50px;
-  border: 1px solid red;
   background-size: 100%;
+  cursor: pointer;
+  margin: auto;
+  margin-bottom: 10px;
+  opacity: 0.5;
+}
+
+.microphone:hover {
+  opacity: 1;
 }
 
 .fireworks {

@@ -1,11 +1,12 @@
 import LearnShuffling from '../utils/LearnShuffling';
 
 const DefaultState = {
-  errorMessage: 'わかりません。もいちど',
+  errorMessage: 'わかりません もいちど',
   languageCode: 'ja-JP',
   currentFlashCard: null,
   shuffledFlashCards: [],
 
+  currentPage: 'dashboard',
 
   flashCards: [
     { id: 1, preview: '日本語', translation: 'japanisch', romanji: 'nihongo' },
@@ -20,8 +21,13 @@ const DefaultState = {
 function Reducer(state = DefaultState, action) {
   const getCopyOfState = _state => JSON.parse(JSON.stringify(_state));
   switch (action.type) {
-    case 'SHUFFLE_FLASH_CARDS': {
+    case 'CHANGE_PAGE': {
+      const newState = getCopyOfState(state);
+      newState.currentPage = action.page;
+      return newState;
+    }
 
+    case 'SHUFFLE_FLASH_CARDS': {
       const newState = getCopyOfState(state);
       const learnShuffling = new LearnShuffling(newState.flashCards);
       newState.shuffledFlashCards = getCopyOfState(learnShuffling.doShuffle());
@@ -35,6 +41,7 @@ function Reducer(state = DefaultState, action) {
       // store into the user-statistic
       newState.userStatistic.push({
         state: 'SUCCESS',
+        timestamp: +new Date(),
         id: newState.currentFlashCard.id,
       });
 
@@ -49,7 +56,8 @@ function Reducer(state = DefaultState, action) {
       // store into the user-statistic
       newState.userStatistic.push({
         state: 'FAULTY',
-        id: newState.currentflashCard.id,
+        timestamp: +new Date(),
+        id: newState.currentFlashCard.id,
       });
 
       return newState;
