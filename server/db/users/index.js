@@ -1,7 +1,11 @@
-const create = require('./create');
+const addUser = require('./addUser');
+const findByAccount = require('./findByAccount');
+const findById = require('./findById');
 
 module.exports = knex => {
   return {
-    create: create(knex)
+    addUser: addUser(knex),
+    findByAccount: findByAccount(knex),
+    findById: findById(knex),
   }
 }
