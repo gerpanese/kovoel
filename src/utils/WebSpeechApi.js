@@ -1,4 +1,7 @@
 export default class WebSpeechApi {
+  constructor() {
+    this.voiceList = null;
+  }
 
   getSpeechRecognition() {
     try {
@@ -13,10 +16,7 @@ export default class WebSpeechApi {
   }
 
   isWebbrowserSupported() {
-    if (this.getSpeechRecognition() !== null) {
-      return true;
-    }
-    return false;
+    return (this.getSpeechRecognition() !== null);
   }
 
   async getVoices() {
@@ -27,15 +27,18 @@ export default class WebSpeechApi {
         }
         window.speechSynthesis.getVoices();
       })
+    };
+
+    if (this.voiceList === null) {
+      this.voiceList = await getVoices();
     }
-  
-    return await getVoices();
-  };
+    return this.voiceList;
+  }
 
   async getLanguageBasedVoice(languageCode) {
     const voices = await this.getVoices().then(data => data);
 
-    for (let i = 0; i < voices.length ; i += 1) {
+    for (let i = 0; i < voices.length; i += 1) {
       if (voices[i].lang === languageCode) {
         return voices[i];
       }
@@ -46,14 +49,15 @@ export default class WebSpeechApi {
 
   async speech(textToSynthesis, language = 'ja-JP') {
     const synth = window.speechSynthesis;
-      
+
     if (synth.speaking) {
-      console.error('speechSynthesis.speaking');
+      console.log('speechSynthesis.speaking');
       return;
     }
-    var utterThis = new SpeechSynthesisUtterance(textToSynthesis);
-    utterThis.onend = event => console.log('SpeechSynthesisUtterance.onend');
-    utterThis.onerror = event => console.error('SpeechSynthesisUtterance.onerror');
+
+    const utterThis = new SpeechSynthesisUtterance(textToSynthesis);
+    utterThis.onend = () => console.log('SpeechSynthesisUtterance.onend');
+    utterThis.onerror = () => console.error('SpeechSynthesisUtterance.onerror');
     utterThis.voice = await this.getLanguageBasedVoice(language).then(data => data);
     synth.speak(utterThis);
   }
@@ -63,32 +67,31 @@ export default class WebSpeechApi {
       throw new Error('your webbrowser don\'t support this feature');
       return;
     }
-  
+
     const SpeechRecognition = this.getSpeechRecognition();
-  
+
     const recognition = new SpeechRecognition();
     recognition.lang = language;
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
     recognition.start();
-  
+
     recognition.onresult = (event) => {
       const last = event.results.length - 1;
       const text = event.results[last][0].transcript;
-  
       resolve(text);
-    }
-  
+    };
+
     recognition.onspeechend = () => {
       recognition.stop();
-    }
-  
-    recognition.onnomatch = (event) => {
-      reject('I didn\'t recognise that color.');
-    }
-  
+    };
+
+    recognition.onnomatch = () => {
+      reject('I didn\'t recognise that text.');
+    };
+
     recognition.onerror = (event) => {
-      reject('Error occurred in recognition: ' + event.error);
-    }
+      reject(`Error occurred in recognition: ${event.error}`);
+    };
   }
 }
