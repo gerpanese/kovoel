@@ -6,6 +6,13 @@ module.exports = {
   module: {
     loaders: [
       {
+        test: /\.(ttf|eot|svg|jpg|png)$/,
+        include: path.resolve(__dirname, 'src'),
+        use: [{
+          loader: 'file-loader',
+        }],
+      },
+      {
         loaders: ['style-loader', 'css-loader'],
         test: /\.(css|png)$/,
       },
