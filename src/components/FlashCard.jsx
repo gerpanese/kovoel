@@ -3,7 +3,7 @@ import Fireworks from 'fireworks-react';
 import propTypes from 'prop-types';
 import WebSpeechApi from '../utils/WebSpeechApi';
 
-import '../assets/flashcard.css';
+import '../assets/Flashcard.css';
 
 class FlashCard extends Component {
   constructor(props) {
