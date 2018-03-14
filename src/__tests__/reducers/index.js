@@ -12,7 +12,8 @@ describe('todos reducer', () => {
     const actual = reducer(undefined, {});
 
     // Assert
-    expect(actual).toEqual(expected);
+    expect(actual.frontText).toEqual(expected.frontText);
+    expect(actual.backText).toEqual(expected.backText);
   });
 
   it('should handle UPDATE_FRONT_TEXT', () => {
