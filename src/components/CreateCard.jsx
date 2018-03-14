@@ -60,7 +60,7 @@ class CreateCard extends Component {
           name="backText"
           id="backText"
           onChange={this.handleBackTextChange}
-          defaultValue=""
+          value={this.props.backText}
         />
         <button onClick={this.handleDiscardClick}>DISCARD</button>
         <button onClick={this.handleRecordClick}>RECORD</button>
@@ -71,6 +71,8 @@ class CreateCard extends Component {
 }
 
 CreateCard.propTypes = {
+  frontText: PropTypes.string.isRequired,
+  backText: PropTypes.string.isRequired,
   updateFrontText: PropTypes.func.isRequired,
   updateBackText: PropTypes.func.isRequired,
   saveCard: PropTypes.func.isRequired,
