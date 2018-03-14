@@ -6,10 +6,10 @@ export default class WebSpeechApi {
   getSpeechRecognition() {
     try {
       return webkitSpeechRecognition;
-    } catch(e) {
+    } catch (e) {
       try {
         return SpeechRecognition;
-      } catch(e) {
+      } catch (e) {
         return null;
       }
     }
@@ -20,13 +20,13 @@ export default class WebSpeechApi {
   }
 
   async getVoices() {
-    const getVoices = (voiceName = "") => {
-      return new Promise(resolve => {
-        window.speechSynthesis.onvoiceschanged = e => {
-          resolve(window.speechSynthesis.getVoices());
-        }
-        window.speechSynthesis.getVoices();
-      })
+    const getVoices = (voiceName = '') =>
+      new Promise(resolve => {
+          window.speechSynthesis.onvoiceschanged = () => {
+              resolve(window.speechSynthesis.getVoices());
+          };
+          window.speechSynthesis.getVoices();
+      };
     };
 
     if (this.voiceList === null) {
@@ -65,7 +65,6 @@ export default class WebSpeechApi {
   hear(language = 'en-US', resolve, reject) {
     if (!this.isWebbrowserSupported()) {
       throw new Error('your webbrowser don\'t support this feature');
-      return;
     }
 
     const SpeechRecognition = this.getSpeechRecognition();
@@ -91,7 +90,7 @@ export default class WebSpeechApi {
     };
 
     recognition.onerror = (event) => {
-      reject(`Error occurred in recognition: ${event.error}`);
+      reject(`Error occurred in recognition: ${  event.error}`);
     };
   }
 }

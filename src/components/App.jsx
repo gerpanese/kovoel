@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
-import WebSpeechApi from '../utils/WebSpeechApi';
 import FlashCard from '../containers/FlashCard';
 import Statistic from '../containers/Statistic';
 import Ranking from '../containers/Ranking';
+import CreateCard from '../containers/CreateCard';
 
 class App extends Component {
   constructor(args) {
@@ -24,10 +24,10 @@ class App extends Component {
           </div>
         );
 
-      case 'administration':
+      case 'createCard':
         return (
           <div className="App">
-            administration
+              <CreateCard />
           </div>
         );
 
@@ -51,7 +51,7 @@ class App extends Component {
           <div className="App">
             <ul>
               <li onClick={event => this.changePage('learning')}>Learning</li>
-              <li onClick={event => this.changePage('administration')}>Administration</li>
+              <li onClick={event => this.changePage('createCard')}>Administration</li>
               <li onClick={event => this.changePage('statistic')}>Statistic</li>
               <li onClick={event => this.changePage('ranking')}>Ranking</li>
             </ul>
