@@ -6,8 +6,8 @@ import WebSpeechApi from '../utils/WebSpeechApi';
 import '../assets/flashcard.css';
 
 class FlashCard extends Component {
-  constructor(args) {
-    super(args);
+  constructor(props) {
+    super(props);
     this.recordVoice = this.recordVoice.bind(this);
     this.webSpeechApi = new WebSpeechApi();
   }
