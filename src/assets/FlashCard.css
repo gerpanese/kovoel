@@ -63,3 +63,11 @@
   border: 1px solid red;
   background-size: 100%;
 }
+
+.fireworks {
+  margin-left: 30%;
+}
+
+body.black {
+  background-color: #000;
+}

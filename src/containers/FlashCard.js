@@ -1,16 +1,21 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import FlashCard from '../components/FlashCard';
-import { flashCardSuccessfullyLearned, flashCardFaultyLearned } from '../actions/index';
+import {
+  flashCardSuccessfullyLearned,
+  flashCardFaultyLearned,
+  shuffleFlashCards,
+} from '../actions/index';
 
 const mapStateToProps = state => ({
   errorMessage: state.errorMessage,
   languageCode: state.languageCode,
+  hasStillFlashCardsToLearn: state.shuffledFlashCards.length > 0 || state.currentFlashCard,
   flashCard: state.currentFlashCard,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(
-  { flashCardSuccessfullyLearned, flashCardFaultyLearned },
+  { flashCardSuccessfullyLearned, flashCardFaultyLearned, shuffleFlashCards },
   dispatch,
 );
 

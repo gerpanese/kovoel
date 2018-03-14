@@ -1,13 +1,17 @@
+import LearnShuffling from '../utils/LearnShuffling';
+
 const DefaultState = {
-  errorMessage: 'わかりません',
+  errorMessage: 'わかりません。もいちど',
   languageCode: 'ja-JP',
-  currentFlashCard: { id: 1, preview: '日本語', translation: 'japanisch', romanji: 'nihongo' },
+  currentFlashCard: null,
+  shuffledFlashCards: [],
+
 
   flashCards: [
     { id: 1, preview: '日本語', translation: 'japanisch', romanji: 'nihongo' },
     { id: 2, preview: '見ました', translation: 'seen', romanji: 'mimashita' },
-    { id: 3, preview: '日曜日', translation: 'inside', romanji: 'nichiyobi' },
-    { id: 4, preview: '本', translation: 'book', romanji: 'hon' },
+    { id: 3, preview: '日曜日', translation: 'sunday', romanji: 'nichiyobi' },
+    { id: 4, preview: 'ドイツ', translation: 'germany', romanji: 'doitsu' },
   ],
 
   userStatistic: [],
@@ -16,9 +20,17 @@ const DefaultState = {
 function Reducer(state = DefaultState, action) {
   const getCopyOfState = _state => JSON.parse(JSON.stringify(_state));
   switch (action.type) {
+    case 'SHUFFLE_FLASH_CARDS': {
+
+      const newState = getCopyOfState(state);
+      const learnShuffling = new LearnShuffling(newState.flashCards);
+      newState.shuffledFlashCards = getCopyOfState(learnShuffling.doShuffle());
+      newState.currentFlashCard = newState.shuffledFlashCards.shift(); 
+      return newState;
+    }
+
     case 'FLASH_CARD_SUCESSFULLY_LEARNED': {
       const newState = getCopyOfState(state);
-      const nextId = newState.currentFlashCard.id + 1;
 
       // store into the user-statistic
       newState.userStatistic.push({
@@ -26,14 +38,7 @@ function Reducer(state = DefaultState, action) {
         id: newState.currentFlashCard.id,
       });
 
-      // @todo make nice
-      let nextFlashCard = newState.flashCards
-        .filter(flashCard => flashCard.id === nextId)[0];
-      if (!nextFlashCard) {
-        nextFlashCard = newState.flashCards.filter(flashCard => flashCard.id === 1)[0];
-      }
-
-      newState.currentFlashCard = nextFlashCard;
+      newState.currentFlashCard = newState.shuffledFlashCards.shift();
 
       return newState;
     }
