@@ -17,7 +17,7 @@ passport.use(
     try {
       const user = await db.users.findByAccount(account);
       if (!user) {
-        return done(null, false, , { message: 'Incorrect account.'});
+        return done(null, false, { message: 'Incorrect account.'});
       }
 
       const correctPassword = await bcrypt.compare(password, user.password);
@@ -115,5 +115,7 @@ app.use((error, request, response) => {
   response.status(error.status || 500);
   response.render('error');
 });
+
+app.listen(process.env.PORT || 3000, () => console.log("http://localhost:3000"));
 
 module.exports = app;

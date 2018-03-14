@@ -3,7 +3,8 @@ module.exports = knex => {
     const user = params;
     try {
       const userInfo = await knex('users').insert({
-        account: user.account,
+        name: user.name,
+        email: user.email,
         password: user.password,
         created_at: user.created_at
       });
