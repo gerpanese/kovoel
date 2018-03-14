@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import FlashCard from '../components/FlashCard';
+import { changePage } from '../actions/dashboard';
 import {
   flashCardSuccessfullyLearned,
   flashCardFaultyLearned,
@@ -15,7 +16,12 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(
-  { flashCardSuccessfullyLearned, flashCardFaultyLearned, shuffleFlashCards },
+  {
+    changePage,
+    flashCardSuccessfullyLearned,
+    flashCardFaultyLearned,
+    shuffleFlashCards,
+  },
   dispatch,
 );
 

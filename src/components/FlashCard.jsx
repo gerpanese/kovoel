@@ -9,11 +9,16 @@ class FlashCard extends Component {
   constructor(props) {
     super(props);
     this.recordVoice = this.recordVoice.bind(this);
+    this.gotoDashboard = this.gotoDashboard.bind(this);
     this.webSpeechApi = new WebSpeechApi();
   }
 
   componentWillMount() {
     this.props.shuffleFlashCards();
+  }
+
+  gotoDashboard() {
+    this.props.changePage('dashboard');
   }
 
   recordVoice() {
@@ -46,7 +51,7 @@ class FlashCard extends Component {
       return (
         <div>
           <Fireworks className="fireworks" width={size} height={size} />
-          <a href="#">go to dashboard</a>
+          <button onClick={event => this.gotoDashboard()}>go to dashboard</button>
         </div>);
     }
 
