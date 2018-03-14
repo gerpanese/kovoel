@@ -4,8 +4,8 @@ describe('todos reducer', () => {
   it('should return the default state', () => {
     // Setup
     const expected = {
-      frontText: null,
-      backText: null,
+      frontText: '',
+      backText: '',
     };
 
     // Exercise
@@ -56,8 +56,8 @@ describe('todos reducer', () => {
       backText: 'Existing test back text',
     };
     const expected = {
-      frontText: null,
-      backText: null,
+      frontText: '',
+      backText: '',
     };
     const mockAction = {
       type: 'SAVE_CARD',
@@ -77,8 +77,8 @@ describe('todos reducer', () => {
       backText: 'Existing test back text',
     };
     const expected = {
-      frontText: null,
-      backText: null,
+      frontText: '',
+      backText: '',
     };
     const mockAction = {
       type: 'DISCARD_CARD',
