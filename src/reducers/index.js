@@ -4,6 +4,7 @@ const DefaultState = {
 };
 
 const reducer = (state = DefaultState, action) => {
+  console.log('this is current state in reducer: ', state);
   const getCopyOfState = _state => JSON.parse(JSON.stringify(_state));
   switch (action.type) {
     case 'UPDATE_FRONT_TEXT': {
