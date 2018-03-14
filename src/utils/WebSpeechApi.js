@@ -1,4 +1,8 @@
 export default class WebSpeechApi {
+  constructor() {
+    this.voiceList = null;
+  }
+
   getSpeechRecognition() {
     try {
       return webkitSpeechRecognition;
@@ -12,21 +16,22 @@ export default class WebSpeechApi {
   }
 
   isWebbrowserSupported() {
-    if (this.getSpeechRecognition() !== null) {
-      return true;
-    }
-    return false;
+    return (this.getSpeechRecognition() !== null);
   }
 
   async getVoices() {
-    const getVoices = (voiceName = '') => new Promise((resolve) => {
-      window.speechSynthesis.onvoiceschanged = (e) => {
-        resolve(window.speechSynthesis.getVoices());
-      };
-      window.speechSynthesis.getVoices();
-    });
+    const getVoices = () =>
+      new Promise((resolve) => {
+        window.speechSynthesis.onvoiceschanged = () => {
+          resolve(window.speechSynthesis.getVoices());
+        };
+        window.speechSynthesis.getVoices();
+      });
 
-    return await getVoices();
+    if (this.voiceList === null) {
+      this.voiceList = await getVoices();
+    }
+    return this.voiceList;
   }
 
   async getLanguageBasedVoice(languageCode) {
@@ -45,12 +50,13 @@ export default class WebSpeechApi {
     const synth = window.speechSynthesis;
 
     if (synth.speaking) {
-      console.error('speechSynthesis.speaking');
+      console.log('speechSynthesis.speaking');
       return;
     }
+
     const utterThis = new SpeechSynthesisUtterance(textToSynthesis);
-    utterThis.onend = event => console.log('SpeechSynthesisUtterance.onend');
-    utterThis.onerror = event => console.error('SpeechSynthesisUtterance.onerror');
+    utterThis.onend = () => console.log('SpeechSynthesisUtterance.onend');
+    utterThis.onerror = () => console.error('SpeechSynthesisUtterance.onerror');
     utterThis.voice = await this.getLanguageBasedVoice(language).then(data => data);
     synth.speak(utterThis);
   }
@@ -71,7 +77,6 @@ export default class WebSpeechApi {
     recognition.onresult = (event) => {
       const last = event.results.length - 1;
       const text = event.results[last][0].transcript;
-
       resolve(text);
     };
 
@@ -79,8 +84,8 @@ export default class WebSpeechApi {
       recognition.stop();
     };
 
-    recognition.onnomatch = (event) => {
-      reject('I didn\'t recognise that color.');
+    recognition.onnomatch = () => {
+      reject('I didn\'t recognise that text.');
     };
 
     recognition.onerror = (event) => {

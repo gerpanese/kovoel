@@ -1,0 +1,78 @@
+.card-container {
+  height: 350px;
+  width: 500px;
+  perspective: 800px;
+  position: relative;
+  margin: auto;
+  transition: ease-in;
+  margin-top: 5%;
+}
+
+.card {
+  height: 350px;
+  width: 500px;
+  position: absolute;
+  border: 0px;
+  transform-style: preserve-3d;
+  transition: all 0.4s ease-in-out;
+}
+
+.card_active {
+  transform: rotateY(180deg);
+  transition: all 0.4s ease-in-out;
+}
+
+.card .front {
+  height: 350px;
+  width: 500px;
+  backface-visibility: hidden;
+  position: absolute;
+  overflow: hidden;
+  text-align: center;
+  background-image: url('flashcard.jpg');
+  background-size: 101%;
+  background-repeat: no-repeat;
+}
+
+.card .back {
+  height: 350px;
+  width: 500px;
+  text-align: center;
+  transform: rotateY(180deg);
+}
+
+.eng,
+.han {
+  color: #333;
+  font-size: 4em;
+  padding-top: 101px;
+}
+
+.pin {
+    color: rgba(200, 10, 10, 1);
+    font-size: 2em;
+}
+
+.microphone {
+  background-image: url('microphone.jpg');
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
+  background-size: 100%;
+  cursor: pointer;
+  margin: auto;
+  margin-bottom: 10px;
+  opacity: 0.5;
+}
+
+.microphone:hover {
+  opacity: 1;
+}
+
+.fireworks {
+  margin-left: 30%;
+}
+
+body.black {
+  background-color: #000;
+}
