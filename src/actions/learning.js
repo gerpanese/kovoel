@@ -1,6 +1,3 @@
-// You can delete this function
-const initialAction = () => {};
-
 const shuffleFlashCards = () => ({
   type: 'SHUFFLE_FLASH_CARDS',
 });
@@ -21,7 +18,6 @@ const changePage = page => ({
 });
 
 export {
-  initialAction,
   shuffleFlashCards,
   flashCardSuccessfullyLearned,
   flashCardFaultyLearned,

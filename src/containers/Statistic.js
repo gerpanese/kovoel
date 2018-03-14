@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Statistic from '../components/Statistic';
-import {} from '../actions/index';
+import {} from '../actions/learning';
 
 const mapStateToProps = state => ({
 });

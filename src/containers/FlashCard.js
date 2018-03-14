@@ -5,7 +5,7 @@ import {
   flashCardSuccessfullyLearned,
   flashCardFaultyLearned,
   shuffleFlashCards,
-} from '../actions/index';
+} from '../actions/learning';
 
 const mapStateToProps = state => ({
   errorMessage: state.errorMessage,

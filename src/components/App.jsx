@@ -6,8 +6,8 @@ import Ranking from '../containers/Ranking';
 import CreateCard from '../containers/CreateCard';
 
 class App extends Component {
-  constructor(args) {
-    super(args);
+  constructor(props) {
+    super(props);
     this.changePage = this.changePage.bind(this);
   }
 
