@@ -1,9 +1,7 @@
 import React from 'react';
-import sinon from 'sinon';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import CreateCard from '../../components/CreateCard';
-import WebSpeechApi from '../../utils/WebSpeechApi';
 
 Enzyme.configure({ adapter: new Adapter() });
 
