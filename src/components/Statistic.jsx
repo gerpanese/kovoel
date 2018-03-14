@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 
-import '../assets/statistic.css';
+import '../assets/ranking.css';
 
 class Statistic extends Component {
   constructor(args) {

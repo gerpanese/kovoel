@@ -20,14 +20,13 @@ export default class WebSpeechApi {
   }
 
   async getVoices() {
-    const getVoices = (voiceName = '') =>
-      new Promise(resolve => {
-          window.speechSynthesis.onvoiceschanged = () => {
-              resolve(window.speechSynthesis.getVoices());
-          };
-          window.speechSynthesis.getVoices();
-      };
-    };
+    const getVoices = () =>
+      new Promise((resolve) => {
+        window.speechSynthesis.onvoiceschanged = () => {
+          resolve(window.speechSynthesis.getVoices());
+        };
+        window.speechSynthesis.getVoices();
+      });
 
     if (this.voiceList === null) {
       this.voiceList = await getVoices();
