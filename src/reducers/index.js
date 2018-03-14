@@ -8,7 +8,6 @@ const reducer = (state = DefaultState, action) => {
   switch (action.type) {
     case 'UPDATE_FRONT_TEXT': {
       const newState = getCopyOfState(state);
-      console.log(newState)
       newState.frontText = action.frontText;
       return newState;
     }
