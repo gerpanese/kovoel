@@ -4,6 +4,13 @@ import FlashCard from '../containers/FlashCard';
 import Statistic from '../containers/Statistic';
 import Ranking from '../containers/Ranking';
 import CreateCard from '../containers/CreateCard';
+import Footer from '../containers/Footer';
+import Header from '../containers/Header';
+import AboutUs from '../containers/AboutUs';
+import LandingPageTeaser from '../containers/LandingPageTeaser';
+import LandingPageContent from '../containers/LandingPageContent';
+
+import '../assets/landing-page.css';
 
 class App extends Component {
   constructor(props) {
@@ -15,7 +22,7 @@ class App extends Component {
     this.props.changePage(page);
   }
 
-  render() {
+  getPageContent() {
     switch (this.props.currentPage) {
       case 'learning':
         return (
@@ -46,7 +53,6 @@ class App extends Component {
         );
 
       case 'dashboard':
-      default:
         return (
           <div className="App">
             <ul>
@@ -57,7 +63,36 @@ class App extends Component {
             </ul>
           </div>
         );
+
+      case 'landingPage':
+      default:
+        return (
+          <div>
+            <Header />
+            <LandingPageTeaser />
+            <LandingPageContent />
+            <AboutUs />
+            <Footer />
+          </div>
+        );
     }
+  }
+
+  render() {
+    const pageContent = this.getPageContent();
+    return (
+      <div>
+        <nav className="navbar navbar-light bg-light static-top">
+          <div className="container">
+            <a className="navbar-brand" href="#">kovoel</a>
+            <a className="btn btn-primary" href="#">Sign In</a>
+          </div>
+        </nav>
+
+        {pageContent}
+
+      </div>
+    );
   }
 }
 
