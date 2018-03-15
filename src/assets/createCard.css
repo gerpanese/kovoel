@@ -1,0 +1,24 @@
+
+/* Full-width input fields */
+.create-card input[type=text] {
+  width: 100%;
+  padding: 10px;
+  margin: 0px 0 20px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+.create-card input[type=text]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.create-card #frontText {
+  width: 80%;
+  margin-right: 1%;
+}
+
+.create-card #discardButton {
+  margin-right: 1%;
+}

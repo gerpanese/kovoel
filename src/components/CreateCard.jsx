@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import WebSpeechApi from '../utils/WebSpeechApi';
 
+import '../assets/createCard.css';
+
 class CreateCard extends Component {
   constructor(props) {
     super(props);
@@ -48,36 +50,54 @@ class CreateCard extends Component {
 
   render() {
     return (
-      <div className="CreateCard">
+      <div class="panel panel-default">
+      <div className="panel-body create-card">
         <input
           type="text"
           name="frontText"
           id="frontText"
+          placeholder="Please press the record button"
           onChange={this.handleFrontTextChange}
           value={this.props.frontText}
         />
-        <input
-          type="text"
-          name="backText"
-          id="backText"
-          onChange={this.handleBackTextChange}
-          value={this.props.backText}
-        />
         <button
           id="discardButton"
+          className="btn btn-danger"
           onClick={this.handleDiscardClick}
         >DISCARD
         </button>
         <button
           id="recordButton"
+          className="btn btn-success"
           onClick={this.handleRecordClick}
         >RECORD
         </button>
+
+        <br />
+
+        <input
+          type="text"
+          name="backText"
+          id="backText"
+          placeholder="Please add the back-text"
+          onChange={this.handleBackTextChange}
+          value={this.props.backText}
+        />
+
+
+        <button
+          id="cancelButton"
+          className="btn btn-info"
+          onClick={this.handleSaveClick}
+        >cancel
+        </button>
         <button
           id="saveButton"
+          className="btn btn-success"
           onClick={this.handleSaveClick}
         >SAVE
         </button>
+      </div>
       </div>
     );
   }
