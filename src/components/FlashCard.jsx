@@ -49,9 +49,10 @@ class FlashCard extends Component {
     if (!this.props.hasStillFlashCardsToLearn) {
       const size = 500;
       return (
-        <div>
+        <div className="final">
           <Fireworks className="fireworks" width={size} height={size} />
-          <button onClick={event => this.gotoDashboard()}>go to dashboard</button>
+          <br />
+          <button className="btn-primary btn goto-dashboard" onClick={() => this.gotoDashboard()}>go to dashboard</button>
         </div>);
     }
 
