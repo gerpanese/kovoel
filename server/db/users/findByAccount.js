@@ -1,7 +1,6 @@
-module.exports = knex => async (params) => {
-  const account = params;
+module.exports = knex => async (acount) => {
   try {
-    return await knex('users').where('email', params);
+    return await knex('users').where('email');
   } catch (error) {
     return error;
   }
