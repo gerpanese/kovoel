@@ -3,16 +3,19 @@ import PropTypes from 'prop-types';
 import WebSpeechApi from '../utils/WebSpeechApi';
 
 import '../assets/createCard.css';
+import '../assets/FlashCard.css';
 
 class CreateCard extends Component {
   constructor(props) {
     super(props);
+    this.isFirstPage = true;
     this.WebSpeechApi = WebSpeechApi;
     this.handleFrontTextChange = this.handleFrontTextChange.bind(this);
     this.handleBackTextChange = this.handleBackTextChange.bind(this);
     this.handleDiscardClick = this.handleDiscardClick.bind(this);
     this.handleRecordClick = this.handleRecordClick.bind(this);
     this.handleSaveClick = this.handleSaveClick.bind(this);
+    this.turnAroundFlashCard = this.turnAroundFlashCard.bind(this);
   }
 
   handleFrontTextChange(event) {
@@ -48,19 +51,23 @@ class CreateCard extends Component {
     this.props.saveCard();
   }
 
+  turnAroundFlashCard(event) {
+    const nodeFrontText = document.getElementById('frontText');
+    const nodeBackText = document.getElementById('backText');
+
+    if (this.isFirstPage) {
+      nodeFrontText.className = 'd-lg-none';
+      nodeBackText.className = '';
+    } else {
+      nodeFrontText.className = '';
+      nodeBackText.className = 'd-lg-none';
+    }
+    this.isFirstPage = !this.isFirstPage;
+  }
+
   render() {
-    return (
-      <div class="panel panel-default">
-      <div className="panel-body create-card">
-        <input
-          type="text"
-          name="frontText"
-          id="frontText"
-          placeholder="Please press the record button"
-          onChange={this.handleFrontTextChange}
-          value={this.props.frontText}
-        />
-        <button
+    /*
+            <button
           id="discardButton"
           className="btn btn-danger"
           onClick={this.handleDiscardClick}
@@ -72,17 +79,44 @@ class CreateCard extends Component {
           onClick={this.handleRecordClick}
         >RECORD
         </button>
+        */
+    return (
+      <div className="panel panel-default">
+      <div className="panel-body create-card">
+        <div
+          className="turn-around"
+          onClick={event => this.turnAroundFlashCard(event)}
+          title="turn around the flashcard"
+        />
 
-        <br />
+        <input
+          type="text"
+          name="frontText"
+          id="frontText"
+          placeholder="Please press the record button"
+          onChange={this.handleFrontTextChange}
+          value={this.props.frontText}
+        />
 
         <input
           type="text"
           name="backText"
           id="backText"
-          placeholder="Please add the back-text"
+          className="d-lg-none"
+          placeholder="Please press the record button"
           onChange={this.handleBackTextChange}
           value={this.props.backText}
         />
+
+        <br />
+
+        <div
+          title="record new flashcard"
+          className="microphone"
+          onClick={this.handleRecordClick}
+        />
+
+        
 
 
         <button

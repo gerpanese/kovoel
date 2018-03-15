@@ -14,11 +14,32 @@
   outline: none;
 }
 
-.create-card #frontText {
-  width: 80%;
+.create-card #frontText,
+.create-card #backText {
   margin-right: 1%;
+  background: url("flashcard.jpg") transparent;
+  height: 289px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  padding: 25px;
+  text-align: center;
+  width: 434px;
+  font-size: 20px;
+  line-height: 18px;
+  margin-left: 33%;
 }
 
 .create-card #discardButton {
   margin-right: 1%;
+}
+
+.turn-around {
+  background-image: url('turnaround.jpg');
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 30px;
+  background-size: 100%;
+  margin: auto;
+  margin-top: 15px;
+  cursor: pointer;
 }
