@@ -1,22 +1,22 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import App from '../components/App';
+import Dashboard from '../components/Dashboard';
 import { changePage } from '../actions/dashboard';
 
+/*
 const mapStateToProps = state => ({
   currentPage: state.currentPage,
 });
-
+*/
 
 const mapDispatchToProps = dispatch => bindActionCreators(
   { changePage },
   dispatch,
 );
 
-
-const AppContainer = connect(
-  mapStateToProps,
+const DashboardContainer = connect(
+  null, // mapStateToProps,
   mapDispatchToProps,
-)(App);
+)(Dashboard);
 
-export default AppContainer;
+export default DashboardContainer;

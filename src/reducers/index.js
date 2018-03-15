@@ -6,8 +6,7 @@ const DefaultState = {
   currentFlashCard: null,
   shuffledFlashCards: [],
 
-  // currentPage: 'landingPage',
-  currentPage: 'dashboard',
+  currentPage: 'landingPage',
 
   flashCards: [
     { id: 1, preview: '日本語', translation: 'japanisch', romanji: 'nihongo' },

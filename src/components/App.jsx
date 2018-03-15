@@ -14,6 +14,15 @@ import Dashboard from '../containers/Dashboard';
 import '../assets/landing-page.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.gotoHomepage = this.gotoHomepage.bind(this);
+  }
+
+  gotoHomepage() {
+    this.props.changePage('landingpage');
+  }
+
   getPageContent() {
     switch (this.props.currentPage) {
       case 'learning':
@@ -70,7 +79,7 @@ class App extends Component {
       <div>
         <nav className="navbar navbar-light bg-light static-top">
           <div className="container">
-            <a className="navbar-brand" href="#">kovoel</a>
+            <a className="navbar-brand" href="#" onClick={event=>this.gotoHomepage()}>kovoel</a>
             <a className="btn btn-primary" href="#">Sign In</a>
           </div>
         </nav>

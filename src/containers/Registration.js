@@ -1,22 +1,21 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import App from '../components/App';
+import Registration from '../components/Registration';
 import { changePage } from '../actions/dashboard';
 
+/*
 const mapStateToProps = state => ({
-  currentPage: state.currentPage,
 });
-
+*/
 
 const mapDispatchToProps = dispatch => bindActionCreators(
   { changePage },
   dispatch,
 );
 
-
-const AppContainer = connect(
-  mapStateToProps,
+const RegistrationContainer = connect(
+  null, // mapStateToProps,
   mapDispatchToProps,
-)(App);
+)(Registration);
 
-export default AppContainer;
+export default RegistrationContainer;
