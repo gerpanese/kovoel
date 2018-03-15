@@ -8,7 +8,6 @@ module.exports = knex => {
         password: user.password
       });
     } catch (error) {
-      console.log('error', error);
       return error;
     }
   }

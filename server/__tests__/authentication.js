@@ -1,5 +1,7 @@
 const PORT = process.env.PORT || 4000;
 const app = require('../app.js');
+const config = require('./config');
+const knex = require('knex')(config.db);
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const chalk = require('chalk');
@@ -11,64 +13,6 @@ app.listen(PORT, () => console.log(
 ));
 
 chai.use(chaiHttp);
-
-describe('GET /login', () => {
-  let status, response;
-
-  before(done => {
-    chai.request(app)
-      .get('/login')
-      .set(
-        'Content-Type', 'application/json'
-      )
-      .end((err, res) => {
-        status = res.status;
-        response = res.text;
-        done();
-      });
-  });
-
-  it('should return status 200.', done => {
-    status.should.equal(200);
-    done();
-  });
-
-  it('should give a message.', done => {
-    response.should.be.a('string');
-    response.should.deep.equal('Login page!');
-    done();
-  });
-});
-
-describe('POST /login', () => {
-  let status, response;
-
-  before(done => {
-    chai.request(app)
-      .post('/login')
-      .set(
-        'Content-Type', 'application/json'
-      )
-      .send({ 
-        account: 'captainkrystal@gmail.com',
-        password: 'hitoomedia'
-       })
-      .end((err, res) => {
-        status = res.status;
-        if (err) {
-          done(err);
-        } else {
-          done();
-        }
-      });
-  });
-
-  it('should return status 200.', done => {
-    status.should.equal(200);
-    done();
-  });
-
-});
 
 describe('GET /register', () => {
   let status, response;
@@ -121,6 +65,66 @@ describe('POST /register', () => {
         }
       });
   });
+
+  it('should return status 200.', done => {
+    status.should.equal(200);
+    done();
+  });
+
+});
+
+describe('GET /login', () => {
+  let status, response;
+
+  before(done => {
+    chai.request(app)
+      .get('/login')
+      .set(
+        'Content-Type', 'application/json'
+      )
+      .end((err, res) => {
+        status = res.status;
+        response = res.text;
+        done();
+      });
+  });
+
+  it('should return status 200.', done => {
+    status.should.equal(200);
+    done();
+  });
+
+  it('should give a message.', done => {
+    response.should.be.a('string');
+    response.should.deep.equal('Login page!');
+    done();
+  });
+});
+
+describe('POST /login', () => {
+  let status, response;
+
+  before(done => {
+    chai.request(app)
+      .post('/login')
+      .set(
+        'Content-Type', 'application/json'
+      )
+      .send({ 
+        account: 'captainkrystal@gmail.com',
+        password: 'hitoomedia'
+       })
+      .end((err, res) => {
+        status = res.status;
+        if (err) {
+          done(err);
+        } else {
+          done();
+        }
+      });
+  });
+
+  after(() => knex('users').del());
 
   it('should return status 200.', done => {
     status.should.equal(200);
