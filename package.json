@@ -6,7 +6,7 @@
     "build": "webpack",
     "hack": "webpack && webpack-dev-server --inline",
     "postinstall": "webpack && yarn migrate",
-    "start": "webpack && node server/bin/www",
+    "start": "node server/bin/www",
     "test": "jest",
     "test:watch": "yarn test -- --watch",
     "migrate": "knex migrate:latest --knexfile ./server/db/knexfile.js",
