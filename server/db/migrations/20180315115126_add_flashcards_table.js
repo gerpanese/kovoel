@@ -12,7 +12,7 @@ exports.up = knex => (
       .notNullable()
       .index();
 
-    table.string('traslation')
+    table.string('translation')
       .notNullable()
       .index();
 

@@ -17,7 +17,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use('/api/users/:userId/flashcards', [
+app.use('/api', [
   router.flashcardRouter,
 ]);
 

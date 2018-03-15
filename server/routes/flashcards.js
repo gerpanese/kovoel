@@ -4,19 +4,19 @@ const db = require('../db');
 const router = express.Router();
 
 /* GET all the flashcards. */
-router.get('/', async (req, res) => {
+router.get('/users/:userId/flashcards', async (req, res) => {
   const { userId } = req.params;
   const flashcards = await db.flashcards.list(userId);
   res.json(flashcards);
 });
 
 /* POST a flashcard. */
-router.post('/', (req, res) => {
+router.post('/users/:userId/flashcards', (req, res) => {
   try {
     const flashcard = req.body;
     const { userId } = req.body;
     const newFlashcard = {
-      userId,
+      user_id: userId,
       translation: flashcard.translation,
       romanji: flashcard.romanji,
       note: flashcard.note,
@@ -32,14 +32,14 @@ router.post('/', (req, res) => {
 });
 
 /* GET a flashcard. */
-router.get('/:id', async (req, res) => {
+router.get('/users/:userId/flashcards/:id', async (req, res) => {
   const { id } = req.params;
   const flashcard = await db.flashcards.get(id);
   res.json(flashcard);
 });
 
 /* DELETE a flashcard. */
-router.post('/:id', (req, res) => {
+router.delete('/users/:userId/flashcards/:id', (req, res) => {
   try {
     const { id } = req.params;
     db.flashcards.remove(id);
