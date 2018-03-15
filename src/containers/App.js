@@ -5,6 +5,7 @@ import { changePage } from '../actions/dashboard';
 
 const mapStateToProps = state => ({
   currentPage: state.currentPage,
+  isUserLoggedIn: state.isUserLoggedIn,
 });
 
 

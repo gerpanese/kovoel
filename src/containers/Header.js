@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 // import { changePage } from '../actions/dashboard';
 import Header from '../components/Header';
 
-/*
+
 const mapStateToProps = state => ({
-  currentPage: state.currentPage,
+  isUserLoggedIn: state.isUserLoggedIn,
 });
 
-
+/*
 const mapDispatchToProps = dispatch => bindActionCreators(
   { changePage },
   dispatch,
@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => bindActionCreators(
 */
 
 const HeaderContainer = connect(
-  null, // mapStateToProps,
+  mapStateToProps,
   null, // mapDispatchToProps,
 )(Header);
 

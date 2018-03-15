@@ -13,8 +13,25 @@ class Header extends Component {
     document.getElementById('id01').style.display = 'block';
   }
 
+  getRegistrationButton() {
+    let registrationButton = '';
+
+    if (!this.props.isUserLoggedIn) {
+      registrationButton = (
+        <div className="form-row">
+          <div className="col-12 col-md-12">
+            <button type="button" onClick={event => this.onScreenShow(event)} className="btn btn-block btn-lg btn-primary">Sign up!</button>
+          </div>
+        </div>
+      );
+    }
+
+    return registrationButton;
+  }
+
   render() {
-    this.a = 'a';
+    const registrationButton = this.getRegistrationButton();
+
     return (
       <header className="masthead text-white text-center">
         <Registration />
@@ -25,13 +42,7 @@ class Header extends Component {
               <h1 className="mb-5">Learn a new language and be one step ahead of others</h1>
             </div>
             <div className="col-md-10 col-lg-8 col-xl-7 mx-auto">
-
-                <div className="form-row">
-                  <div className="col-12 col-md-12">
-                    <button type="button" onClick={event => this.onScreenShow(event)} className="btn btn-block btn-lg btn-primary">Sign up!</button>
-                  </div>
-                </div>
-
+              {registrationButton}
             </div>
           </div>
         </div>

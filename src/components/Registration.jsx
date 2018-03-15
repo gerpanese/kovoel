@@ -53,6 +53,7 @@ class Registration extends Component {
 
     // @todo implement the registration
 
+    this.closeModalBox();
     this.props.changePage('dashboard');
   }
 

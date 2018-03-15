@@ -77,12 +77,16 @@ class App extends Component {
 
   render() {
     const pageContent = this.getPageContent();
+    const loginButton = this.getLoginButton();
+    const dashboardButton = this.getDashboardButton();
+
     return (
       <div>
         <nav className="navbar navbar-light bg-light static-top">
           <div className="container">
             <a className="navbar-brand" href="#" onClick={event=>this.gotoHomepage()}>kovoel</a>
-            <a className="btn btn-primary" href="#" onClick={() => this.onScreenShow()}>Sign In</a>
+            {loginButton}
+            {dashboardButton}
           </div>
         </nav>
 
@@ -94,6 +98,38 @@ class App extends Component {
 
       </div>
     );
+  }
+
+  getDashboardButton() {
+    let dashboardButton = '';
+    if (this.props.isUserLoggedIn) {
+      dashboardButton = (
+        <a
+          className="btn btn-primary"
+          href="#"
+          onClick={() => this.props.changePage('dashboard')}
+          >
+          dashboard
+        </a>
+      );
+    }
+    return dashboardButton;
+  }
+
+  getLoginButton() {
+    let loginButton = '';
+    if (!this.props.isUserLoggedIn) {
+      loginButton = (
+        <a
+          className="btn btn-primary"
+          href="#"
+          onClick={() => this.onScreenShow()}
+          >
+          Sign In
+        </a>
+      );
+    }
+    return loginButton;
   }
 
   onScreenShow() {

@@ -28,6 +28,7 @@ class Login extends Component {
 
     // @todo implement the login
 
+    this.closeModalBox();
     this.props.changePage('dashboard');
   }
 
