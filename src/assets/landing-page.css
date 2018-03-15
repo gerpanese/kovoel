@@ -15,7 +15,7 @@ h6 {
 header.masthead {
   position: relative;
   background-color: #343a40;
-  background: url("bg-masthead.jpg") no-repeat center center;
+  background: url("japan.jpg") no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -135,4 +135,32 @@ footer.footer {
 
 .christian {
   background-image: url("christian.jpg");
+}
+
+.japanTravelling {
+  background-image: url("japan-travelling.jpg");
+}
+
+.japaneseInteraction {
+  background-image: url("interaction.jpg");
+}
+
+.reading {
+  background-image: url("reading.jpg");
+}
+
+.learning {
+  background-image: url("learning.jpg");
+}
+
+.createFlashcards {
+  background-image: url("createFlashcards.jpg");
+}
+
+.statistic {
+  background-image: url("statistic.jpg");
+}
+
+.ranking {
+  background-image: url("ranking.png");
 }

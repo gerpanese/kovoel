@@ -9,19 +9,11 @@ import Header from '../containers/Header';
 import AboutUs from '../containers/AboutUs';
 import LandingPageTeaser from '../containers/LandingPageTeaser';
 import LandingPageContent from '../containers/LandingPageContent';
+import Dashboard from '../containers/Dashboard';
 
 import '../assets/landing-page.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.changePage = this.changePage.bind(this);
-  }
-
-  changePage(page) {
-    this.props.changePage(page);
-  }
-
   getPageContent() {
     switch (this.props.currentPage) {
       case 'learning':
@@ -55,12 +47,7 @@ class App extends Component {
       case 'dashboard':
         return (
           <div className="App">
-            <ul>
-              <li onClick={event => this.changePage('learning')}>Learning</li>
-              <li onClick={event => this.changePage('createCard')}>Administration</li>
-              <li onClick={event => this.changePage('statistic')}>Statistic</li>
-              <li onClick={event => this.changePage('ranking')}>Ranking</li>
-            </ul>
+            <Dashboard />
           </div>
         );
 
@@ -72,7 +59,6 @@ class App extends Component {
             <LandingPageTeaser />
             <LandingPageContent />
             <AboutUs />
-            <Footer />
           </div>
         );
     }
@@ -90,6 +76,8 @@ class App extends Component {
         </nav>
 
         {pageContent}
+
+        <Footer />
 
       </div>
     );
