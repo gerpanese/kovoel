@@ -4,34 +4,33 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
-const passport = require("passport");
-const { Strategy } = require("passport-local");
-const session = require("express-session");
+const passport = require('passport');
+const { Strategy } = require('passport-local');
+const session = require('express-session');
 const index = require('./routes/index');
 const db = require('./db');
+
 const app = express();
 
-//login
-passport.use(
-  new Strategy(async (account, password, done) => {
-    try {
-      const user = await db.users.findByAccount(account);
-      if (!user) {
-        return done(null, false, { message: 'Incorrect account.'});
-      }
-
-      const correctPassword = await bcrypt.compare(password, user.password);
-
-      if (!correctPassword) {
-        return done(null, false, { message: 'Incorrect password.'});
-      }
-  
-      done(null, user);
-    } catch (error) {
-      done(error);
+// login
+passport.use(new Strategy(async (account, password, done) => {
+  try {
+    const user = await db.users.findByAccount(account);
+    if (!user) {
+      return done(null, false, { message: 'Incorrect account.' });
     }
-  })
-);
+
+    const correctPassword = await bcrypt.compare(password, user.password);
+
+    if (!correctPassword) {
+      return done(null, false, { message: 'Incorrect password.' });
+    }
+
+    done(null, user);
+  } catch (error) {
+    done(error);
+  }
+}));
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -56,37 +55,31 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api', index);
 app.use(express.static(path.join(__dirname, '../public')));
 
-app.use(
-  session({
-    secret: 'kovoel',
-    resave: false,
-    saveUninitialized: false
-  })
-);
+app.use(session({
+  secret: 'kovoel',
+  resave: false,
+  saveUninitialized: false,
+}));
 // Initialize Passport and restore authentication state, if any, from the
 // session.
 app.use(passport.initialize());
 app.use(passport.session());
 
-//go to a login page
-app.get('/login', (req, res) => {
-  return res.status(200).send('Login page!');
-});
+// go to a login page
+app.get('/login', (req, res) => res.status(200).send('Login page!'));
 
 app.post(
   '/login',
   passport.authenticate('local', { failureRedirect: '/login' }),
   (req, res) => {
     res.redirect('/');
-  }
+  },
 );
 
-//go to a register page
-app.get('/register', (req, res) => {
-  return res.status(200).send('Register page!');
-});
+// go to a register page
+app.get('/register', (req, res) => res.status(200).send('Register page!'));
 
-//add new user into users table
+// add new user into users table
 app.post('/register', async (req, res) => {
   const newUser = req.body;
   newUser.password = await bcrypt.hash(newUser.password, 10);
