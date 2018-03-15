@@ -9,6 +9,13 @@
   width: 80%;
 }
 
+.close {
+  position: absolute;
+  top: 11%;
+  right: 11%;
+  z-index: 99;
+}
+
 /* Full-width input fields */
 .modal input[type=text],
 .modal input[type=password] {

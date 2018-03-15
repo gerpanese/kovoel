@@ -10,6 +10,7 @@ import AboutUs from '../containers/AboutUs';
 import LandingPageTeaser from '../containers/LandingPageTeaser';
 import LandingPageContent from '../containers/LandingPageContent';
 import Dashboard from '../containers/Dashboard';
+import Login from '../containers/Login';
 
 import '../assets/landing-page.css';
 
@@ -17,6 +18,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.gotoHomepage = this.gotoHomepage.bind(this);
+    this.onScreenShow = this.onScreenShow.bind(this);
   }
 
   gotoHomepage() {
@@ -80,7 +82,7 @@ class App extends Component {
         <nav className="navbar navbar-light bg-light static-top">
           <div className="container">
             <a className="navbar-brand" href="#" onClick={event=>this.gotoHomepage()}>kovoel</a>
-            <a className="btn btn-primary" href="#">Sign In</a>
+            <a className="btn btn-primary" href="#" onClick={() => this.onScreenShow()}>Sign In</a>
           </div>
         </nav>
 
@@ -88,8 +90,14 @@ class App extends Component {
 
         <Footer />
 
+        <Login />
+
       </div>
     );
+  }
+
+  onScreenShow() {
+    document.getElementById('login').style.display = 'block';
   }
 }
 

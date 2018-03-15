@@ -12,7 +12,7 @@ class Registration extends Component {
 
   hideRegistrationForm() {
     // When the user clicks anywhere outside of the modal, close it
-    window.onClick = (event) => {
+    window.onclick = (event) => {
       if (event.target.className === 'modal') {
         event.target.style.display = 'none';
       }
