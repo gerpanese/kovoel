@@ -38,54 +38,56 @@ describe('server/routes/flashcards', () => {
     ));
   });
 
-  // describe('POST /users/:userId/flashcards', () => {
-  //   it('should respond with success status', () => {
-  //     chai.request(server)
-  //       .post(END_POINT)
-  //       .send({
-  //         userId: '1',
-  //         preview: 'もう一回',
-  //         translation: 'One more time',
-  //         romanji: 'mo ikkai',
-  //         note: 'this is test',
-  //       })
-  //       .end((err, res) => {
-  //         expect(err).toEqual(null);
-  //         expect(res.status).toEqual(200);
-  //         expect(res.body.status).toEqual('success');
-  //         done();
-  //       });
-  //   });
-  // });
+  describe('POST /users/:userId/flashcards', () => {
+    it('should respond with success status', (done) => {
+      chai.request(server)
+        .post(END_POINT)
+        .send({
+          userId: '1',
+          preview: 'もう一回',
+          translation: 'One more time',
+          romanji: 'mo ikkai',
+          note: 'this is test',
+        })
+        .end((err, res) => {
+          expect(err).toEqual(null);
+          expect(res.status).toEqual(200);
+          expect(res.body.status).toEqual('success');
+          done();
+        });
+    });
+  });
 
-  // describe('GET /users/:userId/flashcards/:id', () => {
-  //   it('should fetch data of one flashcard ', () => {
-  //     chai.request(server)
-  //       .get(`${END_POINT}/1`)
-  //       .end((err, res) => {
-  //         expect(err).toEqual(null);
-  //         expect(res.status).toEqual(200);
-  //         expect(flashcard).toHaveProperty('id');
-  //         expect(flashcard).toHaveProperty('user_id');
-  //         expect(flashcard).toHaveProperty('preview');
-  //         expect(flashcard).toHaveProperty('translation');
-  //         expect(flashcard).toHaveProperty('romanji');
-  //         expect(flashcard).toHaveProperty('note');
-  //         expect(flashcard).toHaveProperty('created_at');
-  //         done();
-  //       });
-  //   });
-  // });
+  describe('GET /users/:userId/flashcards/:id', () => {
+    it('should fetch data of one flashcard ', (done) => {
+      chai.request(server)
+        .get(`${END_POINT}/1`)
+        .end((err, res) => {
+          expect(err).toEqual(null);
+          expect(res.status).toEqual(200);
+          expect(res.body[0]).toHaveProperty('id');
+          expect(res.body[0]).toHaveProperty('user_id');
+          expect(res.body[0]).toHaveProperty('preview');
+          expect(res.body[0]).toHaveProperty('translation');
+          expect(res.body[0]).toHaveProperty('romanji');
+          expect(res.body[0]).toHaveProperty('note');
+          expect(res.body[0]).toHaveProperty('created_at');
+          done();
+        });
+    });
+  });
 
-  // describe('DELETE /users/:userId/flashcards/:id', () => {
-  //   it('should delete data of a flashcard', () => {
-  //     chai.request(server)
-  //       .delete(`${END_POINT}/1`)
-  //       .end((err, res) => {
-  //         expect(err).toEqual(null);
-  //         expect(res.status).toEqual(200);
-  //         expect(res.body.status).toEqual('success');
-  //       });
-  //   });
-  // });
+  describe('DELETE /users/:userId/flashcards/:id', () => {
+    it('should delete data of a flashcard', (done) => {
+      chai.request(server)
+        .delete(`${END_POINT}/1`)
+        .set('Content-Type', 'application/json')
+        .end((err, res) => {
+          expect(err).toEqual(null);
+          expect(res.status).toEqual(200);
+          expect(res.body.status).toEqual('success');
+          done();
+        });
+    });
+  });
 });
