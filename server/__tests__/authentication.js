@@ -1,7 +1,7 @@
 const PORT = process.env.PORT || 4000;
 const app = require('../app.js');
 
-const config = require('./config');
+const config = require('../db/knexfile.js');
 const environment = process.env.NODE_ENV || 'development';
 const dbConfig = config[environment];
 const knex = require('knex')(dbConfig);
