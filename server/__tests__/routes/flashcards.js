@@ -13,6 +13,7 @@ chai.use(chaiHttp);
 describe('server/routes/flashcards', () => {
   afterAll((done) => {
     chai.request(server).server.close(done);
+    done();
   });
 
   describe('GET /users/:userId/flashcards', () => {
