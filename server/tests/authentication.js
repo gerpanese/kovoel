@@ -18,12 +18,12 @@ app.listen(PORT, () => console.log(
 
 chai.use(chaiHttp);
 
-describe('GET /register', () => {
+describe('GET auth/register', () => {
   let status, response;
 
   before(done => {
     chai.request(app)
-      .get('/register')
+      .get('/auth/register')
       .set(
         'Content-Type', 'application/json'
       )
@@ -46,12 +46,12 @@ describe('GET /register', () => {
   });
 });
 
-describe('POST /register', () => {
+describe('POST auth/register', () => {
   let status, response;
 
   before(done => {
     chai.request(app)
-      .post('/register')
+      .post('/auth/register')
       .set(
         'Content-Type', 'application/json'
       )
@@ -77,12 +77,12 @@ describe('POST /register', () => {
 
 });
 
-describe('GET /login', () => {
+describe('GET auth/login', () => {
   let status, response;
 
   before(done => {
     chai.request(app)
-      .get('/login')
+      .get('/auth/login')
       .set(
         'Content-Type', 'application/json'
       )
@@ -105,12 +105,12 @@ describe('GET /login', () => {
   });
 });
 
-describe('POST /login', () => {
+describe('POST auth/login', () => {
   let status, response;
 
   before(done => {
     chai.request(app)
-      .post('/login')
+      .post('/auth/login')
       .set(
         'Content-Type', 'application/json'
       )
