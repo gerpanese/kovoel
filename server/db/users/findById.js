@@ -1,7 +1,7 @@
 module.exports = knex => {
-  return async params => {
+  return async id => {
     try {
-      return await knex('users').where('id', params);
+      return await knex('users').where('id', id);
     } catch (error) {
       return error;
     }

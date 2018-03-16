@@ -27,9 +27,9 @@ describe('GET /register', () => {
       .set(
         'Content-Type', 'application/json'
       )
-      .end((error, res) => {
-        status = res.status;
-        response = res.text;
+      .end((error, response) => {
+        status = response.status;
+        response = response.text;
         done();
       });
   });
@@ -60,8 +60,8 @@ describe('POST /register', () => {
         email: 'captainkrystal@gmail.com',
         password: 'hitoomedia'
        })
-      .end((error, res) => {
-        status = res.status;
+      .end((error, response) => {
+        status = response.status;
         if (error) {
           done(error);
         } else {
@@ -86,9 +86,9 @@ describe('GET /login', () => {
       .set(
         'Content-Type', 'application/json'
       )
-      .end((error, res) => {
-        status = res.status;
-        response = res.text;
+      .end((error, response) => {
+        status = response.status;
+        response = response.text;
         done();
       });
   });
@@ -118,8 +118,8 @@ describe('POST /login', () => {
         account: 'captainkrystal@gmail.com',
         password: 'hitoomedia'
        })
-      .end((error, res) => {
-        status = res.status;
+      .end((error, response) => {
+        status = response.status;
         if (error) {
           done(error);
         } else {

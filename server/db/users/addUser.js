@@ -1,10 +1,10 @@
 module.exports = knex => {
-  return async params => {
+  return async user => {
     try {
       return await knex('users').insert({
-        name: params.name,
-        email: params.email,
-        password: params.password
+        name: user.name,
+        email: user.email,
+        password: user.password
       });
     } catch (error) {
       return error;
