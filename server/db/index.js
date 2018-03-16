@@ -7,5 +7,6 @@ const dbConfig = config[environment];
 const knex = Knex(dbConfig);
 
 module.exports = {
-  users: require('./users')(knex)
+  users: require('./users')(knex),
+  flashcards: require('./flashcards')(knex),
 };
