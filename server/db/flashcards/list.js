@@ -1,5 +1,4 @@
-module.exports = knex => async (params) => {
-  const userId = params;
+module.exports = knex => async (userId) => {
   try {
     return await knex('flashcards')
       .where('user_id', userId)

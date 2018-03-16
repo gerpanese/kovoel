@@ -1,5 +1,4 @@
-module.exports = knex => async (params) => {
-  const user = params;
+module.exports = knex => async (user) => {
   try {
     return await knex('users').insert({
       name: user.name,

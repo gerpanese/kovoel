@@ -11,11 +11,6 @@ const server = app.listen(PORT);
 chai.use(chaiHttp);
 
 describe('server/routes/flashcards', () => {
-  // afterAll((done) => {
-  //   chai.request(server).server.close(done);
-  //   done();
-  // });
-
   afterAll(async () => {
     try {
       await server.close();
@@ -33,8 +28,8 @@ describe('server/routes/flashcards', () => {
       chai.request(server)
         .get(END_POINT)
         .set('Content-Type', 'application/json')
-        .end((err, res) => {
-          expect(err).toEqual(null);
+        .end((error, res) => {
+          expect(error).toEqual(null);
           expect(res.status).toEqual(200);
           expect(res.body.length).toEqual(4);
           for (const flashcard of res.body) {
@@ -62,8 +57,8 @@ describe('server/routes/flashcards', () => {
           romanji: 'mo ikkai',
           note: 'this is test',
         })
-        .end((err, res) => {
-          expect(err).toEqual(null);
+        .end((error, res) => {
+          expect(error).toEqual(null);
           expect(res.status).toEqual(200);
           expect(res.body.status).toEqual('success');
           done();
@@ -75,8 +70,8 @@ describe('server/routes/flashcards', () => {
     it('should fetch data of one flashcard ', (done) => {
       chai.request(server)
         .get(`${END_POINT}/1`)
-        .end((err, res) => {
-          expect(err).toEqual(null);
+        .end((error, res) => {
+          expect(error).toEqual(null);
           expect(res.status).toEqual(200);
           expect(res.body[0]).toHaveProperty('id');
           expect(res.body[0]).toHaveProperty('user_id');
@@ -95,8 +90,8 @@ describe('server/routes/flashcards', () => {
       chai.request(server)
         .delete(`${END_POINT}/1`)
         .set('Content-Type', 'application/json')
-        .end((err, res) => {
-          expect(err).toEqual(null);
+        .end((error, res) => {
+          expect(error).toEqual(null);
           expect(res.status).toEqual(200);
           expect(res.body.status).toEqual('success');
           done();

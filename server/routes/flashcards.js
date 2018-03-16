@@ -4,17 +4,17 @@ const db = require('../db');
 const router = express.Router();
 
 /* GET all the flashcards. */
-router.get('/users/:userId/flashcards', async (req, res) => {
-  const { userId } = req.params;
+router.get('/users/:userId/flashcards', async (request, response) => {
+  const { userId } = request.params;
   const flashcards = await db.flashcards.list(userId);
-  res.json(flashcards);
+  response.json(flashcards);
 });
 
 /* POST a flashcard. */
-router.post('/users/:userId/flashcards', (req, res) => {
+router.post('/users/:userId/flashcards', (request, response) => {
   try {
-    const flashcard = req.body;
-    const { userId } = req.body;
+    const flashcard = request.body;
+    const { userId } = request.body;
     const newFlashcard = {
       user_id: userId,
       translation: flashcard.translation,
@@ -22,33 +22,33 @@ router.post('/users/:userId/flashcards', (req, res) => {
       note: flashcard.note,
     };
     db.flashcards.create(newFlashcard);
-    res.json({
+    response.json({
       userId,
       status: 'success',
     });
   } catch (error) {
-    res.status(500).send(error);
+    response.status(500).send(error);
   }
 });
 
 /* GET a flashcard. */
-router.get('/users/:userId/flashcards/:id', async (req, res) => {
-  const { id } = req.params;
+router.get('/users/:userId/flashcards/:id', async (request, response) => {
+  const { id } = request.params;
   const flashcard = await db.flashcards.get(id);
-  res.json(flashcard);
+  response.json(flashcard);
 });
 
 /* DELETE a flashcard. */
-router.delete('/users/:userId/flashcards/:id', (req, res) => {
+router.delete('/users/:userId/flashcards/:id', (request, response) => {
   try {
-    const { id } = req.params;
+    const { id } = request.params;
     db.flashcards.remove(id);
-    res.json({
+    response.json({
       id,
       status: 'success',
     });
   } catch (error) {
-    res.status(500).send(error);
+    response.status(500).send(error);
   }
 });
 

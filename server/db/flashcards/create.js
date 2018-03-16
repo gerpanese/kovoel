@@ -1,5 +1,4 @@
-module.exports = knex => async (params) => {
-  const flashcard = params;
+module.exports = knex => async (flashcard) => {
   try {
     return await knex('flashcards').insert({
       user_id: flashcard.user_id,
