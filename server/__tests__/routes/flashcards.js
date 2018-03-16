@@ -17,13 +17,11 @@ describe('server/routes/flashcards', () => {
   // });
 
   afterAll(async () => {
-    console.log('Exiting test....');
     try {
       await server.close();
-      console.log('Exit test!!');
     } catch (error) {
       console.log(`
-        You did something wrong dummy!
+        You did something wrong!
         ${error}
       `);
       throw error;
