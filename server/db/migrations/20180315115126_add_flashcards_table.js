@@ -29,6 +29,5 @@ exports.up = knex =>
       .defaultTo(knex.fn.now());
   });
 
-exports.down = knex => (
-  knex.schema.dropTableIfExists('flashcards')
-);
+exports.down = knex =>
+  knex.schema.dropTableIfExists('flashcards');

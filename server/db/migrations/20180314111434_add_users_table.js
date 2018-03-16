@@ -21,6 +21,5 @@ exports.up = knex =>
       .defaultTo(knex.fn.now());
   });
 
-exports.down = knex => (
-  knex.schema.dropTableIfExists('users')
-);
+exports.down = knex =>
+  knex.schema.dropTableIfExists('users');
