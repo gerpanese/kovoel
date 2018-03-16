@@ -4,7 +4,6 @@ module.exports = knex => async (user) => {
       name: user.name,
       email: user.email,
       password: user.password,
-      created_at: user.created_at,
     });
   } catch (error) {
     return error;

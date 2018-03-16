@@ -12,7 +12,7 @@ exports.up = knex =>
       .notNullable()
       .index();
 
-    table.string('password', 10)
+    table.string('password', 255)
       .notNullable()
       .index();
 
