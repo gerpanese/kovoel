@@ -24,7 +24,7 @@ const setup = () => {
 describe('src/components/CreateCard.jsx', () => {
   it('should render CreateCard component', () => {
     const { enzymeWrapper } = setup();
-    expect(enzymeWrapper.find('.CreateCard').hasClass('CreateCard')).toBe(true);
+    expect(enzymeWrapper.find('.flashcard').length).toBe(2);
   });
 
   it('should call updateFrontText if front side text is changed', () => {
@@ -43,14 +43,6 @@ describe('src/components/CreateCard.jsx', () => {
     backTextInput.instance().value = 'Updated BackText';
     backTextInput.simulate('change');
     expect(props.updateBackText.mock.calls.length).toBe(1);
-  });
-
-  it('should call discardCard if back side text is changed', () => {
-    const { enzymeWrapper, props } = setup();
-    const discardButton = enzymeWrapper.find('#discardButton');
-    expect(props.discardCard.mock.calls.length).toBe(0);
-    discardButton.simulate('click');
-    expect(props.discardCard.mock.calls.length).toBe(1);
   });
 
   it('should call Web Speech Api method on click', () => {

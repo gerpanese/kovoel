@@ -1,9 +1,7 @@
-
-/* Full-width input fields */
 .create-card input[type=text] {
   width: 100%;
   padding: 10px;
-  margin: 0px 0 20px 0;
+  margin: 0 0 20px 0;
   display: inline-block;
   border: none;
   background: #f1f1f1;
