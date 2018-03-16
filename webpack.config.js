@@ -36,6 +36,9 @@ module.exports = {
   resolve: {
     extensions: ['.webpack.js', '.js', '.jsx'],
   },
+  node: {
+    fs: 'empty',
+  },
   devServer: {
     contentBase: path.join(__dirname, 'public'),
     compress: true,
