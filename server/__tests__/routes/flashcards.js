@@ -4,7 +4,7 @@ const app = require('../../app');
 
 chai.use(chaiHttp);
 
-const PORT = 9000;
+const PORT = process.env.PORT || 9000;
 const END_POINT = '/api/users/1/flashcards';
 
 const server = app.listen(PORT);
@@ -76,6 +76,7 @@ describe('server/routes/flashcards', () => {
         });
     });
   });
+
   describe('DELETE /users/:userId/flashcards/:id', () => {
     it('should delete data of a flashcard', () => {
       chai.request(server)
