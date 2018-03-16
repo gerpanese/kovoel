@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import googleTranslate from 'google-translate';
 import WebSpeechApi from '../utils/WebSpeechApi';
 
-// import '../assets/createCard.css';
+import '../assets/createCard.css';
 
 class CreateCard extends Component {
   constructor(props) {
