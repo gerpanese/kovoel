@@ -1,5 +1,5 @@
 
-exports.up = knex => (
+exports.up = knex =>
   knex.schema.createTable('users', (table) => {
     table.increments()
       .index();
@@ -19,8 +19,7 @@ exports.up = knex => (
     table.timestamp('created_at')
       .notNullable()
       .defaultTo(knex.fn.now());
-  })
-);
+  });
 
 exports.down = knex => (
   knex.schema.dropTableIfExists('users')

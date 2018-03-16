@@ -1,5 +1,5 @@
 
-exports.up = knex => (
+exports.up = knex =>
   knex.schema.createTable('flashcards', (table) => {
     table.increments()
       .index();
@@ -27,8 +27,7 @@ exports.up = knex => (
     table.timestamp('created_at')
       .notNullable()
       .defaultTo(knex.fn.now());
-  })
-);
+  });
 
 exports.down = knex => (
   knex.schema.dropTableIfExists('flashcards')
