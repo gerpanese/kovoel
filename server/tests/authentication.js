@@ -19,7 +19,7 @@ app.listen(PORT, () => console.log(
 chai.use(chaiHttp);
 
 describe('GET auth/register', () => {
-  let status, response;
+  let status, message;
 
   before(done => {
     chai.request(app)
@@ -29,7 +29,7 @@ describe('GET auth/register', () => {
       )
       .end((error, response) => {
         status = response.status;
-        response = response.text;
+        message = response.text;
         done();
       });
   });
@@ -40,14 +40,14 @@ describe('GET auth/register', () => {
   });
 
   it('should give a message.', done => {
-    response.should.be.a('string');
-    response.should.deep.equal('Register page!');
+    message.should.be.a('string');
+    message.should.deep.equal('Register page!');
     done();
   });
 });
 
 describe('POST auth/register', () => {
-  let status, response;
+  let status;
 
   before(done => {
     chai.request(app)
@@ -69,7 +69,7 @@ describe('POST auth/register', () => {
         }
       });
   });
-
+  
   it('should return status 200.', done => {
     status.should.equal(200);
     done();
@@ -78,7 +78,7 @@ describe('POST auth/register', () => {
 });
 
 describe('GET auth/login', () => {
-  let status, response;
+  let status, message;
 
   before(done => {
     chai.request(app)
@@ -88,7 +88,7 @@ describe('GET auth/login', () => {
       )
       .end((error, response) => {
         status = response.status;
-        response = response.text;
+        message = response.text;
         done();
       });
   });
@@ -99,14 +99,14 @@ describe('GET auth/login', () => {
   });
 
   it('should give a message.', done => {
-    response.should.be.a('string');
-    response.should.deep.equal('Login page!');
+    message.should.be.a('string');
+    message.should.deep.equal('Login page!');
     done();
   });
 });
 
 describe('POST auth/login', () => {
-  let status, response;
+  let status;
 
   before(done => {
     chai.request(app)
