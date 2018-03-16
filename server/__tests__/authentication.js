@@ -23,7 +23,7 @@ describe('GET /register', () => {
       .set(
         'Content-Type', 'application/json'
       )
-      .end((err, res) => {
+      .end((error, res) => {
         status = res.status;
         response = res.text;
         done();
@@ -56,10 +56,10 @@ describe('POST /register', () => {
         email: 'captainkrystal@gmail.com',
         password: 'hitoomedia'
        })
-      .end((err, res) => {
+      .end((error, res) => {
         status = res.status;
-        if (err) {
-          done(err);
+        if (error) {
+          done(error);
         } else {
           done();
         }
@@ -82,7 +82,7 @@ describe('GET /login', () => {
       .set(
         'Content-Type', 'application/json'
       )
-      .end((err, res) => {
+      .end((error, res) => {
         status = res.status;
         response = res.text;
         done();
@@ -114,10 +114,10 @@ describe('POST /login', () => {
         account: 'captainkrystal@gmail.com',
         password: 'hitoomedia'
        })
-      .end((err, res) => {
+      .end((error, res) => {
         status = res.status;
-        if (err) {
-          done(err);
+        if (error) {
+          done(error);
         } else {
           done();
         }
