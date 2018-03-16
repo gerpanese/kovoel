@@ -11,9 +11,23 @@ const server = app.listen(PORT);
 chai.use(chaiHttp);
 
 describe('server/routes/flashcards', () => {
-  afterAll((done) => {
-    chai.request(server).server.close(done);
-    done();
+  // afterAll((done) => {
+  //   chai.request(server).server.close(done);
+  //   done();
+  // });
+
+  afterAll(async () => {
+    console.log('Exiting test....');
+    try {
+      await server.close();
+      console.log('Exit test!!');
+    } catch (error) {
+      console.log(`
+        You did something wrong dummy!
+        ${error}
+      `);
+      throw error;
+    }
   });
 
   describe('GET /users/:userId/flashcards', () => {
