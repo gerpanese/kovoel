@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import WebSpeechApi from '../utils/WebSpeechApi';
 
 import '../assets/createCard.css';
-import '../assets/FlashCard.css';
 
 class CreateCard extends Component {
   constructor(props) {
@@ -15,7 +14,6 @@ class CreateCard extends Component {
     this.handleDiscardClick = this.handleDiscardClick.bind(this);
     this.handleRecordClick = this.handleRecordClick.bind(this);
     this.handleSaveClick = this.handleSaveClick.bind(this);
-    this.turnAroundFlashCard = this.turnAroundFlashCard.bind(this);
   }
 
   handleFrontTextChange(event) {
@@ -51,20 +49,6 @@ class CreateCard extends Component {
     this.props.saveCard();
   }
 
-  turnAroundFlashCard(event) {
-    const nodeFrontText = document.getElementById('frontText');
-    const nodeBackText = document.getElementById('backText');
-
-    if (this.isFirstPage) {
-      nodeFrontText.className = 'd-lg-none';
-      nodeBackText.className = '';
-    } else {
-      nodeFrontText.className = '';
-      nodeBackText.className = 'd-lg-none';
-    }
-    this.isFirstPage = !this.isFirstPage;
-  }
-
   render() {
     /*
             <button
@@ -83,59 +67,65 @@ class CreateCard extends Component {
     return (
       <div className="panel panel-default">
       <div className="panel-body create-card">
-        <div
-          className="turn-around"
-          onClick={event => this.turnAroundFlashCard(event)}
-          title="turn around the flashcard"
-        />
 
-        <input
-          type="text"
-          name="frontText"
-          id="frontText"
-          placeholder="Please press the record button"
-          onChange={this.handleFrontTextChange}
-          value={this.props.frontText}
-        />
-
-        <input
-          type="text"
-          name="backText"
-          id="backText"
-          className="d-lg-none"
-          placeholder="Please press the record button"
-          onChange={this.handleBackTextChange}
-          value={this.props.backText}
-        />
-
-        <br />
-
-        <div
-          title="record new flashcard"
-          className="microphone"
-          onClick={this.handleRecordClick}
-        />
+        <div className="flashcards">
+          <div className="flashcard">
+            <strong>front text</strong>
+            <textarea
+              name="frontText"
+              id="frontText"
+              className="text"
+              placeholder="Please press the record button"
+              onChange={this.handleFrontTextChange}
+              value={this.props.frontText}
+            />
+            <div
+              title="record new flashcard"
+              className="microphone"
+              onClick={this.handleRecordClick}
+            />
+          </div>
+          <div className="flashcard">
+            <strong>back text</strong>
+            <textarea
+              name="backText"
+              id="backText"
+              className="text"
+              placeholder="Please press the record button"
+              onChange={this.handleBackTextChange}
+              value={this.props.backText}
+            />
+            <div
+              title="record new flashcard"
+              className="microphone"
+              onClick={this.handleRecordClick}
+            />
+          </div>
+        </div>
+          
 
         
 
-
-        <button
-          id="cancelButton"
-          className="btn btn-info"
-          onClick={this.handleSaveClick}
-        >cancel
-        </button>
-        <button
-          id="saveButton"
-          className="btn btn-success"
-          onClick={this.handleSaveClick}
-        >SAVE
-        </button>
+        <div className="button-list">
+          <button
+            id="cancelButton"
+            className="btn btn-info"
+            onClick={this.handleSaveClick}
+          >cancel
+          </button>
+          <button
+            id="saveButton"
+            className="btn btn-success"
+            onClick={this.handleSaveClick}
+          >SAVE
+          </button>
+        </div>
       </div>
       </div>
     );
   }
 }
+
 
 CreateCard.propTypes = {
   frontText: PropTypes.string.isRequired,
