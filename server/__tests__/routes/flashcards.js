@@ -4,7 +4,7 @@ const app = require('../../app');
 
 chai.use(chaiHttp);
 
-const PORT = 9000;
+const PORT = 8000;
 const END_POINT = '/api/users/1/flashcards';
 
 const server = app.listen(PORT);
