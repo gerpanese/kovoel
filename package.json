@@ -9,10 +9,9 @@
     "start": "webpack && node server/bin/www",
     "test": "jest --forceExit",
     "test:watch": "yarn test -- --watch",
-    "test:login": "mocha --reporter nyan ./server/__tests__/authentication.js && yarn test:exit",
+    "test:login": "mocha --reporter nyan ./server/tests/authentication.js --exit",
     "migrate": "knex migrate:latest --knexfile ./server/db/knexfile.js",
-    "rollback": "knex migrate:rollback --knexfile ./server/db/knexfile.js",
-    "test:exit": "mocha --exit"
+    "rollback": "knex migrate:rollback --knexfile ./server/db/knexfile.js"
   },
   "dependencies": {
     "babel": "^6.23.0",
