@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import Validations from '../utils/Validations';
 
 import '../assets/css/registration.css';
 
@@ -43,7 +44,8 @@ class Registration extends Component {
       nodeErrorMessage.innerHTML = 'Your password input was not unique. Please repeat the process';
       return;
     }
-    if (!this.validateEmail(nodeEmail.value)) {
+    const validation = new Validations(nodeEmail.value);
+    if (!validation.validateEmail()) {
       nodeEmail.focus();
 
       nodeErrorMessage.className = 'error-message';
@@ -55,11 +57,6 @@ class Registration extends Component {
 
     this.closeModalBox();
     this.props.changePage('dashboard');
-  }
-
-  validateEmail(email) {
-    var reqEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return reqEx.test(String(email).toLowerCase());
   }
 
   render() {
@@ -97,5 +94,9 @@ class Registration extends Component {
     );
   }
 }
+
+Registration.propTypes = {
+  changePage: PropTypes.func.isRequired,
+};
 
 export default Registration;

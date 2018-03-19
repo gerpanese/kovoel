@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 
 class Footer extends Component {
@@ -8,7 +8,8 @@ class Footer extends Component {
     this.changePage = this.changePage.bind(this);
   }
 
-  changePage(page) {
+  changePage(event, page) {
+    event.preventDefault();
     this.props.changePage(page);
   }
 
@@ -20,7 +21,7 @@ class Footer extends Component {
             <div className="col-lg-6 h-100 text-center text-lg-left my-auto">
               <ul className="list-inline mb-2">
                 <li className="list-inline-item">
-                  <a href="#" onClick={event => this.changePage('landingPage')}>Homepage</a>
+                  <a href="#" onClick={event => this.changePage(event, 'landingPage')}>Homepage</a>
                 </li>
               </ul>
               <p className="text-muted small mb-4 mb-lg-0">&copy; Your Website 2018. All Rights Reserved.</p>
@@ -50,5 +51,9 @@ class Footer extends Component {
     );
   }
 }
+
+Footer.propTypes = {
+  changePage: PropTypes.func.isRequired,
+};
 
 export default Footer;

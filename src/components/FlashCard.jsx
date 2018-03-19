@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Fireworks from 'fireworks-react';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import WebSpeechApi from '../utils/WebSpeechApi';
 
 import '../assets/css/FlashCard.css';
@@ -36,7 +36,10 @@ class FlashCard extends Component {
             }, 300);
           }, 2000);
         } else {
-          this.webSpeechApi.speech(this.props.errorMessage, this.props.languageCode);
+          this.webSpeechApi.speech(
+            this.props.errorMessage,
+            this.props.languageCode,
+          );
           document.getElementById('flashCard').className = 'card';
           this.props.flashCardFaultyLearned(this.props.flashCard.id);
         }
@@ -52,7 +55,12 @@ class FlashCard extends Component {
         <div className="final">
           <Fireworks className="fireworks" width={size} height={size} />
           <br />
-          <button className="btn-primary btn goto-dashboard" onClick={() => this.gotoDashboard()}>go to dashboard</button>
+          <button
+            className="btn-primary btn goto-dashboard"
+            onClick={() => this.gotoDashboard()}
+          >
+            go to dashboard
+          </button>
         </div>);
     }
 
@@ -74,10 +82,34 @@ class FlashCard extends Component {
           </div>
         </div>
 
-        <div className="microphone" onClick={event => this.recordVoice(event)} />
+        <div
+          className="microphone"
+          onClick={event => this.recordVoice(event)}
+        />
       </div>
     );
   }
 }
+
+FlashCard.propTypes = {
+  languageCode: PropTypes.string.isRequired,
+  flashCard: PropTypes.objectOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    preview: PropTypes.string.isRequired,
+    translation: PropTypes.string.isRequired,
+    romanji: PropTypes.string.isRequired,
+  })),
+  changePage: PropTypes.func.isRequired,
+  flashCardSuccessfullyLearned: PropTypes.func.isRequired,
+  hasStillFlashCardsToLearn: PropTypes.bool,
+  errorMessage: PropTypes.string.isRequired,
+  flashCardFaultyLearned: PropTypes.func.isRequired,
+  shuffleFlashCards: PropTypes.func.isRequired,
+};
+
+FlashCard.defaultProps = {
+  flashCard: null,
+  hasStillFlashCardsToLearn: true,
+};
 
 export default FlashCard;

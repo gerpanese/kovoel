@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import FlashCard from '../containers/FlashCard';
 import Statistic from '../containers/Statistic';
 import Ranking from '../containers/Ranking';
@@ -36,7 +36,7 @@ class App extends Component {
       case 'createCard':
         return (
           <div className="App">
-              <CreateCard />
+            <CreateCard />
           </div>
         );
 
@@ -91,5 +91,9 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  currentPage: PropTypes.string.isRequired,
+};
 
 export default App;

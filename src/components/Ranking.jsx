@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import propTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 class Ranking extends Component {
   render() {
@@ -10,5 +10,8 @@ class Ranking extends Component {
     );
   }
 }
+
+Ranking.propTypes = {
+};
 
 export default Ranking;

@@ -25,7 +25,9 @@ class AdministrationFlashCards extends Component {
       <div className="container">
         <h2>FlashCard - Administration</h2>
         <p>
-          click <a href="#" onClick={() => this.changePage('createCard')}>here</a> for creating a new flash-card
+          click
+          <a href="#" onClick={() => this.changePage('createCard')}>here</a>
+          for creating a new flash-card
         </p>
         <table className="table table-striped">
           <thead>
@@ -62,13 +64,16 @@ class AdministrationFlashCards extends Component {
   }
 }
 
-/*
-CreateCard.propTypes = {
-  frontText: PropTypes.string.isRequired,
-  backText: PropTypes.string.isRequired,
-  updateFrontText: PropTypes.func.isRequired,
-  updateBackText: PropTypes.func.isRequired,
-  saveCard: PropTypes.func.isRequired,
+
+AdministrationFlashCards.propTypes = {
+  changePage: PropTypes.func.isRequired,
+  deleteCard: PropTypes.func.isRequired,
+  flashCards: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    preview: PropTypes.string.isRequired,
+    translation: PropTypes.string.isRequired,
+    romanji: PropTypes.string.isRequired,
+  })).isRequired,
 };
-*/
+
 export default AdministrationFlashCards;

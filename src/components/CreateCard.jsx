@@ -41,7 +41,7 @@ class CreateCard extends Component {
         callbackFunction = (text) => {
           this.props.updateFrontText(text);
           const apiKey = process.env.GoogleCloudTranslationApiKey;
-          if (apiKey !== '') {
+          if (apiKey !== undefined) {
             const googleTranslationInstance = googleTranslate(apiKey);
             googleTranslationInstance.translate(text, 'en', (error, translation) => {
               this.props.updateBackText(translation.translatedText);
@@ -69,9 +69,8 @@ class CreateCard extends Component {
     this.props.saveCard();
   }
 
-  handleCancellationClick(handle) {
+  handleCancellationClick(event) {
     event.preventDefault();
-
     document.getElementById('frontText').value = '';
     document.getElementById('backText').value = '';
   }

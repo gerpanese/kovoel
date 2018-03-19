@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 
 class Dashboard extends Component {
@@ -16,7 +16,10 @@ class Dashboard extends Component {
     return (
       <section className="showcase">
         <div className="container-fluid p-0">
-          <div className="row no-gutters" onClick={event => this.changePage('learning')}>
+          <div
+            className="row no-gutters"
+            onClick={() => this.changePage('learning')}
+          >
             <div className="col-lg-6 order-lg-2 text-white showcase-img learning" />
             <div className="col-lg-6 order-lg-1 my-auto showcase-text">
               <h2>Learn new Words</h2>
@@ -26,7 +29,10 @@ class Dashboard extends Component {
               </p>
             </div>
           </div>
-          <div className="row no-gutters" onClick={event => this.changePage('administrationFlashCards')}>
+          <div
+            className="row no-gutters"
+            onClick={() => this.changePage('administrationFlashCards')}
+            >
             <div className="col-lg-6 text-white showcase-img createFlashcards" />
             <div className="col-lg-6 my-auto showcase-text">
               <h2>Administration</h2>
@@ -36,7 +42,10 @@ class Dashboard extends Component {
               </p>
             </div>
           </div>
-          <div className="row no-gutters" onClick={event => this.changePage('statistic')}>
+          <div
+            className="row no-gutters"
+            onClick={() => this.changePage('statistic')}
+          >
             <div className="col-lg-6 order-lg-2 text-white showcase-img statistic" />
             <div className="col-lg-6 order-lg-1 my-auto showcase-text">
               <h2>Statistics</h2>
@@ -46,7 +55,10 @@ class Dashboard extends Component {
               </p>
             </div>
           </div>
-          <div className="row no-gutters" onClick={event => this.changePage('ranking')}>
+          <div
+            className="row no-gutters"
+            onClick={() => this.changePage('ranking')}
+          >
             <div className="col-lg-6 order-lg-2 text-white showcase-img ranking" />
             <div className="col-lg-6 order-lg-1 my-auto showcase-text">
               <h2>Ranking</h2>
@@ -61,5 +73,9 @@ class Dashboard extends Component {
     );
   }
 }
+
+Dashboard.propTypes = {
+  changePage: PropTypes.func.isRequired,
+};
 
 export default Dashboard;
