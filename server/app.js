@@ -3,8 +3,10 @@ const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const session = require('express-session');
 const router = require('./routes/index');
+const session = require('express-session');
+const passport = require('passport');
+const db = require('./db');
 
 const app = express();
 
@@ -21,13 +23,39 @@ app.use('/api', [
   router.flashcardRouter,
 ]);
 
+app.use('/auth', [
+  router.localLogin,
+  router.register,
+]);
+
 app.use(express.static(path.join(__dirname, '../public')));
+
+//Load passport strategy
+const localLoginStrategy = require('./passport/localLogin');
+passport.use(localLoginStrategy);
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  db
+    .users
+    .findById(id)
+    .then(user => done(null, user))
+    .catch(err => done(err));
+});
 
 app.use(session({
   secret: 'kovoel',
   resave: false,
   saveUninitialized: false,
 }));
+
+// Initialize Passport and restore authentication state, if any, from the session.
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // catch 404 and forward to error handler
 app.use((request, response, next) => {
