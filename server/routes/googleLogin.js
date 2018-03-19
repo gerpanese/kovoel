@@ -9,7 +9,8 @@ router.get('/google',
 router.get('/google/callback',
   passport.authenticate('google', { failureRedirect: '/auth/login' }),
   (req, res) => {
-    res.redirect('/');
+    console.log('Success!! Google login!');
+    res.redirect('http://localhost:3000');
   }
 );
 

@@ -131,7 +131,7 @@ describe('POST auth/login', () => {
   after(() => knex('users').del());
 
   it('should return status 200.', done => {
-    status.should.equal(200);
+    status.should.equal(302);
     done();
   });
 

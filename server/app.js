@@ -31,6 +31,7 @@ const googleLoginStrategy = require('./passport/googleLogin');
 passport.use(googleLoginStrategy);
 
 passport.serializeUser((user, done) => {
+  console.log('serializeUser', user);
   done(null, user[0].id);
 });
 

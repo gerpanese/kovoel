@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const db = require('../db');
+const db = require('../db/index');
 require('dotenv').config();
 
 module.exports = new GoogleStrategy({
@@ -12,10 +12,12 @@ module.exports = new GoogleStrategy({
   async (accessToken, refreshToken, profile, done) => {
     try {
       const user = await db.users.findByAccount(profile.emails[0].value);
-      if (!user) {
+      
+      if (!user.length) {
         const newUser = {
           name: profile.displayName,
-          email: profile.emails[0].value
+          email: profile.emails[0].value,
+          password: 'google oauth'
         }
         await db.users.addUser(newUser);
         const registeredUser = await db.users.findByAccount(profile.emails[0].value);
