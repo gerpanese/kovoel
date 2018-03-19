@@ -26,6 +26,7 @@ app.use('/api', [
 app.use('/auth', [
   router.localLogin,
   router.register,
+  router.googleLogin
 ]);
 
 app.use(express.static(path.join(__dirname, '../public')));
@@ -33,6 +34,10 @@ app.use(express.static(path.join(__dirname, '../public')));
 //Load passport strategy
 const localLoginStrategy = require('./passport/localLogin');
 passport.use(localLoginStrategy);
+
+//google authentication
+const googleLoginStrategy = require('./passport/googleLogin');
+passport.use(googleLoginStrategy);
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
