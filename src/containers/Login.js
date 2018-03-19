@@ -3,10 +3,6 @@ import { bindActionCreators } from 'redux';
 import Login from '../components/Login';
 import { changePage } from '../actions/dashboard';
 
-/*
-const mapStateToProps = state => ({
-});
-*/
 
 const mapDispatchToProps = dispatch => bindActionCreators(
   { changePage },
@@ -14,7 +10,7 @@ const mapDispatchToProps = dispatch => bindActionCreators(
 );
 
 const LoginContainer = connect(
-  null, // mapStateToProps,
+  null,
   mapDispatchToProps,
 )(Login);
 

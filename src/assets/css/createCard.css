@@ -13,7 +13,7 @@
 }
 
 .create-card .flashcard {
-  background: url("flashcard.jpg") transparent;
+  background: url("../images/flashcard.jpg") transparent;
   background-size: 100%;
   background-repeat: no-repeat;
   padding: 25px;
@@ -25,7 +25,7 @@
 }
 
 .microphone {
-  background-image: url('microphone.jpg');
+  background-image: url("../images/microphone.jpg");
   background-repeat: no-repeat;
   width: 50px;
   height: 50px;

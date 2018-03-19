@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import FlashCard from '../containers/FlashCard';
 import Statistic from '../containers/Statistic';
 import Ranking from '../containers/Ranking';
@@ -12,8 +12,9 @@ import LandingPageContent from '../containers/LandingPageContent';
 import Dashboard from '../containers/Dashboard';
 import Login from '../containers/Login';
 import TopNavigation from '../containers/TopNavigation';
+import AdministrationFlashCards from '../containers/AdministrationFlashCards';
 
-import '../assets/landing-page.css';
+import '../assets/css/landing-page.css';
 
 class App extends Component {
   getPageContent() {
@@ -25,10 +26,17 @@ class App extends Component {
           </div>
         );
 
+      case 'administrationFlashCards':
+        return (
+          <div className="App">
+            <AdministrationFlashCards />
+          </div>
+        );
+
       case 'createCard':
         return (
           <div className="App">
-              <CreateCard />
+            <CreateCard />
           </div>
         );
 
@@ -83,5 +91,9 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  currentPage: PropTypes.string.isRequired,
+};
 
 export default App;

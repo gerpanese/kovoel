@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import PropTypes from 'prop-types';
 // import Calendar from 'calendar/Calendar.jsx';
 
 class Statistic extends Component {
@@ -10,5 +11,8 @@ class Statistic extends Component {
     );
   }
 }
+
+Statistic.propTypes = {
+};
 
 export default Statistic;

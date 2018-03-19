@@ -1,3 +1,4 @@
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import CreateCard from '../components/CreateCard';
 import {
@@ -12,12 +13,15 @@ const mapStateToProps = state => ({
   backText: state.backText,
 });
 
-const mapDispatchToProps = dispatch => ({
-  updateFrontText: frontText => dispatch(updateFrontText(frontText)),
-  updateBackText: backText => dispatch(updateBackText(backText)),
-  saveCard: () => dispatch(saveCard()),
-  discardCard: () => dispatch(discardCard()),
-});
+const mapDispatchToProps = dispatch => bindActionCreators(
+  {
+    updateFrontText,
+    updateBackText,
+    saveCard,
+    discardCard,
+  },
+  dispatch,
+);
 
 const CreateCardContainer = connect(
   mapStateToProps,

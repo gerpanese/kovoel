@@ -1,15 +1,16 @@
+/* global document */
 import React, { Component } from 'react';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 class TopNavigation extends Component {
   constructor(props) {
     super(props);
-    this.gotoHomepage = this.gotoHomepage.bind(this);
     this.onScreenShow = this.onScreenShow.bind(this);
   }
 
-  gotoHomepage() {
-    this.props.changePage('landingpage');
+  onScreenShow() {
+    // @todo use css-class
+    document.getElementById('login').style.display = 'block';
   }
 
   getDashboardButton() {
@@ -44,11 +45,6 @@ class TopNavigation extends Component {
     return loginButton;
   }
 
-  onScreenShow() {
-    // @todo use css-class
-    document.getElementById('login').style.display = 'block';
-  }
-
   render() {
     const loginButton = this.getLoginButton();
     const dashboardButton = this.getDashboardButton();
@@ -59,7 +55,7 @@ class TopNavigation extends Component {
           <a
             className="navbar-brand"
             href="#"
-            onClick={event=>this.gotoHomepage()}
+            onClick={()=>this.props.changePage('landingpage')}
           >
             kovoel
           </a>
@@ -70,5 +66,10 @@ class TopNavigation extends Component {
     );
   }
 }
+
+TopNavigation.propTypes = {
+  isUserLoggedIn: PropTypes.bool.isRequired,
+  changePage: PropTypes.func.isRequired,
+};
 
 export default TopNavigation;

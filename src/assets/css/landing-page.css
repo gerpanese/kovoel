@@ -14,8 +14,7 @@ h6 {
 
 header.masthead {
   position: relative;
-  background-color: #343a40;
-  background: url("japan.jpg") no-repeat center center;
+  background: url("../images/japan.jpg") #343a40 no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -98,69 +97,47 @@ header.masthead h1 {
   box-shadow: 0px 5px 5px 0px #adb5bd;
 }
 
-.call-to-action {
-  position: relative;
-  background-color: #343a40;
-  background: url("bg-masthead.jpg") no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  padding-top: 7rem;
-  padding-bottom: 7rem;
-}
-
-.call-to-action .overlay {
-  position: absolute;
-  background-color: #212529;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  opacity: 0.3;
-}
-
 footer.footer {
   padding-top: 4rem;
   padding-bottom: 4rem;
 }
 
 .shingo {
-  background-image: url("shingo.jpg");
+  background-image: url("../images/shingo.jpg");
 }
 
 .ryuta {
-  background-image: url("ryuta.jpg");
+  background-image: url("../images/ryuta.jpg");
 }
 
 .christian {
-  background-image: url("christian.jpg");
+  background-image: url("../images/christian.jpg");
 }
 
 .japanTravelling {
-  background-image: url("japan-travelling.jpg");
+  background-image: url("../images/japan-travelling.jpg");
 }
 
 .japaneseInteraction {
-  background-image: url("interaction.jpg");
+  background-image: url("../images/interaction.jpg");
 }
 
 .reading {
-  background-image: url("reading.jpg");
+  background-image: url("../images/reading.jpg");
 }
 
 .learning {
-  background-image: url("learning.jpg");
+  background-image: url("../images/learning.jpg");
 }
 
 .createFlashcards {
-  background-image: url("createFlashcards.jpg");
+  background-image: url("../images/createFlashcards.jpg");
 }
 
 .statistic {
-  background-image: url("statistic.jpg");
+  background-image: url("../images/statistic.jpg");
 }
 
 .ranking {
-  background-image: url("ranking.png");
+  background-image: url("../images/ranking.png");
 }

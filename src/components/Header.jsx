@@ -1,6 +1,7 @@
+/* global document */
 import React, { Component } from 'react';
 import Registration from '../containers/Registration';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 
 class Header extends Component {  
@@ -10,6 +11,7 @@ class Header extends Component {
   }
 
   onScreenShow(event) {
+    event.preventDefault();
     document.getElementById('id01').style.display = 'block';
   }
 
@@ -50,5 +52,9 @@ class Header extends Component {
     );
   }
 }
+
+Header.propTypes = {
+  isUserLoggedIn: PropTypes.bool.isRequired,
+};
 
 export default Header;

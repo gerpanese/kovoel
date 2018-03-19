@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import propTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 
 class LandingPageContent extends Component {
@@ -34,5 +34,8 @@ class LandingPageContent extends Component {
     );
   }
 }
+
+LandingPageContent.propTypes = {
+};
 
 export default LandingPageContent;
