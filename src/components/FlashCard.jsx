@@ -1,3 +1,4 @@
+/* global document */
 import React, { Component } from 'react';
 import Fireworks from 'fireworks-react';
 import PropTypes from 'prop-types';
@@ -9,6 +10,7 @@ class FlashCard extends Component {
   constructor(props) {
     super(props);
     this.recordVoice = this.recordVoice.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
     this.gotoDashboard = this.gotoDashboard.bind(this);
     this.webSpeechApi = new WebSpeechApi();
   }
@@ -19,6 +21,25 @@ class FlashCard extends Component {
 
   gotoDashboard() {
     this.props.changePage('dashboard');
+  }
+
+  handleKeyDown(event) {
+    // @todo delete this
+    this.a = 'a';
+
+    console.log(event.key);
+
+    // const { cursor, result } = this.state;
+    // arrow up/down button should select next/previous list element
+    if (event.key === 38 && cursor > 0) {
+      /* this.setState( prevState => ({
+        cursor: prevState.cursor - 1,
+      })); */
+    } else if (event.key === 40 && cursor < result.length - 1) {
+      /* this.setState( prevState => ({
+        cursor: prevState.cursor + 1,
+      })); */
+    }
   }
 
   recordVoice() {
@@ -68,6 +89,8 @@ class FlashCard extends Component {
       return (<div>loading ....</div>);
     }
 
+    document.body.onkeydown = this.handleKeyDown;
+
     return (
       <div>
         <div className="card-container">
@@ -108,7 +131,12 @@ FlashCard.propTypes = {
 };
 
 FlashCard.defaultProps = {
-  flashCard: null,
+  flashCard: {
+    id: 0,
+    preview: '',
+    translation: '',
+    romanji: '',
+  },
   hasStillFlashCardsToLearn: true,
 };
 

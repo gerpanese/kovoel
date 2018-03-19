@@ -1,3 +1,4 @@
+/* global document */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Validations from '../utils/Validations';

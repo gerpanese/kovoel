@@ -1,3 +1,4 @@
+/* global document */
 import React, { Component } from 'react';
 import Registration from '../containers/Registration';
 import PropTypes from 'prop-types';
