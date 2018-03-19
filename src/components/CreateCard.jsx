@@ -14,6 +14,7 @@ class CreateCard extends Component {
     this.handleBackTextChange = this.handleBackTextChange.bind(this);
     this.handleRecordClick = this.handleRecordClick.bind(this);
     this.handleSaveClick = this.handleSaveClick.bind(this);
+    this.handleCancellationClick = this.handleCancellationClick.bind(this);
   }
 
   handleFrontTextChange(event) {
@@ -68,66 +69,70 @@ class CreateCard extends Component {
     this.props.saveCard();
   }
 
+  handleCancellationClick(handle) {
+    event.preventDefault();
+
+    document.getElementById('frontText').value = '';
+    document.getElementById('backText').value = '';
+  }
+
   render() {
     return (
       <div className="panel panel-default">
-      <div className="panel-body create-card">
+        <div className="panel-body create-card">
 
-        <div className="flashcards">
-          <div className="flashcard">
-            <strong>front text</strong>
-            <textarea
-              name="frontText"
-              id="frontText"
-              className="text"
-              placeholder="Please press the record button"
-              onChange={this.handleFrontTextChange}
-              value={this.props.frontText}
-            />
-            <div
-              title="record new flashcard"
-              className="microphone"
-              data-linked-to="frontText"
-              onClick={this.handleRecordClick}
-            />
+          <div className="flashcards">
+            <div className="flashcard">
+              <strong>front text</strong>
+              <textarea
+                name="frontText"
+                id="frontText"
+                className="text"
+                placeholder="Please press the record button"
+                onChange={this.handleFrontTextChange}
+                value={this.props.frontText}
+              />
+              <div
+                title="record new flashcard"
+                className="microphone"
+                data-linked-to="frontText"
+                onClick={this.handleRecordClick}
+              />
+            </div>
+            <div className="flashcard">
+              <strong>back text</strong>
+              <textarea
+                name="backText"
+                id="backText"
+                className="text"
+                placeholder="Please press the record button"
+                onChange={this.handleBackTextChange}
+                value={this.props.backText}
+              />
+              <div
+                title="record new flashcard"
+                className="microphone"
+                data-linked-to="backText"
+                onClick={this.handleRecordClick}
+              />
+            </div>
           </div>
-          <div className="flashcard">
-            <strong>back text</strong>
-            <textarea
-              name="backText"
-              id="backText"
-              className="text"
-              placeholder="Please press the record button"
-              onChange={this.handleBackTextChange}
-              value={this.props.backText}
-            />
-            <div
-              title="record new flashcard"
-              className="microphone"
-              data-linked-to="backText"
-              onClick={this.handleRecordClick}
-            />
+
+          <div className="button-list">
+            <button
+              id="cancelButton"
+              className="btn btn-info"
+              onClick={this.handleCancellationClick}
+            >cancel
+            </button>
+            <button
+              id="saveButton"
+              className="btn btn-success"
+              onClick={this.handleSaveClick}
+            >SAVE
+            </button>
           </div>
         </div>
-          
-
-        
-
-        <div className="button-list">
-          <button
-            id="cancelButton"
-            className="btn btn-info"
-            onClick={this.handleSaveClick}
-          >cancel
-          </button>
-          <button
-            id="saveButton"
-            className="btn btn-success"
-            onClick={this.handleSaveClick}
-          >SAVE
-          </button>
-        </div>
-      </div>
       </div>
     );
   }
@@ -140,7 +145,6 @@ CreateCard.propTypes = {
   updateFrontText: PropTypes.func.isRequired,
   updateBackText: PropTypes.func.isRequired,
   saveCard: PropTypes.func.isRequired,
-  discardCard: PropTypes.func.isRequired,
 };
 
 export default CreateCard;
