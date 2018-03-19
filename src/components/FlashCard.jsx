@@ -27,18 +27,12 @@ class FlashCard extends Component {
     // @todo delete this
     this.a = 'a';
 
-    console.log(event.key);
+    const nodeFlashCard = document.getElementById('flashCard');
 
-    // const { cursor, result } = this.state;
-    // arrow up/down button should select next/previous list element
-    if (event.key === 38 && cursor > 0) {
-      /* this.setState( prevState => ({
-        cursor: prevState.cursor - 1,
-      })); */
-    } else if (event.key === 40 && cursor < result.length - 1) {
-      /* this.setState( prevState => ({
-        cursor: prevState.cursor + 1,
-      })); */
+    if (event.key === 'ArrowRight') {
+      nodeFlashCard.className = 'card card_active';
+    } else if (event.key === 'ArrowLeft') {
+      nodeFlashCard.className = 'card';
     }
   }
 
