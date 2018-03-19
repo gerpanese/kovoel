@@ -19,36 +19,27 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use('/api', [
-  router.flashcardRouter,
-]);
 
-app.use('/auth', [
-  router.localLogin,
-  router.register,
-  router.googleLogin
-]);
-
-app.use(express.static(path.join(__dirname, '../public')));
+// app.use(express.static(path.join(__dirname, '../public')));
 
 //Load passport strategy
 const localLoginStrategy = require('./passport/localLogin');
 passport.use(localLoginStrategy);
 
-//google authentication
+//Use the GoogleStrategy within Passport
 const googleLoginStrategy = require('./passport/googleLogin');
 passport.use(googleLoginStrategy);
 
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  done(null, user[0].id);
 });
 
 passport.deserializeUser((id, done) => {
   db
-    .users
-    .findById(id)
-    .then(user => done(null, user))
-    .catch(err => done(err));
+  .users
+  .findById(id)
+  .then(user => done(null, user))
+  .catch(err => done(err));
 });
 
 app.use(session({
@@ -61,6 +52,15 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use('/api', [
+  router.flashcardRouter,
+]);
+
+app.use('/auth', [
+  router.localLogin,
+  router.register,
+  router.googleLogin
+]);
 
 // catch 404 and forward to error handler
 app.use((request, response, next) => {

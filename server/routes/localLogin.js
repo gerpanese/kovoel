@@ -3,7 +3,8 @@ const passport = require('passport');
 const router = express.Router();
 
 // login page
-router.get('/login', (req, res) => res.status(200).send('Login page!'));
+router.get('/login', (req, res) => 
+res.status(200).send('Login page!'));
 
 router.post(
   '/login',
