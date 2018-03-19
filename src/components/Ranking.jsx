@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 
-import '../assets/ranking.css';
-
 class Ranking extends Component {
   render() {
     return (

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 
-import '../assets/registration.css';
+import '../assets/css/registration.css';
 
 class Registration extends Component {
   constructor(props) {

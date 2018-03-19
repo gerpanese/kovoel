@@ -29,7 +29,7 @@
   position: absolute;
   overflow: hidden;
   text-align: center;
-  background-image: url('flashcard.jpg');
+  background-image: url("../images/flashcard.jpg");
   background-size: 101%;
   background-repeat: no-repeat;
 }
@@ -54,7 +54,7 @@
 }
 
 .microphone {
-  background-image: url('microphone.jpg');
+  background-image: url("../images/microphone.jpg");
   background-repeat: no-repeat;
   width: 50px;
   height: 50px;

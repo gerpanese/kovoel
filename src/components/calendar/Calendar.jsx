@@ -3,7 +3,7 @@ import moment from 'moment';
 import Week from 'Week.jsx';
 import DayNames from 'DayNames.jsx';
 
-import '../../assets/statistic.css';
+import '../../assets/css/statistic.css';
 
 
 class Calendar extends Component {

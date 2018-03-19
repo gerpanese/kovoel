@@ -13,7 +13,7 @@ import Dashboard from '../containers/Dashboard';
 import Login from '../containers/Login';
 import TopNavigation from '../containers/TopNavigation';
 
-import '../assets/landing-page.css';
+import '../assets/css/landing-page.css';
 
 class App extends Component {
   getPageContent() {
