@@ -12,6 +12,7 @@ import LandingPageContent from '../containers/LandingPageContent';
 import Dashboard from '../containers/Dashboard';
 import Login from '../containers/Login';
 import TopNavigation from '../containers/TopNavigation';
+import AdministrationFlashCards from '../containers/AdministrationFlashCards';
 
 import '../assets/css/landing-page.css';
 
@@ -22,6 +23,13 @@ class App extends Component {
         return (
           <div className="App">
             <FlashCard />
+          </div>
+        );
+
+      case 'administrationFlashCards':
+        return (
+          <div className="App">
+            <AdministrationFlashCards />
           </div>
         );
 

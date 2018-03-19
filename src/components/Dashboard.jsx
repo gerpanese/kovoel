@@ -26,7 +26,7 @@ class Dashboard extends Component {
               </p>
             </div>
           </div>
-          <div className="row no-gutters" onClick={event => this.changePage('createCard')}>
+          <div className="row no-gutters" onClick={event => this.changePage('administrationFlashCards')}>
             <div className="col-lg-6 text-white showcase-img createFlashcards" />
             <div className="col-lg-6 my-auto showcase-text">
               <h2>Administration</h2>

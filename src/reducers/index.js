@@ -31,64 +31,75 @@ const reducer = (state = DefaultState, action) => {
       newState.frontText = action.frontText;
       return newState;
     }
+
     case 'UPDATE_BACK_TEXT': {
       const newState = getCopyOfState(state);
       newState.backText = action.backText;
       return newState;
     }
+
     case 'SAVE_CARD': {
       const newState = getCopyOfState(state);
       newState.frontText = '';
       newState.backText = '';
       return newState;
     }
+
     case 'DISCARD_CARD': {
       const newState = getCopyOfState(state);
       newState.frontText = '';
       newState.backText = '';
       return newState;
     }
-      case 'CHANGE_PAGE': {
-          const newState = getCopyOfState(state);
-          newState.currentPage = action.page;
-          return newState;
-      }
 
-      case 'SHUFFLE_FLASH_CARDS': {
-          const newState = getCopyOfState(state);
-          const learnShuffling = new LearnShuffling(newState.flashCards);
-          newState.shuffledFlashCards = getCopyOfState(learnShuffling.doShuffle());
-          newState.currentFlashCard = newState.shuffledFlashCards.shift();
-          return newState;
-      }
+    case 'CHANGE_PAGE': {
+      const newState = getCopyOfState(state);
+      newState.currentPage = action.page;
+      return newState;
+    }
 
-      case 'FLASH_CARD_SUCESSFULLY_LEARNED': {
-          const newState = getCopyOfState(state);
+    case 'DELETE_CARD': {
+      const newState = getCopyOfState(state);
+      newState.flashCards = newState.flashCards
+        .filter(flashcard => flashcard.id !== action.id);
+      return newState;
+    }
 
-          // store into the user-statistic
-          newState.userStatistic.push({
-              state: 'SUCCESS',
-              timestamp: +new Date(),
-              id: newState.currentFlashCard.id,
-          });
+    case 'SHUFFLE_FLASH_CARDS': {
+      const newState = getCopyOfState(state);
+      const learnShuffling = new LearnShuffling(newState.flashCards);
+      newState.shuffledFlashCards = getCopyOfState(learnShuffling.doShuffle());
+      newState.currentFlashCard = newState.shuffledFlashCards.shift();
+      return newState;
+    }
 
-          newState.currentFlashCard = newState.shuffledFlashCards.shift();
+    case 'FLASH_CARD_SUCESSFULLY_LEARNED': {
+      const newState = getCopyOfState(state);
 
-          return newState;
-      }
+      // store into the user-statistic
+      newState.userStatistic.push({
+        state: 'SUCCESS',
+        timestamp: +new Date(),
+        id: newState.currentFlashCard.id,
+      });
 
-      case 'FLASH_CARD_FAULTY_LEARNED': {
-          const newState = getCopyOfState(state);
+      newState.currentFlashCard = newState.shuffledFlashCards.shift();
 
-          // store into the user-statistic
-          newState.userStatistic.push({
-              state: 'FAULTY',
-              timestamp: +new Date(),
-              id: newState.currentFlashCard.id,
-          });
+      return newState;
+    }
 
-          return newState;
-      }
+    case 'FLASH_CARD_FAULTY_LEARNED': {
+      const newState = getCopyOfState(state);
+      // store into the user-statistic
+      newState.userStatistic.push({
+        state: 'FAULTY',
+        timestamp: +new Date(),
+        id: newState.currentFlashCard.id,
+      });
+
+      return newState;
+    }
+
     default:
       return state;
   }

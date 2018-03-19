@@ -16,9 +16,15 @@ const discardCard = () => ({
   type: 'DISCARD_CARD',
 });
 
+const deleteCard = id => ({
+  type: 'DELETE_CARD',
+  id,
+});
+
 export {
   updateFrontText,
   updateBackText,
   saveCard,
+  deleteCard,
   discardCard,
 };
