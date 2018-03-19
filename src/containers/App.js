@@ -5,6 +5,7 @@ import { changePage } from '../actions/dashboard';
 
 const mapStateToProps = state => ({
   currentPage: state.currentPage,
+  isUserLoggedIn: state.isUserLoggedIn,
 });
 
 
@@ -12,6 +13,7 @@ const mapDispatchToProps = dispatch => bindActionCreators(
   { changePage },
   dispatch,
 );
+
 
 const AppContainer = connect(
   mapStateToProps,
