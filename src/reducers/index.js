@@ -6,7 +6,7 @@ const DefaultState = {
   currentFlashCard: null,
   shuffledFlashCards: [],
 
-  currentPage: 'dashboard',
+  currentPage: 'landingPage',
 
   flashCards: [
     { id: 1, preview: '日本語', translation: 'japanisch', romanji: 'nihongo' },
@@ -19,6 +19,8 @@ const DefaultState = {
   frontText: '',
   backText: '',
 
+  // @todo we need to make this dynamic
+  isUserLoggedIn: true,
 };
 
 const reducer = (state = DefaultState, action) => {
