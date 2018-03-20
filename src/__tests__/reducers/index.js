@@ -1,3 +1,6 @@
+/* global expect */
+/* global it */
+/* global describe */
 import reducer from '../../reducers/index';
 
 describe('todos reducer', () => {
