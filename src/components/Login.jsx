@@ -23,13 +23,11 @@ class Login extends Component {
 
   closeModalBox() {
     this.refs.login.style.display='none';
-    // document.getElementById('login').style.display='none';
   }
 
   onSubmit(event) {
     event.preventDefault();
 
-    // const nodeEmail = document.getElementById('email');
     const nodeEmail = this.refs.email;
     const nodePsw = this.refs.psw;
     const nodeErrorMessage = this.refs.errorMsg;
