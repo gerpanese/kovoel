@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Validations from '../utils/Validations';
-
+import { signIn } from '../utils/signIn';
 import '../assets/css/registration.css';
 
 class Login extends Component {
@@ -50,7 +50,7 @@ class Login extends Component {
       return;
     }
     // @todo implement the login
-
+    signIn(nodeEmail.value, nodePsw.value);
     this.closeModalBox();
     this.props.changePage('dashboard');
   }
