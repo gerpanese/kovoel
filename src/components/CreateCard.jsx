@@ -72,15 +72,14 @@ class CreateCard extends Component {
       this.props.updateCard();
     } else {
       const newFlashCard = {
-          user_id: 1,
-          preview: this.props.frontText,
-          translation: this.props.backText,
-          romanji: this.props.backText,
-          note: '',
+        user_id: 1,
+        preview: this.props.frontText,
+        translation: this.props.backText,
+        romanji: this.props.backText,
+        note: '',
       };
       this.props.saveCard(newFlashCard);
     }
-  }
 
     const nodeSaveState = document.getElementById('save-state');
     nodeSaveState.classList.remove('d-none');
