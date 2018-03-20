@@ -57,12 +57,8 @@ describe('src/__tests__/actions/createCard.js', () => {
 
   describe('deleteCard', () => {
     it('should delete an action to delete card', () => {
-      const expectedAction = {
-        type: 'DELETE_CARD',
-        id: 1,
-      };
       const actualAction = deleteCard(1);
-      expect(actualAction).toEqual(expectedAction);
+      expect(typeof actualAction).toEqual('function');
     });
   });
 });
