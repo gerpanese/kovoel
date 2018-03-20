@@ -20,7 +20,7 @@ const DefaultState = {
   backText: '',
 
   // @todo we need to make this dynamic
-  isUserLoggedIn: true,
+  isUserLoggedIn: false,
 };
 
 const reducer = (state = DefaultState, action) => {

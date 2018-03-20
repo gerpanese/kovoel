@@ -115,7 +115,7 @@ describe('POST auth/login', () => {
         'Content-Type', 'application/json'
       )
       .send({ 
-        account: 'captainkrystal@gmail.com',
+        username: 'captainkrystal@gmail.com',
         password: 'hitoomedia'
        })
       .end((error, response) => {
