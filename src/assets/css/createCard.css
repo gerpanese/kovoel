@@ -1,0 +1,78 @@
+.create-card input[type=text] {
+  width: 100%;
+  padding: 10px;
+  margin: 0 0 20px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+.create-card input[type=text]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.create-card .flashcard {
+  background: url("../images/flashcard.jpg") transparent;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  padding: 25px;
+  text-align: center;
+  width: 49%;
+  font-size: 20px;
+  line-height: 18px;
+  float: left;
+}
+
+.microphone {
+  background-image: url("../images/microphone.jpg");
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
+  background-size: 100%;
+  cursor: pointer;
+  margin-left: 44%;
+  margin-bottom: 10px;
+  opacity: 0.5;
+  clear: both;
+}
+
+.text {
+  width: 100%;
+  height: 250px;
+  margin-top: 16%;
+  background-color: transparent;
+  border: 0px;
+  font-size: 3em;
+  line-height: 1em;
+}
+
+.microphone:hover {
+  opacity: 1;
+}
+
+.create-card .flashcards:first-child{
+  margin-left: 3%;
+}
+
+.flashcards {
+  clear: left;
+}
+
+.create-card .flashcard input {
+  background-color: transparent;
+}
+
+.create-card #discardButton {
+  margin-right: 1%;
+}
+
+.button-list {
+  clear: both;
+  margin-bottom: 20px;
+}
+
+.button-list .btn {
+  margin-left: 4%;
+  width: 44%;
+}

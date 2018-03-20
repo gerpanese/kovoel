@@ -1,14 +1,16 @@
+/* global document */
 import React, { Component } from 'react';
 import Fireworks from 'fireworks-react';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import WebSpeechApi from '../utils/WebSpeechApi';
 
-import '../assets/FlashCard.css';
+import '../assets/css/FlashCard.css';
 
 class FlashCard extends Component {
   constructor(props) {
     super(props);
     this.recordVoice = this.recordVoice.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
     this.gotoDashboard = this.gotoDashboard.bind(this);
     this.webSpeechApi = new WebSpeechApi();
   }
@@ -19,6 +21,19 @@ class FlashCard extends Component {
 
   gotoDashboard() {
     this.props.changePage('dashboard');
+  }
+
+  handleKeyDown(event) {
+    // @todo delete this
+    this.a = 'a';
+
+    const nodeFlashCard = document.getElementById('flashCard');
+
+    if (event.key === 'ArrowRight') {
+      nodeFlashCard.className = 'card card_active';
+    } else if (event.key === 'ArrowLeft') {
+      nodeFlashCard.className = 'card';
+    }
   }
 
   recordVoice() {
@@ -36,7 +51,10 @@ class FlashCard extends Component {
             }, 300);
           }, 2000);
         } else {
-          this.webSpeechApi.speech(this.props.errorMessage, this.props.languageCode);
+          this.webSpeechApi.speech(
+            this.props.errorMessage,
+            this.props.languageCode,
+          );
           document.getElementById('flashCard').className = 'card';
           this.props.flashCardFaultyLearned(this.props.flashCard.id);
         }
@@ -49,15 +67,23 @@ class FlashCard extends Component {
     if (!this.props.hasStillFlashCardsToLearn) {
       const size = 500;
       return (
-        <div>
+        <div className="final">
           <Fireworks className="fireworks" width={size} height={size} />
-          <button onClick={event => this.gotoDashboard()}>go to dashboard</button>
+          <br />
+          <button
+            className="btn-primary btn goto-dashboard"
+            onClick={() => this.gotoDashboard()}
+          >
+            go to dashboard
+          </button>
         </div>);
     }
 
     if (this.props.flashCard === null) {
       return (<div>loading ....</div>);
     }
+
+    document.body.onkeydown = this.handleKeyDown;
 
     return (
       <div>
@@ -73,10 +99,39 @@ class FlashCard extends Component {
           </div>
         </div>
 
-        <div className="microphone" onClick={event => this.recordVoice(event)} />
+        <div
+          className="microphone"
+          onClick={event => this.recordVoice(event)}
+        />
       </div>
     );
   }
 }
+
+FlashCard.propTypes = {
+  languageCode: PropTypes.string.isRequired,
+  flashCard: PropTypes.objectOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    preview: PropTypes.string.isRequired,
+    translation: PropTypes.string.isRequired,
+    romanji: PropTypes.string.isRequired,
+  })),
+  changePage: PropTypes.func.isRequired,
+  flashCardSuccessfullyLearned: PropTypes.func.isRequired,
+  hasStillFlashCardsToLearn: PropTypes.bool,
+  errorMessage: PropTypes.string.isRequired,
+  flashCardFaultyLearned: PropTypes.func.isRequired,
+  shuffleFlashCards: PropTypes.func.isRequired,
+};
+
+FlashCard.defaultProps = {
+  flashCard: {
+    id: 0,
+    preview: '',
+    translation: '',
+    romanji: '',
+  },
+  hasStillFlashCardsToLearn: true,
+};
 
 export default FlashCard;

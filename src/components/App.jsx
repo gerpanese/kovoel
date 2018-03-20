@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import FlashCard from '../containers/FlashCard';
 import Statistic from '../containers/Statistic';
 import Ranking from '../containers/Ranking';
 import CreateCard from '../containers/CreateCard';
+import Footer from '../containers/Footer';
+import Header from '../containers/Header';
+import AboutUs from '../containers/AboutUs';
+import LandingPageTeaser from '../containers/LandingPageTeaser';
+import LandingPageContent from '../containers/LandingPageContent';
+import Dashboard from '../containers/Dashboard';
+import Login from '../containers/Login';
+import TopNavigation from '../containers/TopNavigation';
+import AdministrationFlashCards from '../containers/AdministrationFlashCards';
+
+import '../assets/css/landing-page.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.changePage = this.changePage.bind(this);
-  }
-
-  changePage(page) {
-    this.props.changePage(page);
-  }
-
-  render() {
+  getPageContent() {
     switch (this.props.currentPage) {
       case 'learning':
         return (
@@ -24,10 +26,17 @@ class App extends Component {
           </div>
         );
 
+      case 'administrationFlashCards':
+        return (
+          <div className="App">
+            <AdministrationFlashCards />
+          </div>
+        );
+
       case 'createCard':
         return (
           <div className="App">
-              <CreateCard />
+            <CreateCard />
           </div>
         );
 
@@ -46,19 +55,45 @@ class App extends Component {
         );
 
       case 'dashboard':
-      default:
         return (
           <div className="App">
-            <ul>
-              <li onClick={event => this.changePage('learning')}>Learning</li>
-              <li onClick={event => this.changePage('createCard')}>Administration</li>
-              <li onClick={event => this.changePage('statistic')}>Statistic</li>
-              <li onClick={event => this.changePage('ranking')}>Ranking</li>
-            </ul>
+            <Dashboard />
+          </div>
+        );
+
+      case 'landingPage':
+      default:
+        return (
+          <div>
+            <Header />
+            <LandingPageTeaser />
+            <LandingPageContent />
+            <AboutUs />
           </div>
         );
     }
   }
+
+  render() {
+    const pageContent = this.getPageContent();
+
+    return (
+      <div>
+        <TopNavigation />
+
+        {pageContent}
+
+        <Footer />
+
+        <Login />
+
+      </div>
+    );
+  }
 }
+
+App.propTypes = {
+  currentPage: PropTypes.string.isRequired,
+};
 
 export default App;

@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import propTypes from 'prop-types';
-
-import '../assets/ranking.css';
+// import PropTypes from 'prop-types';
+// import Calendar from 'calendar/Calendar.jsx';
 
 class Statistic extends Component {
   render() {
     return (
       <div>
-        statistic...
+        statistics...
       </div>
     );
   }
 }
+
+Statistic.propTypes = {
+};
 
 export default Statistic;
