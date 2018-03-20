@@ -60,8 +60,9 @@ describe('src/__tests__/actions/createCard.js', () => {
     it('should delete an action to delete card', () => {
       const expectedAction = {
         type: 'DELETE_CARD',
+        id: 1,
       };
-      const actualAction = deleteCard();
+      const actualAction = deleteCard(1);
       expect(actualAction).toEqual(expectedAction);
     });
   });
