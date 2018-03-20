@@ -11,7 +11,6 @@ module.exports = new Strategy(async (username, password, done) => {
     }
 
     const correctPassword = await bcrypt.compare(password, user[0].password);
-
     if (!correctPassword) {
       return done(null, false, { message: 'Incorrect password.' });
     }

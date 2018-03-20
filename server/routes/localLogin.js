@@ -9,7 +9,6 @@ router.post(
   '/login',
   passport.authenticate('local', { failureRedirect: '/auth/login' }),
   (request, response) => {
-    console.log('Success!! Local login!');
     response.redirect('http://localhost:3000');
   },
 );

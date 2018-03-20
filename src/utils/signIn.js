@@ -1,8 +1,8 @@
-const signIn = async (email, password) => {
+const signIn = async (username, password) => {
   return await fetch('/auth/login', {
     method: 'POST',
     body: JSON.stringify({
-      email,
+      username,
       password
     }),
     headers: new Headers({
