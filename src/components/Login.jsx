@@ -53,10 +53,6 @@ class Login extends Component {
     this.props.changePage('dashboard');
   }
 
-  onGoogleSignIn(event) {
-    event.preventDefault();
-    this.closeModalBox();
-  }
 
   render() {
     this.hideRegistrationForm();
@@ -79,7 +75,7 @@ class Login extends Component {
               <button type="submit" className="signupbtn">Sign in</button>
             </div>
             <div className='google-oauth'>
-              <a href="/auth/google" className="btn btn-block btn-social btn-lg btn-google" >
+              <a href="/auth/google" className="btn btn-block btn-social btn-lg btn-google">
                 <span className="fa fa-google"></span> Sign in with Google
               </a>
             </div>
