@@ -69,7 +69,7 @@ class Registration extends Component {
     // @todo implement the registration
     createUser(nodeFirstname.value, nodeLastname.value, nodeEmail.value, nodePsw.value);
     this.closeModalBox();
-    // this.props.changePage('dashboard');
+    this.props.changePage('dashboard');
   }
 
   render() {
