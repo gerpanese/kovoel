@@ -4,6 +4,11 @@ const changePage = (page, id = null) => ({
   id,
 });
 
+const setIsLoggedIn = () => ({
+  type: 'SET_IS_LOGGED_IN',
+});
+
 export {
   changePage,
+  setIsLoggedIn,
 };

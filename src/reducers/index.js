@@ -15,12 +15,18 @@ const DefaultState = {
   backText: '',
 
   // @todo we need to make this dynamic
-  isUserLoggedIn: true,
+  isUserLoggedIn: false,
 };
 
 const reducer = (state = DefaultState, action) => {
   const getCopyOfState = _state => JSON.parse(JSON.stringify(_state));
   switch (action.type) {
+    case 'SET_IS_LOGGED_IN': {
+      const newState = getCopyOfState(state);
+      newState.isUserLoggedIn = true;
+      return newState;
+    }
+
     case 'UPDATE_FRONT_TEXT': {
       const newState = getCopyOfState(state);
       newState.frontText = action.frontText;

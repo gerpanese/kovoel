@@ -115,7 +115,7 @@ describe('POST auth/login', () => {
         'Content-Type', 'application/json'
       )
       .send({ 
-        account: 'captainkrystal@gmail.com',
+        username: 'captainkrystal@gmail.com',
         password: 'hitoomedia'
        })
       .end((error, response) => {
@@ -131,7 +131,7 @@ describe('POST auth/login', () => {
   after(() => knex('users').del());
 
   it('should return status 200.', done => {
-    status.should.equal(200);
+    status.should.equal(302);
     done();
   });
 
