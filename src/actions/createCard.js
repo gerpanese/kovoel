@@ -41,9 +41,7 @@ const deleteCard = (id) => {
       await fetch(`api/users/1/flashcards/${id}`, {
         method: 'DELETE',
       });
-      const x = deleteCardSuccess(id);
-      console.log(x);
-      return x;
+      return deleteCardSuccess(id);
     } catch (error) {
       console.error(error);
     }
