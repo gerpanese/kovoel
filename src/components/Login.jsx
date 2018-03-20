@@ -51,6 +51,7 @@ class Login extends Component {
     signIn(nodeEmail.value, nodePsw.value);
     this.closeModalBox();
     this.props.changePage('dashboard');
+    this.props.setIsLoggedIn();
   }
 
 
