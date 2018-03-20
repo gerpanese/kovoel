@@ -266,4 +266,110 @@ describe('todos reducer', () => {
     // Assert
     expect(actual).toEqual(expected);
   });
+
+  it('should handle UPDATE_CARD', () => {
+    // Setup
+    const initialState = {
+      frontText: 'frontText',
+      backText: 'backText',
+      flashCards: [{ id: 1, preview: '', translation: '', romanji: '' }],
+      currentFlashCard: { id: 1 },
+    };
+    const expected = {
+      frontText: '',
+      backText: '',
+      flashCards: [{ id: 1, preview: 'frontText', translation: 'backText', romanji: '' }],
+      currentFlashCard: { id: 1 },
+    };
+    const mockAction = {
+      type: 'UPDATE_CARD',
+    };
+
+    // Exercise
+    const actual = reducer(initialState, mockAction);
+
+    // Assert
+    expect(actual).toEqual(expected);
+  });
+
+  it('should handle UPDATE_CARD', () => {
+    // Setup
+    const initialState = {
+      frontText: 'frontText',
+      backText: 'backText',
+      flashCards: [{ id: 1, preview: '', translation: '', romanji: '' }],
+      currentFlashCard: { id: 1 },
+    };
+    const expected = {
+      frontText: '',
+      backText: '',
+      flashCards: [{ id: 1, preview: 'frontText', translation: 'backText', romanji: '' }],
+      currentFlashCard: { id: 1 },
+    };
+    const mockAction = {
+      type: 'UPDATE_CARD',
+    };
+
+    // Exercise
+    const actual = reducer(initialState, mockAction);
+
+    // Assert
+    expect(actual).toEqual(expected);
+  });
+
+  it('should handle SHUFFLE_FLASH_CARDS - one entry', () => {
+    // Setup
+    const initialState = {
+      shuffledFlashCards: [],
+      flashCards: [ { id: 1 } ],
+      currentFlashCard: null,
+    };
+    const expected = {
+      shuffledFlashCards: [],
+      flashCards: [ { id: 1 } ],
+      currentFlashCard: { id: 1 },
+    };
+    const mockAction = {
+      type: 'SHUFFLE_FLASH_CARDS',
+    };
+
+    // Exercise
+    const actual = reducer(initialState, mockAction);
+
+    // Assert
+    expect(actual).toEqual(expected);
+  });
+
+  it('should handle SHUFFLE_FLASH_CARDS - mpre entries', () => {
+    // Setup
+    const initialState = {
+      shuffledFlashCards: [],
+      flashCards: [ { id: 1 }, { id: 2 } ],
+      currentFlashCard: null,
+    };
+    let expected;
+    const mockAction = {
+      type: 'SHUFFLE_FLASH_CARDS',
+    };
+
+    // Exercise
+    const actual = reducer(initialState, mockAction);
+
+    if (actual.shuffledFlashCards[0].id === 1) {
+      expected = {
+        shuffledFlashCards: [{ id: 1 }],
+        flashCards: [ { id: 2 }, { id: 1 } ],
+        currentFlashCard: { id: 2 },
+      };
+    } else {
+      expected = {
+        shuffledFlashCards: [{ id: 2 }],
+        flashCards: [ { id: 1 }, { id: 2 } ],
+        currentFlashCard: { id: 1 },
+      };
+    }
+
+    // Assert
+    expect(actual).toEqual(expected);
+  });
 });
