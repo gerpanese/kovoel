@@ -35,6 +35,33 @@ const reducer = (state = DefaultState, action) => {
 
     case 'SAVE_CARD': {
       const newState = getCopyOfState(state);
+
+      let maxUsedId = 0;
+      newState.flashCards.forEach((card) => {
+        if (card.id >= maxUsedId) {
+          maxUsedId = card.id;
+        }
+      });
+      newState.flashCards.push({
+        id: maxUsedId + 1, // @todo move this into the server-side
+        preview: newState.frontText,
+        translation: newState.backText,
+        romanji: '', // @todo is missing
+      });
+
+      newState.frontText = '';
+      newState.backText = '';
+      return newState;
+    }
+
+    case 'UPDATE_CARD': {
+      const newState = getCopyOfState(state);
+
+      const currentCard = newState.flashCards.filter(card => card.id === newState.currentFlashCard.id)[0];
+      currentCard.preview = newState.frontText ? newState.frontText : currentCard.preview;
+      currentCard.translation = newState.backText ? newState.backText : currentCard.translation;
+      currentCard.romanji = ''; // @todo is missing
+
       newState.frontText = '';
       newState.backText = '';
       return newState;
@@ -50,6 +77,12 @@ const reducer = (state = DefaultState, action) => {
     case 'CHANGE_PAGE': {
       const newState = getCopyOfState(state);
       newState.currentPage = action.page;
+      if (action.id !== null) {
+        newState.currentFlashCard = newState.flashCards
+          .filter(card => card.id === action.id)[0];
+      } else {
+        newState.currentFlashCard = null;
+      }
       return newState;
     }
 
@@ -57,6 +90,10 @@ const reducer = (state = DefaultState, action) => {
       const newState = getCopyOfState(state);
       newState.flashCards = newState.flashCards
         .filter(flashcard => flashcard.id !== action.id);
+
+      if (newState.currentFlashCard.id === action.id) {
+        newState.currentFlashCard = null;
+      }
       return newState;
     }
 

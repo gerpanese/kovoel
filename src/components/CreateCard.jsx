@@ -67,14 +67,27 @@ class CreateCard extends Component {
 
   handleSaveClick(event) {
     event.preventDefault();
-    const newFlashCard = {
-      user_id: 1,
-      preview: this.props.frontText,
-      translation: this.props.backText,
-      romanji: this.props.backText,
-      note: '',
-    };
-    this.props.saveCard(newFlashCard);
+
+    if (this.props.cardId !== undefined) {
+      this.props.updateCard();
+    } else {
+      const newFlashCard = {
+          user_id: 1,
+          preview: this.props.frontText,
+          translation: this.props.backText,
+          romanji: this.props.backText,
+          note: '',
+      };
+      this.props.saveCard(newFlashCard);
+    }
+  }
+
+    const nodeSaveState = document.getElementById('save-state');
+    nodeSaveState.classList.remove('d-none');
+
+    setTimeout(() => {
+      nodeSaveState.classList.add('d-none');
+    }, 2000);
   }
 
   handleCancellationClick(event) {
@@ -88,6 +101,10 @@ class CreateCard extends Component {
       <div className="panel panel-default">
         <div className="panel-body create-card">
 
+          <div id="save-state" className="alert alert-success d-none" role="alert">
+            <strong>Well done!</strong> Your change is successfully saved.
+          </div>
+
           <div className="flashcards">
             <div className="flashcard">
               <strong>front text</strong>
@@ -97,7 +114,7 @@ class CreateCard extends Component {
                 className="text"
                 placeholder="Please press the record button"
                 onChange={this.handleFrontTextChange}
-                value={this.props.frontText}
+                defaultValue={this.props.frontText}
               />
               <div
                 title="record new flashcard"
@@ -114,7 +131,7 @@ class CreateCard extends Component {
                 className="text"
                 placeholder="Please press the record button"
                 onChange={this.handleBackTextChange}
-                value={this.props.backText}
+                defaultValue={this.props.backText}
               />
               <div
                 title="record new flashcard"

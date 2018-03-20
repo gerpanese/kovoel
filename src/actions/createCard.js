@@ -48,6 +48,10 @@ const deleteCard = (id) => {
   };
 };
 
+const updateCard = () => ({
+  type: 'UPDATE_CARD',
+});
+
 const discardCard = () => ({
   type: 'DISCARD_CARD',
 });
@@ -56,7 +60,8 @@ export {
   updateFrontText,
   updateBackText,
   saveCard,
+  updateCard,
+  deleteCard,
   discardCard,
   saveCardSuccess,
-  deleteCard,
 };

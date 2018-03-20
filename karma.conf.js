@@ -7,6 +7,7 @@ const ChromiumRevision = require('puppeteer/package.json').puppeteer.chromium_re
 
 const fs = require('fs');
 const path = require('path');
+
 const EXCLUDE_FILENAMES = ['lib', 'solutions', 'scripts'];
 const givenCoffeeProblems = fs.readdirSync('./').filter(fileName => fileName[0] !== '.' && path.extname(fileName) === '' && EXCLUDE_FILENAMES.indexOf(fileName) === -1);
 const files = givenCoffeeProblems.map(givenCoffeeProblem => {
@@ -35,13 +36,15 @@ module.exports = function (config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {},
+    preprocessors: {
+      'src/setupTests.js': ['webpack'],
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: [
-      'dots'
+      'dots',
     ],
 
     // web server port
@@ -69,5 +72,5 @@ module.exports = function (config) {
     // how many browser should be started simultaneous
     concurrency: Infinity,
 
-  })
+  });
 };

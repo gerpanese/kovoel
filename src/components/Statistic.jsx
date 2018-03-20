@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
-// import Calendar from 'calendar/Calendar.jsx';
+// import Day from 'Calendar/Day.jsx';
 
 class Statistic extends Component {
   render() {
     return (
       <div>
-        statistics...
+        statistics ...
       </div>
     );
   }
