@@ -8,12 +8,7 @@ const DefaultState = {
 
   currentPage: 'landingPage',
 
-  flashCards: [
-    { id: 1, preview: '日本語', translation: 'japanisch', romanji: 'nihongo' },
-    { id: 2, preview: '見ました', translation: 'seen', romanji: 'mimashita' },
-    { id: 3, preview: '日曜日', translation: 'sunday', romanji: 'nichiyobi' },
-    { id: 4, preview: 'ドイツ', translation: 'germany', romanji: 'doitsu' },
-  ],
+  flashCards: [],
 
   userStatistic: [],
   frontText: '',
@@ -134,6 +129,12 @@ const reducer = (state = DefaultState, action) => {
         id: newState.currentFlashCard.id,
       });
 
+      return newState;
+    }
+
+    case 'GET_FLASH_CARDS': {
+      const newState = getCopyOfState(state);
+      newState.flashCards = action.flashCards;
       return newState;
     }
 

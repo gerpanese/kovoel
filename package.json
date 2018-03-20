@@ -12,7 +12,8 @@
     "test:login": "mocha --reporter nyan ./server/tests/authentication.js --exit",
     "migrate": "knex migrate:latest --knexfile server/db/knexfile.js",
     "rollback": "knex migrate:rollback --knexfile server/db/knexfile.js",
-    "seed": "knex seed:run --knexfile server/db/knexfile.js"
+    "seed": "knex seed:run --knexfile server/db/knexfile.js",
+    "resetdb": "yarn rollback && yarn migrate && yarn seed"
   },
   "dependencies": {
     "@types/enzyme": "^3.1.9",

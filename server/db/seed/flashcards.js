@@ -28,7 +28,7 @@ exports.seed = knex => (
         },
         {
           user_id: '1',
-          preview: '分かりません',
+          preview: 'わかりません',
           translation: 'I do not understand',
           romanji: 'wakari ma sen',
           note: 'Always used when coding',

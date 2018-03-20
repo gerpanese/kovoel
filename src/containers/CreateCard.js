@@ -10,12 +10,13 @@ import {
 } from '../actions/createCard';
 
 const mapStateToProps = state => ({
-  cardId: state.currentFlashCard.id,
+  cardId: state.currentFlashCard === null ?
+    0 : state.currentFlashCard.id,
 
-  frontText: state.currentFlashCard.preview === undefined ?
+  frontText: state.currentFlashCard === null ?
     state.frontText : state.currentFlashCard.preview,
 
-  backText: state.currentFlashCard.translation === undefined ?
+  backText: state.currentFlashCard === null ?
     state.backText : state.currentFlashCard.translation,
 });
 

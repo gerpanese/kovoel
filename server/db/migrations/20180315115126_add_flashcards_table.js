@@ -21,7 +21,6 @@ exports.up = knex =>
       .index();
 
     table.string('note')
-      .notNullable()
       .index();
 
     table.timestamp('created_at')
