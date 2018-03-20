@@ -1,3 +1,7 @@
+/* global window */
+/* global SpeechSynthesisUtterance */
+/* global webkitSpeechRecognition */
+/* global SpeechRecognition */
 export default class WebSpeechApi {
   constructor() {
     this.voiceList = null;
@@ -6,10 +10,10 @@ export default class WebSpeechApi {
   getSpeechRecognition() {
     try {
       return webkitSpeechRecognition;
-    } catch (e) {
+    } catch (exception1) {
       try {
         return SpeechRecognition;
-      } catch (e) {
+      } catch (exception2) {
         return null;
       }
     }
@@ -50,8 +54,11 @@ export default class WebSpeechApi {
     const synth = window.speechSynthesis;
 
     if (synth.speaking) {
-      console.log('speechSynthesis.speaking');
-      return;
+      throw new Error('speechSynthesis.speaking');
+    }
+
+    if (!this.isWebbrowserSupported()) {
+      throw new Error('your webbrowser don\'t support this feature');
     }
 
     const utterThis = new SpeechSynthesisUtterance(textToSynthesis);
@@ -89,7 +96,7 @@ export default class WebSpeechApi {
     };
 
     recognition.onerror = (event) => {
-      reject(`Error occurred in recognition: ${  event.error}`);
+      reject(`Error occurred in recognition: ${event.error}`);
     };
   }
 }

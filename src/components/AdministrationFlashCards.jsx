@@ -9,10 +9,16 @@ class AdministrationFlashCards extends Component {
     this.isFirstPage = true;
     this.WebSpeechApi = WebSpeechApi;
     this.handleDeleteCardChange = this.handleDeleteCardChange.bind(this);
+    this.handleUpdateCardChange = this.handleUpdateCardChange.bind(this);
   }
 
   changePage(page) {
     this.props.changePage(page);
+  }
+
+  handleUpdateCardChange(event, id) {
+    event.preventDefault();
+    this.props.changePage('createCard', id);
   }
 
   handleDeleteCardChange(event, id) {
@@ -46,6 +52,14 @@ class AdministrationFlashCards extends Component {
                   <td>{card.preview}</td>
                   <td>{card.translation}</td>
                   <td>
+                    <button
+                        type="button"
+                        className="btn btn-default"
+                        onClick={event => this.handleUpdateCardChange(event, card.id)}
+                      >
+                      update
+                    </button>
+
                     <button
                       type="button"
                       className="btn btn-danger"

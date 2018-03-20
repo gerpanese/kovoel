@@ -12,14 +12,8 @@ const flashCardFaultyLearned = id => ({
   id,
 });
 
-const changePage = page => ({
-  type: 'CHANGE_PAGE',
-  page,
-});
-
 export {
   shuffleFlashCards,
   flashCardSuccessfullyLearned,
   flashCardFaultyLearned,
-  changePage,
 };
