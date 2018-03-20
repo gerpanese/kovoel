@@ -20,6 +20,8 @@
 .card_active {
   transform: rotateY(180deg);
   transition: all 0.4s ease-in-out;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .card .front {
@@ -39,6 +41,8 @@
   width: 500px;
   text-align: center;
   transform: rotateY(180deg);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .eng,

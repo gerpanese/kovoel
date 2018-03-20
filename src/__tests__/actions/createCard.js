@@ -2,6 +2,7 @@ import {
   updateFrontText,
   updateBackText,
   saveCard,
+  saveCardSuccess,
   discardCard,
 } from '../../actions/createCard';
 
@@ -30,14 +31,14 @@ describe('src/__tests__/actions/createCard.js', () => {
     });
   });
 
-  describe('saveCard', () => {
+  describe('saveCardSuccess', () => {
     // Need to add test for POST /cards feature
-    it('should create an action to save card to database', async () => {
+    it('should create an action to save card to database', () => {
       const expectedAction = {
         type: 'SAVE_CARD',
       };
-      const actualAction = await saveCard();
-      expect(actualAction).toEqual(expectedAction);
+      const actualAction = saveCardSuccess();
+      expect(actualAction.type).toEqual(expectedAction.type);
     });
   });
 

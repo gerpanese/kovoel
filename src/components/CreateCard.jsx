@@ -67,7 +67,14 @@ class CreateCard extends Component {
 
   handleSaveClick(event) {
     event.preventDefault();
-    this.props.saveCard();
+    const newFlashCard = {
+      user_id: 1,
+      preview: this.props.frontText,
+      translation: this.props.backText,
+      romanji: this.props.backText,
+      note: '',
+    };
+    this.props.saveCard(newFlashCard);
   }
 
   handleCancellationClick(event) {

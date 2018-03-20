@@ -1,5 +1,9 @@
 // const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const path = require('path');
+const webpack = require('webpack');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 module.exports = {
   entry: ['babel-polyfill', `${path.resolve(__dirname, 'src')}/index.js`],
@@ -31,7 +35,6 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'public'),
-    publicPath: '/public',
   },
   resolve: {
     extensions: ['.webpack.js', '.js', '.jsx'],
@@ -47,4 +50,9 @@ module.exports = {
       '/api': 'http://localhost:8000',
     },
   },
+  plugins: [
+    new webpack.EnvironmentPlugin([
+      'GoogleCloudTranslationApiKey',
+    ]),
+  ],
 };

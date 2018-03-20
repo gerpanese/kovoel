@@ -11,6 +11,10 @@ class AdministrationFlashCards extends Component {
     this.handleDeleteCardChange = this.handleDeleteCardChange.bind(this);
   }
 
+  componentDidMount() {
+    this.props.getFlashCards();
+  }
+
   changePage(page) {
     this.props.changePage(page);
   }
@@ -66,6 +70,7 @@ class AdministrationFlashCards extends Component {
 
 
 AdministrationFlashCards.propTypes = {
+  getFlashCards: PropTypes.func.isRequired,
   changePage: PropTypes.func.isRequired,
   deleteCard: PropTypes.func.isRequired,
   flashCards: PropTypes.arrayOf(PropTypes.shape({

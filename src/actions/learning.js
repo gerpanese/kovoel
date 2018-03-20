@@ -17,9 +17,28 @@ const changePage = page => ({
   page,
 });
 
+// Should use userId to show flashcards depending on users
+const getFlashCards = (userId) => {
+  return async (dispatch) => {
+    try {
+      const flashCardsResponse = await fetch('api/users/1/flashcards');
+      const flashCards = await flashCardsResponse.json();
+      dispatch(getFlashCardsSuccess(flashCards));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+const getFlashCardsSuccess = flashCards => ({
+  type: 'GET_FLASH_CARDS',
+  flashCards,
+});
+
 export {
   shuffleFlashCards,
   flashCardSuccessfullyLearned,
   flashCardFaultyLearned,
   changePage,
+  getFlashCards,
 };

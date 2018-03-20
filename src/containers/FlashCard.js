@@ -6,12 +6,13 @@ import {
   flashCardSuccessfullyLearned,
   flashCardFaultyLearned,
   shuffleFlashCards,
+  getFlashCards,
 } from '../actions/learning';
 
 const mapStateToProps = state => ({
   errorMessage: state.errorMessage,
   languageCode: state.languageCode,
-  hasStillFlashCardsToLearn: state.shuffledFlashCards.length > 0 || state.currentFlashCard,
+  hasStillFlashCardsToLearn: state.shuffledFlashCards.length > 0 || Boolean(state.currentFlashCard),
   flashCard: state.currentFlashCard,
 });
 
@@ -21,6 +22,7 @@ const mapDispatchToProps = dispatch => bindActionCreators(
     flashCardSuccessfullyLearned,
     flashCardFaultyLearned,
     shuffleFlashCards,
+    getFlashCards,
   },
   dispatch,
 );

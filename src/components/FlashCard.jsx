@@ -16,7 +16,10 @@ class FlashCard extends Component {
   }
 
   componentWillMount() {
-    this.props.shuffleFlashCards();
+    this.props.getFlashCards()
+      .then(() => {
+        this.props.shuffleFlashCards();
+      });
   }
 
   gotoDashboard() {
@@ -110,12 +113,8 @@ class FlashCard extends Component {
 
 FlashCard.propTypes = {
   languageCode: PropTypes.string.isRequired,
-  flashCard: PropTypes.objectOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    preview: PropTypes.string.isRequired,
-    translation: PropTypes.string.isRequired,
-    romanji: PropTypes.string.isRequired,
-  })),
+  flashCard: PropTypes.object,
+  getFlashCards: PropTypes.func.isRequired,
   changePage: PropTypes.func.isRequired,
   flashCardSuccessfullyLearned: PropTypes.func.isRequired,
   hasStillFlashCardsToLearn: PropTypes.bool,
@@ -125,12 +124,7 @@ FlashCard.propTypes = {
 };
 
 FlashCard.defaultProps = {
-  flashCard: {
-    id: 0,
-    preview: '',
-    translation: '',
-    romanji: '',
-  },
+  flashCard: null,
   hasStillFlashCardsToLearn: true,
 };
 
