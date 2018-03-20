@@ -1,7 +1,11 @@
+/* global expect */
+/* global it */
+/* global describe */
 import {
   updateFrontText,
   updateBackText,
   saveCard,
+  deleteCard,
   discardCard,
 } from '../../actions/createCard';
 
@@ -47,6 +51,16 @@ describe('src/__tests__/actions/createCard.js', () => {
         type: 'DISCARD_CARD',
       };
       const actualAction = discardCard();
+      expect(actualAction).toEqual(expectedAction);
+    });
+  });
+
+  describe('deleteCard', () => {
+    it('should delete an action to delete card', () => {
+      const expectedAction = {
+        type: 'DELETE_CARD',
+      };
+      const actualAction = deleteCard();
       expect(actualAction).toEqual(expectedAction);
     });
   });
