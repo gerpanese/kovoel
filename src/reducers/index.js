@@ -95,6 +95,10 @@ const reducer = (state = DefaultState, action) => {
       const newState = getCopyOfState(state);
       newState.flashCards = newState.flashCards
         .filter(flashcard => flashcard.id !== action.id);
+
+      if (newState.currentFlashCard.id === action.id) {
+        newState.currentFlashCard = null;
+      }
       return newState;
     }
 

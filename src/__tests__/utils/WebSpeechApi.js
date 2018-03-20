@@ -3,6 +3,7 @@
 /* global describe */
 import WebSpeechApi from '../../utils/WebSpeechApi';
 
+const synth = { speaking: false };
 
 describe('WebSpeechApi', () => {
   it('getSpeechRecognition() - method', () => {
@@ -36,10 +37,11 @@ describe('WebSpeechApi', () => {
     }
   });
 
-  it('speech() - method - exception', () => {
+  it('speech() - method - exception - not supported', () => {
     // setup
     const webSpeechApi = new WebSpeechApi();
 
+    synth.speaking = false;
     // Assert
     try {
       webSpeechApi.speech('good morning', 'en-US');

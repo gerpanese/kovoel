@@ -58,10 +58,21 @@ describe('todos reducer', () => {
     const initialState = {
       frontText: 'Existing test back text',
       backText: 'Existing test back text',
+      flashCards: [{ id: 1 }, { id: 2 }],
     };
     const expected = {
       frontText: '',
       backText: '',
+      flashCards: [
+        { id: 1 },
+        { id: 2 },
+        {
+          id: 3,
+          preview:
+          initialState.frontText,
+          romanji: '',
+          translation: initialState.backText,
+        }],
     };
     const mockAction = {
       type: 'SAVE_CARD',
@@ -86,6 +97,167 @@ describe('todos reducer', () => {
     };
     const mockAction = {
       type: 'DISCARD_CARD',
+    };
+
+    // Exercise
+    const actual = reducer(initialState, mockAction);
+
+    // Assert
+    expect(actual).toEqual(expected);
+  });
+
+  it('should handle CHANGE_PAGE - without an id', () => {
+    // Setup
+    const initialState = {
+      currentPage: 'Existing test back text',
+      currentFlashCard: 111,
+    };
+    const expected = {
+      currentFlashCard: null,
+      currentPage: 'new',
+    };
+    const mockAction = {
+      type: 'CHANGE_PAGE',
+      page: 'new',
+      id: null,
+    };
+
+    // Exercise
+    const actual = reducer(initialState, mockAction);
+
+    // Assert
+    expect(actual).toEqual(expected);
+  });
+
+  it('should handle CHANGE_PAGE - with an id', () => {
+    // Setup
+    const initialState = {
+      currentPage: 'Existing test back text',
+      currentFlashCard: 111,
+      flashCards: [{ id: 1 }],
+    };
+    const expected = {
+      currentFlashCard: { id: 1 },
+      currentPage: 'new',
+      flashCards: [{ id: 1 }],
+    };
+    const mockAction = {
+      type: 'CHANGE_PAGE',
+      page: 'new',
+      id: 1,
+    };
+
+    // Exercise
+    const actual = reducer(initialState, mockAction);
+
+    // Assert
+    expect(actual).toEqual(expected);
+  });
+
+  it('should handle CHANGE_PAGE - id not existing', () => {
+    // Setup
+    const initialState = {
+      currentPage: 'Existing test back text',
+      currentFlashCard: 111,
+      flashCards: [{ id: 1 }],
+    };
+    const expected = {
+      currentFlashCard: undefined,
+      currentPage: 'new',
+      flashCards: [{ id: 1 }],
+    };
+    const mockAction = {
+      type: 'CHANGE_PAGE',
+      page: 'new',
+      id: 2,
+    };
+
+    // Exercise
+    const actual = reducer(initialState, mockAction);
+
+    // Assert
+    expect(actual).toEqual(expected);
+  });
+
+  it('should handle CHANGE_PAGE - id not existing', () => {
+    // Setup
+    const initialState = {
+      flashCards: [{ id: 1 }],
+      currentFlashCard: { id: 1 },
+    };
+    const expected = {
+      flashCards: [],
+      currentFlashCard: null,
+    };
+    const mockAction = {
+      type: 'DELETE_CARD',
+      id: 1,
+    };
+
+    // Exercise
+    const actual = reducer(initialState, mockAction);
+
+    // Assert
+    expect(actual).toEqual(expected);
+  });
+
+  it('should handle XX - default', () => {
+    // Setup
+    const initialState = {
+      flashCards: [{ id: 1 }],
+      currentFlashCard: { id: 1 },
+    };
+    const expected = initialState;
+    const mockAction = {
+      type: 'XX',
+    };
+
+    // Exercise
+    const actual = reducer(initialState, mockAction);
+
+    // Assert
+    expect(actual).toEqual(expected);
+  });
+
+  it('should handle FLASH_CARD_SUCESSFULLY_LEARNED', () => {
+    // Setup
+    const initialState = {
+      flashCards: [{ id: 1 }],
+      currentFlashCard: { id: 1 },
+      userStatistic: [],
+      shuffledFlashCards: [{ id: 2 }],
+    };
+    const expected = {
+      flashCards: [{ id: 1 }],
+      currentFlashCard: { id: 2 },
+      userStatistic: [{ id: 1, state: 'SUCCESS', timestamp: +new Date() }],
+      shuffledFlashCards: [],
+    };
+    const mockAction = {
+      type: 'FLASH_CARD_SUCESSFULLY_LEARNED',
+    };
+
+    // Exercise
+    const actual = reducer(initialState, mockAction);
+
+    // Assert
+    expect(actual).toEqual(expected);
+  });
+
+  it('should handle FLASH_CARD_FAULTY_LEARNED', () => {
+    // Setup
+    const initialState = {
+      flashCards: [{ id: 1 }],
+      currentFlashCard: { id: 1 },
+      userStatistic: [],
+    };
+    const expected = {
+      flashCards: [{ id: 1 }],
+      currentFlashCard: { id: 1 },
+      userStatistic: [{ id: 1, state: 'FAULTY', timestamp: +new Date() }],
+    };
+    const mockAction = {
+      type: 'FLASH_CARD_FAULTY_LEARNED',
     };
 
     // Exercise
