@@ -35,12 +35,14 @@ class CreateCard extends Component {
     const speech = new this.WebSpeechApi();
     let hearingLanguageCode = '';
     let callbackFunction;
-
+console.log(event.target.dataset);
     switch (event.target.dataset.linkedTo) {
       case 'frontText':
         hearingLanguageCode = 'ja-JP';
         callbackFunction = (text) => {
+          console.log(111, text);
           this.props.updateFrontText(text);
+          console.log(222);
           const apiKey = process.env.GoogleCloudTranslationApiKey;
           if (apiKey !== undefined) {
             const googleTranslationInstance = googleTranslate(apiKey);
@@ -68,7 +70,7 @@ class CreateCard extends Component {
   handleSaveClick(event) {
     event.preventDefault();
 
-    if (this.props.cardId !== undefined) {
+    if (this.props.cardId !== 0) {
       this.props.updateCard();
     } else {
       const newFlashCard = {
@@ -113,7 +115,7 @@ class CreateCard extends Component {
                 className="text"
                 placeholder="Please press the record button"
                 onChange={this.handleFrontTextChange}
-                defaultValue={this.props.frontText}
+                value={this.props.frontText}
               />
               <div
                 title="record new flashcard"
@@ -130,7 +132,7 @@ class CreateCard extends Component {
                 className="text"
                 placeholder="Please press the record button"
                 onChange={this.handleBackTextChange}
-                defaultValue={this.props.backText}
+                value={this.props.backText}
               />
               <div
                 title="record new flashcard"
