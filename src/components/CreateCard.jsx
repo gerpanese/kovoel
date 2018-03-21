@@ -35,7 +35,6 @@ class CreateCard extends Component {
     const speech = new this.WebSpeechApi();
     let hearingLanguageCode = '';
     let callbackFunction;
-console.log(event.target.dataset);
     switch (event.target.dataset.linkedTo) {
       case 'frontText':
         hearingLanguageCode = 'ja-JP';
@@ -55,6 +54,18 @@ console.log(event.target.dataset);
       case 'backText':
         hearingLanguageCode = 'en-US';
         callbackFunction = this.props.updateBackText;
+        callbackFunction = (text) => {
+          console.log(111, text);
+          this.props.updateBackText(text);
+          console.log(222);
+          const apiKey = process.env.GoogleCloudTranslationApiKey;
+          if (apiKey !== undefined) {
+            const googleTranslationInstance = googleTranslate(apiKey);
+            googleTranslationInstance.translate(text, 'ja', (error, translation) => {
+              this.props.updateFrontText(translation.translatedText);
+            });
+          }
+        };
         break;
       default:
         throw new Error(`${event.target.dataset.linkedTo} is undefined`);
