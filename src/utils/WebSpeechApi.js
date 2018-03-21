@@ -52,7 +52,7 @@ export default class WebSpeechApi {
 
   async speech(textToSynthesis, language = 'ja-JP') {
     const synth = window.speechSynthesis;
-
+synth.speaking
     if (synth.speaking) {
       throw new Error('speechSynthesis.speaking');
     }
@@ -68,7 +68,7 @@ export default class WebSpeechApi {
     synth.speak(utterThis);
   }
 
-  hear(language = 'en-US', resolve, reject) {
+  hear(language = 'en-US', resolve, reject, onspeechend = null) {
     if (!this.isWebbrowserSupported()) {
       throw new Error('your webbrowser don\'t support this feature');
     }
@@ -89,6 +89,9 @@ export default class WebSpeechApi {
 
     recognition.onspeechend = () => {
       recognition.stop();
+      if (onspeechend !== null) {
+        onspeechend();
+      }
     };
 
     recognition.onnomatch = () => {

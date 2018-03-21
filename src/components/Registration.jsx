@@ -15,8 +15,10 @@ class Registration extends Component {
   hideRegistrationForm() {
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = (event) => {
-      if (event.target.className === 'modal') {
-        event.target.style.display = 'none';
+      if (event.target.className === 'gray') {
+        Array.from(document.getElementsByClassName('modal')).forEach(node => 
+          node.style.display = 'none'
+        );
       }
     }
   }
@@ -76,6 +78,7 @@ class Registration extends Component {
     this.hideRegistrationForm();
     return (
       <div id="id01" className="modal" ref='id01'>
+        <div className="gray"></div>
         <span onClick={() => this.closeModalBox()} className="close" title="Close Modal">&times;</span>
         <form className="modal-content" onSubmit={event => this.onSubmit(event)}>
           <div className="container">
@@ -85,7 +88,7 @@ class Registration extends Component {
             <div id="error-message" ref='errorMsg'>
 
             </div>
-            <input type="text" placeholder="Enter Fisrt Name" name="firstname" ref="firstname" required />
+            <input type="text" placeholder="Enter Fist Name" name="firstname" ref="firstname" required />
 
             <input type="text" placeholder="Enter Last Name" name="lastname" ref='lastname' required />
             

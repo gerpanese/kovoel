@@ -69,6 +69,10 @@
   clear: both;
 }
 
+.microphone-active {
+  background-image: url("../images/microphone-active.jpg") !important;
+}
+
 .microphone:hover {
   opacity: 1;
 }
