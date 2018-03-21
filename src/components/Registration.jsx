@@ -79,16 +79,16 @@ class Registration extends Component {
     return (
       <div id="id01" className="modal" ref='id01'>
         <div className="gray"></div>
-        <span onClick={() => this.closeModalBox()} className="close" title="Close Modal">&times;</span>
         <form className="modal-content" onSubmit={event => this.onSubmit(event)}>
           <div className="container">
+            <span onClick={() => this.closeModalBox()} className="close" title="Close Modal">&times;</span>
             <h1>Sign Up</h1>
             <p>Please fill in this form to create an account.</p>
             <hr />
             <div id="error-message" ref='errorMsg'>
 
             </div>
-            <input type="text" placeholder="Enter Fist Name" name="firstname" ref="firstname" required />
+            <input type="text" placeholder="Enter First Name" name="firstname" ref="firstname" required />
 
             <input type="text" placeholder="Enter Last Name" name="lastname" ref='lastname' required />
             
