@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import LearnImg from '../assets/images/learning.jpg';
+import CreateImg from '../assets/images/createFlashcards.jpg';
+import StatisticsImg from '../assets/images/statistic.jpg';
+import RankingImg from '../assets/images/ranking.jpg';
 
 
 class Dashboard extends Component {
@@ -14,62 +18,40 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <section className="showcase">
-        <div className="container-fluid p-0">
-          <div
-            className="row no-gutters"
-            onClick={() => this.changePage('learning')}
-          >
-            <div className="col-lg-6 order-lg-2 text-white showcase-img learning" />
-            <div className="col-lg-6 order-lg-1 my-auto showcase-text">
-              <h2>Learn new Words</h2>
-              <p className="lead mb-0">
-                Learn new Words and the pronunciation.<br />
-                <a href="#">... more</a>
-              </p>
-            </div>
-          </div>
-          <div
-            className="row no-gutters"
-            onClick={() => this.changePage('administrationFlashCards')}
-            >
-            <div className="col-lg-6 text-white showcase-img createFlashcards" />
-            <div className="col-lg-6 my-auto showcase-text">
-              <h2>Administration</h2>
-              <p className="lead mb-0">
-                Create new Flashcards with your voice<br />
-                <a href="#">... more</a>
-              </p>
-            </div>
-          </div>
-          <div
-            className="row no-gutters"
-            onClick={() => this.changePage('statistic')}
-          >
-            <div className="col-lg-6 order-lg-2 text-white showcase-img statistic" />
-            <div className="col-lg-6 order-lg-1 my-auto showcase-text">
-              <h2>Statistics</h2>
-              <p className="lead mb-0">
-                See your learning statistics<br />
-                <a href="#">... more</a>
-              </p>
-            </div>
-          </div>
-          <div
-            className="row no-gutters"
-            onClick={() => this.changePage('ranking')}
-          >
-            <div className="col-lg-6 order-lg-2 text-white showcase-img ranking" />
-            <div className="col-lg-6 order-lg-1 my-auto showcase-text">
-              <h2>Ranking</h2>
-              <p className="lead mb-0">
-                See how much you learned compare to other users.<br />
-                <a href="#">... more</a>
-              </p>
-            </div>
+      <div className="dashboard">
+        <div className="card">
+          <img className="card-img-top learning" src={LearnImg} alt="learn" />
+          <div className="card-body">
+            <h4 className="card-title">Learn</h4>
+            <p className="card-text">Learn new words and the pronunciation.</p>
+            <a href="#" className="btn btn-primary" onClick={() => this.changePage('learning')}>Learn</a>
           </div>
         </div>
-      </section>
+        <div className="card">
+          <img className="card-img-top createFlashcards" src={CreateImg} alt="create" />
+          <div className="card-body">
+            <h4 className="card-title">Create</h4>
+            <p className="card-text">Create new flashcards with your voice.</p>
+            <a href="#" className="btn btn-primary" onClick={() => this.changePage('administrationFlashCards')}>Create</a>
+          </div>
+        </div>
+        <div className="card">
+          <img className="card-img-top statistic" src={StatisticsImg} alt="statistics" />
+          <div className="card-body">
+            <h4 className="card-title">Statistics</h4>
+            <p className="card-text">See how much you learned with statistics.</p>
+            <a href="#" className="btn btn-primary" onClick={() => this.changePage('statistic')}>Statistics</a>
+          </div>
+        </div>
+        <div className="card">
+          <img className="card-img-top ranking" src={RankingImg} alt="ranking" />
+          <div className="card-body">
+            <h4 className="card-title">Ranking</h4>
+            <p className="card-text">See how much you learned compare to other users.</p>
+            <a href="#" className="btn btn-primary" onClick={() => this.changePage('ranking')}>Ranking</a>
+          </div>
+        </div>
+      </div>
     );
   }
 }
