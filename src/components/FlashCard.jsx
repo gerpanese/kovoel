@@ -4,6 +4,7 @@ import Fireworks from 'fireworks-react';
 import PropTypes from 'prop-types';
 import WebSpeechApi from '../utils/WebSpeechApi';
 
+
 import '../assets/css/FlashCard.css';
 
 class FlashCard extends Component {
