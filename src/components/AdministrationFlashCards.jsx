@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import WebSpeechApi from '../utils/WebSpeechApi';
 
+import '../assets/css/administration.css';
 
 class AdministrationFlashCards extends Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class AdministrationFlashCards extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container administration">
         <h2>manage your flashcards</h2>
         <p>
           <button
