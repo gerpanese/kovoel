@@ -101,12 +101,11 @@ class FlashCard extends Component {
               <div className="pin">{this.props.flashCard.romanji}</div>
             </div>
           </div>
+          <div
+            className="microphone"
+            onClick={event => this.recordVoice(event)}
+          />
         </div>
-
-        <div
-          className="microphone"
-          onClick={event => this.recordVoice(event)}
-        />
       </div>
     );
   }

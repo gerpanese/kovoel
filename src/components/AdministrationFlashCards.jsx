@@ -32,6 +32,23 @@ class AdministrationFlashCards extends Component {
   }
 
   render() {
+    if (this.props.flashCards.length === 0) {
+      return (
+        <div className="container administration">
+          <h2>manage your flashcards</h2>
+          <p>
+            Create your first flashcard!<br />
+            <button
+              onClick={() => this.changePage('createCard')}
+              type="button"
+              className="btn btn-primary"
+            >
+              create new flashcard
+            </button>
+          </p>
+        </div>
+      );
+    }
     return (
       <div className="container administration">
         <h2>manage your flashcards</h2>
