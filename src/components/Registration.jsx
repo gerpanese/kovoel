@@ -101,9 +101,9 @@ class Registration extends Component {
 
             <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
-            <div className="clearfix">
-              <button type="button" onClick={() => this.closeModalBox()} className="cancelbtn">Cancel</button>
-              <button type="submit" className="signupbtn">Sign Up</button>
+            <div className="btn-group btn-group-justified">
+              <button type="button" onClick={() => this.closeModalBox()} className="btn btn-danger">Cancel</button>
+              <button type="submit" className="btn btn-success">Sign Up</button>
             </div>
           </div>
         </form>

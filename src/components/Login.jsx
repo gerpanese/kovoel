@@ -71,9 +71,9 @@ class Login extends Component {
 
             <input type="password" placeholder="Enter Password" name="psw" ref='psw' required />
 
-            <div className="clearfix">
-              <button type="button" onClick={() => this.closeModalBox()} className="cancelbtn">Cancel</button>
-              <button type="submit" className="signupbtn">Sign in</button>
+            <div className="btn-group btn-group-justified">
+              <button type="button" onClick={() => this.closeModalBox()} className="btn btn-danger">Cancel</button>
+              <button type="submit" className="btn btn-success">Sign in</button>
             </div>
             <div className='google-oauth'>
               <a href="/auth/google" className="btn btn-block btn-social btn-lg btn-google">

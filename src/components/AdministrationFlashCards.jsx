@@ -33,11 +33,15 @@ class AdministrationFlashCards extends Component {
   render() {
     return (
       <div className="container">
-        <h2>FlashCard - Administration</h2>
+        <h2>manage your flashcards</h2>
         <p>
-          click
-          <a href="#" onClick={() => this.changePage('createCard')}>here</a>
-          for creating a new flash-card
+          <button
+            onClick={() => this.changePage('createCard')}
+            type="button"
+            className="btn btn-primary"
+          >
+            create new flashcard
+          </button>
         </p>
         <table className="table table-striped">
           <thead>
@@ -56,21 +60,23 @@ class AdministrationFlashCards extends Component {
                   <td>{card.preview}</td>
                   <td>{card.translation}</td>
                   <td>
-                    <button
-                        type="button"
-                        className="btn btn-default"
-                        onClick={event => this.handleUpdateCardChange(event, card.id)}
-                      >
-                      update
-                    </button>
+                    <div className="btn-group btn-group-justified">
+                      <button
+                          type="button"
+                          className="btn btn-default"
+                          onClick={event => this.handleUpdateCardChange(event, card.id)}
+                        >
+                        update
+                      </button>
 
-                    <button
-                      type="button"
-                      className="btn btn-danger"
-                      onClick={event => this.handleDeleteCardChange(event, card.id)}
-                    >
-                      delete
-                    </button>
+                      <button
+                        type="button"
+                        className="btn btn-danger"
+                        onClick={event => this.handleDeleteCardChange(event, card.id)}
+                      >
+                        delete
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))

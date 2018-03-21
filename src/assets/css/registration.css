@@ -2,6 +2,14 @@
   color: #000;
 }
 
+.modal .btn-group {
+  width: 100%;
+}
+
+.modal .btn-group button {
+  width: 50%;
+}
+
 .modal-content {
   margin-left: 10%;
   margin-right: 10%;
@@ -40,31 +48,13 @@
 
 /* Set a style for all buttons */
 .modal button {
-  background-color: #4CAF50;
-  color: white;
   padding: 14px 20px;
   margin: 8px 0;
-  border: none;
   cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
 }
 
 .modal button:hover {
   opacity: 1;
-}
-
-/* Extra styles for the cancel button */
-.modal .cancelbtn {
-  padding: 14px 20px;
-  background-color: #f44336;
-}
-
-/* Float cancel and signup buttons and add an equal width */
-.modal .cancelbtn,
-.modal .signupbtn {
-  float: left;
-  width: 50%;
 }
 
 /* Add padding to container elements */

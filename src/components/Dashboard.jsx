@@ -35,9 +35,11 @@ class Dashboard extends Component {
             >
             <div className="col-lg-6 text-white showcase-img createFlashcards" />
             <div className="col-lg-6 my-auto showcase-text">
-              <h2>Administration</h2>
+              <h2>Manage your flashcards</h2>
               <p className="lead mb-0">
-                Create new Flashcards with your voice<br />
+                Create new flashcards with your voice and administrate
+                your flashcards.
+                <br />
                 <a href="#">... more</a>
               </p>
             </div>
