@@ -1,5 +1,5 @@
 .card-container {
-  height: 350px;
+  height: 420px;
   width: 500px;
   perspective: 800px;
   position: relative;
@@ -11,7 +11,6 @@
 .card {
   height: 350px;
   width: 500px;
-  position: absolute;
   border: 0px;
   transform-style: preserve-3d;
   transition: all 0.4s ease-in-out;
@@ -68,6 +67,10 @@
   margin-bottom: 10px;
   opacity: 0.5;
   clear: both;
+}
+
+.microphone-active {
+  background-image: url("../images/microphone-active.jpg") !important;
 }
 
 .microphone:hover {

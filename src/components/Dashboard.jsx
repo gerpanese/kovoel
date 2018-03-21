@@ -30,9 +30,9 @@ class Dashboard extends Component {
         <div className="card">
           <img className="card-img-top createFlashcards" src={CreateImg} alt="create" />
           <div className="card-body">
-            <h4 className="card-title">Create</h4>
-            <p className="card-text">Create new flashcards with your voice.</p>
-            <a href="#" className="btn btn-primary" onClick={() => this.changePage('administrationFlashCards')}>Create</a>
+            <h4 className="card-title">Manage</h4>
+            <p className="card-text">Create new flashcards with your voice and administrate your flashcards.</p>
+            <a href="#" className="btn btn-primary" onClick={() => this.changePage('administrationFlashCards')}>Manage</a>
           </div>
         </div>
         <div className="card">

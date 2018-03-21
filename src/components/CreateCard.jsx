@@ -30,6 +30,21 @@ class CreateCard extends Component {
     this.props.updateBackText(backText);
   }
 
+  setMicrophoneActive(no) {
+    this.setMicrophoneInActive();
+    const node = document.getElementById(`microphone-learning-${no}`);
+    node.title = 'microphone is recording your voice';
+    node.classList.add('microphone-active');
+  }
+
+  setMicrophoneInActive() {
+    for (let no = 1; no <= 2; no += 1) {
+      const node = document.getElementById(`microphone-learning-${no}`);
+      node.title = 'please click for record your voice';
+      node.classList.remove('microphone-active');
+    }
+  }
+
   handleRecordClick(event) {
     event.preventDefault();
     const speech = new this.WebSpeechApi();
@@ -37,11 +52,11 @@ class CreateCard extends Component {
     let callbackFunction;
     switch (event.target.dataset.linkedTo) {
       case 'frontText':
+        this.setMicrophoneActive(1);
         hearingLanguageCode = 'ja-JP';
         callbackFunction = (text) => {
-          console.log(111, text);
+          this.setMicrophoneInActive();
           this.props.updateFrontText(text);
-          console.log(222);
           const apiKey = process.env.GoogleCloudTranslationApiKey;
           if (apiKey !== undefined) {
             const googleTranslationInstance = googleTranslate(apiKey);
@@ -52,12 +67,12 @@ class CreateCard extends Component {
         };
         break;
       case 'backText':
+        this.setMicrophoneActive(1);
         hearingLanguageCode = 'en-US';
         callbackFunction = this.props.updateBackText;
         callbackFunction = (text) => {
-          console.log(111, text);
+          this.setMicrophoneInActive();
           this.props.updateBackText(text);
-          console.log(222);
           const apiKey = process.env.GoogleCloudTranslationApiKey;
           if (apiKey !== undefined) {
             const googleTranslationInstance = googleTranslate(apiKey);
@@ -74,7 +89,13 @@ class CreateCard extends Component {
     speech.hear(
       hearingLanguageCode,
       frontText => callbackFunction(frontText),
-      errorMessage => console.log(errorMessage),
+      errorMessage => {
+        this.setMicrophoneInActive();
+        console.log(errorMessage);
+      },
+      () => {
+        this.setMicrophoneInActive();
+      },
     );
   }
 
@@ -119,53 +140,61 @@ class CreateCard extends Component {
 
           <div className="flashcards">
             <div className="flashcard">
-              <strong>front text</strong>
-              <textarea
-                name="frontText"
-                id="frontText"
-                className="text"
-                placeholder="Please press the record button"
-                onChange={this.handleFrontTextChange}
-                value={this.props.frontText}
-              />
-              <div
-                title="record new flashcard"
-                className="microphone"
-                data-linked-to="frontText"
-                onClick={this.handleRecordClick}
-              />
+              <div className="content">
+                <strong>front text</strong>
+                <textarea
+                  name="frontText"
+                  id="frontText"
+                  className="text"
+                  placeholder="Please press the record button"
+                  onChange={this.handleFrontTextChange}
+                  defaultValue={this.props.frontText}
+                />
+                <div
+                  title="record new flashcard"
+                  className="microphone"
+                  id="microphone-learning-1"
+                  data-linked-to="frontText"
+                  onClick={this.handleRecordClick}
+                />
+              </div>
             </div>
             <div className="flashcard">
-              <strong>back text</strong>
-              <textarea
-                name="backText"
-                id="backText"
-                className="text"
-                placeholder="Please press the record button"
-                onChange={this.handleBackTextChange}
-                value={this.props.backText}
-              />
-              <div
-                title="record new flashcard"
-                className="microphone"
-                data-linked-to="backText"
-                onClick={this.handleRecordClick}
-              />
+              <div className="content">
+                <strong>back text</strong>
+                <textarea
+                  name="backText"
+                  id="backText"
+                  className="text"
+                  placeholder="Please press the record button"
+                  onChange={this.handleBackTextChange}
+                  defaultValue={this.props.backText}
+                />
+                <div
+                  title="record new flashcard"
+                  className="microphone"
+                  id="microphone-learning-2"
+                  data-linked-to="backText"
+                  onClick={this.handleRecordClick}
+                />
+              </div>
             </div>
           </div>
 
-          <div className="button-list">
+          <div className="btn-group">
             <button
               id="cancelButton"
               className="btn btn-info"
+              title="please click for record your voice"
               onClick={this.handleCancellationClick}
             >cancel
             </button>
             <button
               id="saveButton"
               className="btn btn-success"
+              title="please click for record your voice"
               onClick={this.handleSaveClick}
-            >SAVE
+            >save
             </button>
           </div>
         </div>
