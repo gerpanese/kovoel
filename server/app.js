@@ -35,10 +35,10 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((id, done) => {
   db
-  .users
-  .findById(id)
-  .then(user => done(null, user))
-  .catch(err => done(err));
+    .users
+    .findById(id)
+    .then(user => done(null, user))
+    .catch(err => done(err));
 });
 console.log(333);
 app.use(session({
