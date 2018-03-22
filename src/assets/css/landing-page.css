@@ -129,6 +129,8 @@ footer.footer {
 
 .dashboard {
   align-items: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .dashboard .card {
@@ -140,6 +142,8 @@ footer.footer {
   width: 18rem;
   height: 25rem;
   align-items: center;
+  margin-bottom: 20px;
+  margin-left: 18px;
 }
 
 .dashboard .card-img-top {
@@ -150,4 +154,9 @@ footer.footer {
 
 .dashboard p.card-text {
   height: 3rem;
+}
+
+.dashboard div.card-body a.btn {
+  width: 100%;
+  margin-top: 14px;
 }

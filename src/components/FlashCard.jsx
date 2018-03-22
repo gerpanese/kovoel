@@ -12,6 +12,7 @@ class FlashCard extends Component {
     super(props);
     this.recordVoice = this.recordVoice.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.showNextFlashCard = this.showNextFlashCard.bind(this);
     this.gotoDashboard = this.gotoDashboard.bind(this);
     this.webSpeechApi = new WebSpeechApi();
   }
@@ -31,13 +32,31 @@ class FlashCard extends Component {
     // @todo delete this
     this.a = 'a';
 
-    const nodeFlashCard = document.getElementById('flashCard');
-
     if (event.key === 'ArrowRight') {
-      nodeFlashCard.className = 'card card_active';
+      this.showBackPart();
     } else if (event.key === 'ArrowLeft') {
-      nodeFlashCard.className = 'card';
+      this.showDeckPart();
     }
+  }
+
+  showDeckPart() {
+    document.getElementById('flashCard').className = 'card';
+  }
+
+  showBackPart() {
+    document.getElementById('flashCard').className = 'card card_active';
+  }
+
+  showNextFlashCard(event) {
+    event.preventDefault();
+    this.showDeckPart();
+    setTimeout(() => {
+      this.props.flashCardSuccessfullyLearned(this.props.flashCard.id);
+      if (document.getElementById('next-flashcard-button').length === undefined) {
+        document.getElementById('next-flashcard-button').classList.add('d-none');
+        document.getElementById('microphone-learning').classList.remove('d-none');
+      }
+    }, 300);
   }
 
   setMicrophoneActive() {
@@ -60,20 +79,16 @@ class FlashCard extends Component {
         this.setMicrophoneInActive();
         if (text === this.props.flashCard.preview) {
           this.webSpeechApi.speech(text, this.props.languageCode);
-          document.getElementById('flashCard').className = 'card card_active';
+          this.showBackPart();
 
-          setTimeout(() => {
-            document.getElementById('flashCard').className = 'card';
-            setTimeout(() => {
-              this.props.flashCardSuccessfullyLearned(this.props.flashCard.id);
-            }, 300);
-          }, 2000);
+          document.getElementById('next-flashcard-button').classList.remove('d-none');
+          document.getElementById('microphone-learning').classList.add('d-none');
         } else {
           this.webSpeechApi.speech(
             this.props.errorMessage,
             this.props.languageCode,
           );
-          document.getElementById('flashCard').className = 'card';
+          this.showDeckPart();
           this.props.flashCardFaultyLearned(this.props.flashCard.id);
         }
       },
@@ -121,13 +136,20 @@ class FlashCard extends Component {
               <div className="pin">{this.props.flashCard.romanji}</div>
             </div>
           </div>
-          <div
-            className="microphone"
-            id="microphone-learning"
-            title="please click for record your voice"
-            onClick={event => this.recordVoice(event)}
-          />
         </div>
+
+        <div
+          id="next-flashcard-button"
+          className="btn btn-success d-none"
+          onClick={event => this.showNextFlashCard(event)}
+        >
+          next flashcard
+        </div>
+        <div
+          className="microphone"
+          id="microphone-learning"
+          onClick={event => this.recordVoice(event)}
+        />
       </div>
     );
   }

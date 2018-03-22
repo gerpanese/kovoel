@@ -67,9 +67,9 @@ class CreateCard extends Component {
         };
         break;
       case 'backText':
-        this.setMicrophoneActive(1);
+        this.setMicrophoneActive(2);
         hearingLanguageCode = 'en-US';
-        callbackFunction = this.props.updateBackText;
+        // callbackFunction = this.props.updateBackText;
         callbackFunction = (text) => {
           this.setMicrophoneInActive();
           this.props.updateBackText(text);
@@ -89,7 +89,7 @@ class CreateCard extends Component {
     speech.hear(
       hearingLanguageCode,
       frontText => callbackFunction(frontText),
-      errorMessage => {
+      (errorMessage) => {
         this.setMicrophoneInActive();
         console.log(errorMessage);
       },
@@ -148,12 +148,13 @@ class CreateCard extends Component {
                   className="text"
                   placeholder="Please press the record button"
                   onChange={this.handleFrontTextChange}
-                  defaultValue={this.props.frontText}
+                  value={this.props.frontText}
                 />
                 <div
                   title="record new flashcard"
                   className="microphone"
                   id="microphone-learning-1"
+                  data-id="1"
                   data-linked-to="frontText"
                   onClick={this.handleRecordClick}
                 />
@@ -168,13 +169,14 @@ class CreateCard extends Component {
                   className="text"
                   placeholder="Please press the record button"
                   onChange={this.handleBackTextChange}
-                  defaultValue={this.props.backText}
+                  value={this.props.backText}
                 />
                 <div
                   title="record new flashcard"
                   className="microphone"
                   id="microphone-learning-2"
                   data-linked-to="backText"
+                  data-id="2"
                   onClick={this.handleRecordClick}
                 />
               </div>

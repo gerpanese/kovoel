@@ -7,5 +7,5 @@ module.exports = {
   flashcardRouter,
   localLogin,
   register,
-  googleLogin
+  googleLogin,
 };

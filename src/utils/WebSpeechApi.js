@@ -52,7 +52,7 @@ export default class WebSpeechApi {
 
   async speech(textToSynthesis, language = 'ja-JP') {
     const synth = window.speechSynthesis;
-synth.speaking
+
     if (synth.speaking) {
       throw new Error('speechSynthesis.speaking');
     }

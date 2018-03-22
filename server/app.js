@@ -7,6 +7,8 @@ const router = require('./routes/index');
 const session = require('express-session');
 const passport = require('passport');
 const db = require('./db');
+const googleLoginStrategy = require('./passport/googleLogin');
+const localLoginStrategy = require('./passport/localLogin');
 
 const app = express();
 
@@ -18,29 +20,22 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 
-
-
-// app.use(express.static(path.join(__dirname, '../public')));
-
-//Load passport strategy
-const localLoginStrategy = require('./passport/localLogin');
+// Load passport strategy
 passport.use(localLoginStrategy);
 
-//Use the GoogleStrategy within Passport
-const googleLoginStrategy = require('./passport/googleLogin');
+// Use the GoogleStrategy within Passport
 passport.use(googleLoginStrategy);
 
 passport.serializeUser((user, done) => {
-  console.log('serializeUser', user);
   done(null, user[0].id);
 });
 
 passport.deserializeUser((id, done) => {
   db
-  .users
-  .findById(id)
-  .then(user => done(null, user))
-  .catch(err => done(err));
+    .users
+    .findById(id)
+    .then(user => done(null, user))
+    .catch(err => done(err));
 });
 
 app.use(session({
@@ -53,13 +48,12 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use("*",(req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS,PATCH');
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, authorization");
+app.use('*', (request, response, next) => {
+  response.header('Access-Control-Allow-Origin', '*');
+  response.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS,PATCH');
+  response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, authorization');
   next();
 });
-
 
 app.use('/api', [
   router.flashcardRouter,
@@ -68,9 +62,11 @@ app.use('/api', [
 app.use('/auth', [
   router.localLogin,
   router.register,
-  router.googleLogin
+  router.googleLogin,
 ]);
-app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(express.static(path.join(__dirname, '../public')));
+
 // catch 404 and forward to error handler
 app.use((request, response, next) => {
   const error = new Error('Not Found');

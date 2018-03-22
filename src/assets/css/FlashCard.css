@@ -1,5 +1,5 @@
 .card-container {
-  height: 420px;
+  height: 350px;
   width: 500px;
   perspective: 800px;
   position: relative;
@@ -11,7 +11,7 @@
 .card {
   height: 350px;
   width: 500px;
-  border: 0px;
+  border: 0;
   transform-style: preserve-3d;
   transition: all 0.4s ease-in-out;
 }
@@ -48,12 +48,18 @@
 .han {
   color: #333;
   font-size: 4em;
-  padding-top: 101px;
+  padding-top: 85px;
+  line-height: 1.1em;
 }
 
 .pin {
     color: rgba(200, 10, 10, 1);
     font-size: 2em;
+}
+
+#next-flashcard-button {
+    margin-left: 46%;
+    margin-bottom: 30px;
 }
 
 .microphone {
