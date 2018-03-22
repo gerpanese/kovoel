@@ -15,8 +15,10 @@ class Registration extends Component {
   hideRegistrationForm() {
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = (event) => {
-      if (event.target.className === 'modal') {
-        event.target.style.display = 'none';
+      if (event.target.className === 'gray') {
+        Array.from(document.getElementsByClassName('modal')).forEach(node => 
+          node.style.display = 'none'
+        );
       }
     }
   }
@@ -76,16 +78,17 @@ class Registration extends Component {
     this.hideRegistrationForm();
     return (
       <div id="id01" className="modal" ref='id01'>
-        <span onClick={() => this.closeModalBox()} className="close" title="Close Modal">&times;</span>
+        <div className="gray"></div>
         <form className="modal-content" onSubmit={event => this.onSubmit(event)}>
           <div className="container">
+            <span onClick={() => this.closeModalBox()} className="close" title="Close Modal">&times;</span>
             <h1>Sign Up</h1>
             <p>Please fill in this form to create an account.</p>
             <hr />
             <div id="error-message" ref='errorMsg'>
 
             </div>
-            <input type="text" placeholder="Enter Fisrt Name" name="firstname" ref="firstname" required />
+            <input type="text" placeholder="Enter First Name" name="firstname" ref="firstname" required />
 
             <input type="text" placeholder="Enter Last Name" name="lastname" ref='lastname' required />
             
@@ -101,9 +104,9 @@ class Registration extends Component {
 
             <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
-            <div className="clearfix">
-              <button type="button" onClick={() => this.closeModalBox()} className="cancelbtn">Cancel</button>
-              <button type="submit" className="signupbtn">Sign Up</button>
+            <div className="btn-group btn-group-justified">
+              <button type="button" onClick={() => this.closeModalBox()} className="btn btn-danger">Cancel</button>
+              <button type="submit" className="btn btn-success">Sign Up</button>
             </div>
           </div>
         </form>

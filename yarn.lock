@@ -6632,7 +6632,7 @@ lodash.get@^4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
 
-lodash.isfunction@^3.0.8:
+lodash.isfunction@^3.0.8, lodash.isfunction@^3.0.9:
   version "3.0.9"
   resolved "https://registry.yarnpkg.com/lodash.isfunction/-/lodash.isfunction-3.0.9.tgz#06de25df4db327ac931981d1bdb067e5af68d051"
 
@@ -8059,6 +8059,10 @@ pn@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/pn/-/pn-1.1.0.tgz#e2f4cef0e219f463c179ab37463e4e1ecdccbafb"
 
+popper.js@^1.12.9:
+  version "1.14.1"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.14.1.tgz#b8815e5cda6f62fc2042e47618649f75866e6753"
+
 portfinder@^1.0.9:
   version "1.0.13"
   resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.13.tgz#bb32ecd87c27104ae6ee44b5a3ccbf0ebb1aede9"
@@ -8743,6 +8747,19 @@ react-error-overlay@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-4.0.0.tgz#d198408a85b4070937a98667f500c832f86bd5d4"
 
+react-popper@^0.8.3:
+  version "0.8.3"
+  resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-0.8.3.tgz#0f73333137c9fb0af6ec4074d2d0585a0a0461e1"
+  dependencies:
+    popper.js "^1.12.9"
+    prop-types "^15.6.0"
+
+react-portal@^4.1.2:
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/react-portal/-/react-portal-4.1.3.tgz#0cb58333bc02186ccd2f0997790e4573623dce87"
+  dependencies:
+    prop-types "^15.5.8"
+
 react-rangeslider@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/react-rangeslider/-/react-rangeslider-2.2.0.tgz#4362b01f4f5a455f0815d371d496f69ca4c6b5aa"
@@ -8893,20 +8910,18 @@ react@^16.2.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-reactstrap-tether@1.3.4:
-  version "1.3.4"
-  resolved "https://registry.yarnpkg.com/reactstrap-tether/-/reactstrap-tether-1.3.4.tgz#86d94d30216ffa34ceb2c626f4b9912c0d193894"
-
-reactstrap@^4.8.0:
-  version "4.8.0"
-  resolved "https://registry.yarnpkg.com/reactstrap/-/reactstrap-4.8.0.tgz#eb350642a6282c79c7e1bd8d6f75c627131a42f6"
+reactstrap@^5.0.0-beta.3:
+  version "5.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/reactstrap/-/reactstrap-5.0.0-beta.3.tgz#e3d4675072b259baf0bda021822622cb76ef7e30"
   dependencies:
     classnames "^2.2.3"
-    lodash.isfunction "^3.0.8"
+    lodash.isfunction "^3.0.9"
     lodash.isobject "^3.0.2"
     lodash.tonumber "^4.0.3"
     prop-types "^15.5.8"
-    reactstrap-tether "1.3.4"
+    react-popper "^0.8.3"
+    react-portal "^4.1.2"
+    react-transition-group "^2.2.1"
 
 read-only-stream@^2.0.0:
   version "2.0.0"

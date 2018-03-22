@@ -15,7 +15,7 @@ class Login extends Component {
   hideRegistrationForm() {
     // When the user clicks anywhere outside of the modal, close it
     window.onClick = (event) => {
-      if (event.target.className === 'modal') {
+      if (event.target.className === 'gray') {
         event.target.style.display = 'none';
       }
     }
@@ -59,9 +59,10 @@ class Login extends Component {
     this.hideRegistrationForm();
     return (
       <div id="login" className="modal" ref='login'>
-        <span onClick={() => this.closeModalBox()} className="close" title="Close Modal">&times;</span>
+        <div className="gray"></div>
         <form className="modal-content" onSubmit={event => this.onSubmit(event)}>
           <div className="container">
+            <span onClick={() => this.closeModalBox()} className="close" title="Close Modal">&times;</span>
             <h1>Sign in</h1>
             <hr />
             <div id="error-message" ref='errorMsg'>
@@ -71,9 +72,9 @@ class Login extends Component {
 
             <input type="password" placeholder="Enter Password" name="psw" ref='psw' required />
 
-            <div className="clearfix">
-              <button type="button" onClick={() => this.closeModalBox()} className="cancelbtn">Cancel</button>
-              <button type="submit" className="signupbtn">Sign in</button>
+            <div className="btn-group btn-group-justified">
+              <button type="button" onClick={() => this.closeModalBox()} className="btn btn-danger">Cancel</button>
+              <button type="submit" className="btn btn-success">Sign in</button>
             </div>
             <div className='google-oauth'>
               <a href="/auth/google" className="btn btn-block btn-social btn-lg btn-google">

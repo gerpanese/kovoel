@@ -98,6 +98,7 @@ header.masthead h1 {
 }
 
 footer.footer {
+  clear: both;
   padding-top: 4rem;
   padding-bottom: 4rem;
 }
@@ -126,18 +127,27 @@ footer.footer {
   background-image: url("../images/reading.jpg");
 }
 
-.learning {
-  background-image: url("../images/learning.jpg");
+.dashboard {
+  align-items: center;
 }
 
-.createFlashcards {
-  background-image: url("../images/createFlashcards.jpg");
+.dashboard .card {
+  float: left;
+  position: relative;
+  border: black;
+  border: 1px solid #c3c3c3;
+  margin: 3px;
+  width: 18rem;
+  height: 25rem;
+  align-items: center;
 }
 
-.statistic {
-  background-image: url("../images/statistic.jpg");
+.dashboard .card-img-top {
+  margin-top: 0.7rem;
+  width: 15rem;
+  height: 12rem;
 }
 
-.ranking {
-  background-image: url("../images/ranking.png");
+.dashboard p.card-text {
+  height: 3rem;
 }
