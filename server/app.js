@@ -19,17 +19,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-console.log(111);
-// app.use(express.static(path.join(__dirname, '../public')));
 
 // Load passport strategy
 passport.use(localLoginStrategy);
 
 // Use the GoogleStrategy within Passport
 passport.use(googleLoginStrategy);
-console.log(222);
+
 passport.serializeUser((user, done) => {
-  console.log('serializeUser', user);
   done(null, user[0].id);
 });
 
@@ -40,7 +37,7 @@ passport.deserializeUser((id, done) => {
     .then(user => done(null, user))
     .catch(err => done(err));
 });
-console.log(333);
+
 app.use(session({
   secret: 'kovoel',
   resave: false,
@@ -50,7 +47,7 @@ app.use(session({
 // Initialize Passport and restore authentication state, if any, from the session.
 app.use(passport.initialize());
 app.use(passport.session());
-console.log(4444);
+
 app.use('*', (request, response, next) => {
   response.header('Access-Control-Allow-Origin', '*');
   response.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS,PATCH');
@@ -58,7 +55,6 @@ app.use('*', (request, response, next) => {
   next();
 });
 
-console.log(55);
 app.use('/api', [
   router.flashcardRouter,
 ]);
@@ -69,13 +65,10 @@ app.use('/auth', [
   router.googleLogin,
 ]);
 
-console.log(666);
-
 app.use(express.static(path.join(__dirname, '../public')));
 
 // catch 404 and forward to error handler
 app.use((request, response, next) => {
-  console.log(777);
   const error = new Error('Not Found');
   error.status = 404;
   next(error);
