@@ -54,7 +54,7 @@ class FlashCard extends Component {
       this.props.flashCardSuccessfullyLearned(this.props.flashCard.id);
       if (document.getElementById('next-flashcard-button').length === undefined) {
         document.getElementById('next-flashcard-button').classList.add('d-none');
-        document.getElementById('microphone').classList.remove('d-none');
+        document.getElementById('microphone-learning').classList.remove('d-none');
       }
     }, 300);
   }
