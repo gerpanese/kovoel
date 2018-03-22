@@ -7,6 +7,8 @@ const router = require('./routes/index');
 const session = require('express-session');
 const passport = require('passport');
 const db = require('./db');
+const googleLoginStrategy = require('./passport/googleLogin');
+const localLoginStrategy = require('./passport/localLogin');
 
 const app = express();
 
@@ -17,19 +19,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-
-
-
+console.log(111);
 // app.use(express.static(path.join(__dirname, '../public')));
 
-//Load passport strategy
-const localLoginStrategy = require('./passport/localLogin');
+// Load passport strategy
 passport.use(localLoginStrategy);
 
-//Use the GoogleStrategy within Passport
-const googleLoginStrategy = require('./passport/googleLogin');
+// Use the GoogleStrategy within Passport
 passport.use(googleLoginStrategy);
-
+console.log(222);
 passport.serializeUser((user, done) => {
   console.log('serializeUser', user);
   done(null, user[0].id);
@@ -42,7 +40,7 @@ passport.deserializeUser((id, done) => {
   .then(user => done(null, user))
   .catch(err => done(err));
 });
-
+console.log(333);
 app.use(session({
   secret: 'kovoel',
   resave: false,
@@ -50,17 +48,17 @@ app.use(session({
 }));
 
 // Initialize Passport and restore authentication state, if any, from the session.
-/* app.use(passport.initialize());
+app.use(passport.initialize());
 app.use(passport.session());
-
-app.use("*",(req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS,PATCH');
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, authorization");
+console.log(4444);
+app.use('*', (request, response, next) => {
+  response.header('Access-Control-Allow-Origin', '*');
+  response.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS,PATCH');
+  response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, authorization');
   next();
 });
-*/
 
+console.log(55);
 app.use('/api', [
   router.flashcardRouter,
 ]);
@@ -68,11 +66,15 @@ app.use('/api', [
 app.use('/auth', [
   router.localLogin,
   router.register,
-  router.googleLogin
+  router.googleLogin,
 ]);
+
+console.log(666);
+
 app.use(express.static(path.join(__dirname, 'public')));
 // catch 404 and forward to error handler
 app.use((request, response, next) => {
+  console.log(777, request, response);
   const error = new Error('Not Found');
   error.status = 404;
   next(error);
