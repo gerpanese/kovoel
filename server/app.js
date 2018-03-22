@@ -74,7 +74,7 @@ console.log(666);
 app.use(express.static(path.join(__dirname, 'public')));
 // catch 404 and forward to error handler
 app.use((request, response, next) => {
-  console.log(777, request, response);
+  console.log(777);
   const error = new Error('Not Found');
   error.status = 404;
   next(error);
