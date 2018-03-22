@@ -12,7 +12,7 @@
   height: 350px;
   width: 500px;
   position: absolute;
-  border: 0px;
+  border: 0;
   transform-style: preserve-3d;
   transition: all 0.4s ease-in-out;
 }
@@ -49,7 +49,8 @@
 .han {
   color: #333;
   font-size: 4em;
-  padding-top: 101px;
+  padding-top: 85px;
+  line-height: 1.1em;
 }
 
 .pin {
