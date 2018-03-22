@@ -59,6 +59,7 @@
     "open-browser-webpack-plugin": "^0.0.5",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
+    "passport-google-token": "^0.1.2",
     "passport-local": "^1.0.0",
     "pg": "^7.4.1",
     "prop-types": "^15.6.0",
@@ -69,6 +70,7 @@
     "react-dom": "^16.2.0",
     "react-rangeslider": "^2.2.0",
     "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
     "react-scripts": "^1.1.1",
     "react-scripts-ts": "^2.14.0",
     "react-transition-group": "^2.2.1",
@@ -83,7 +85,8 @@
     "superagent": "^3.8.2",
     "tls": "^0.0.1",
     "webpack": "^3.11.0",
-    "webpack-dev-server": "^2.11.1"
+    "webpack-dev-server": "^2.11.1",
+    "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",

@@ -57,6 +57,7 @@ class CreateCard extends Component {
         callbackFunction = (text) => {
           this.setMicrophoneInActive();
           this.props.updateFrontText(text);
+          
           const apiKey = process.env.GoogleCloudTranslationApiKey;
           if (apiKey !== undefined) {
             const googleTranslationInstance = googleTranslate(apiKey);
@@ -69,7 +70,6 @@ class CreateCard extends Component {
       case 'backText':
         this.setMicrophoneActive(2);
         hearingLanguageCode = 'en-US';
-        // callbackFunction = this.props.updateBackText;
         callbackFunction = (text) => {
           this.setMicrophoneInActive();
           this.props.updateBackText(text);

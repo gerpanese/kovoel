@@ -17,6 +17,34 @@ import AdministrationFlashCards from '../containers/AdministrationFlashCards';
 import '../assets/css/landing-page.css';
 
 class App extends Component {
+  componentWillMount() {
+    const redirectedUrl = window.location.href;
+    let token = '';
+    for (let i = 0; i < redirectedUrl.length; i += 1){
+      if (redirectedUrl[i] === '=') {
+        token = redirectedUrl.slice(i+1,);
+      }
+    }
+
+    if (redirectedUrl.includes('?code=')) {
+      fetch('auth/google/isTokenValid', {
+        method: 'POST',
+        body: JSON.stringify({
+          token
+        }),
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        })
+      })
+      .then(response => response.json())
+      .then(json => console.log(json));
+      
+      this.props.changePage('dashboard');
+      this.props.setIsLoggedIn();
+    };
+  }
+
   getPageContent() {
     switch (this.props.currentPage) {
       case 'learning':
@@ -79,14 +107,13 @@ class App extends Component {
 
     return (
       <div>
-        <TopNavigation />
+          <TopNavigation />
 
-        {pageContent}
+          {pageContent}
 
-        <Footer />
+          <Footer />
 
-        <Login />
-
+          <Login />
       </div>
     );
   }
