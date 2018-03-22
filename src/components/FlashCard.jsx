@@ -4,6 +4,7 @@ import Fireworks from 'fireworks-react';
 import PropTypes from 'prop-types';
 import WebSpeechApi from '../utils/WebSpeechApi';
 
+
 import '../assets/css/FlashCard.css';
 
 class FlashCard extends Component {
@@ -39,10 +40,24 @@ class FlashCard extends Component {
     }
   }
 
+  setMicrophoneActive() {
+    const node = document.getElementById('microphone-learning');
+    node.title = 'microphone is recording your voice';
+    node.classList.add('microphone-active');
+  }
+
+  setMicrophoneInActive() {
+    const node = document.getElementById('microphone-learning');
+    node.title = 'please click for record your voice';
+    node.classList.remove('microphone-active');
+  }
+
   recordVoice() {
+    this.setMicrophoneActive();
     this.webSpeechApi.hear(
       this.props.languageCode,
       (text) => {
+        this.setMicrophoneInActive();
         if (text === this.props.flashCard.preview) {
           this.webSpeechApi.speech(text, this.props.languageCode);
           document.getElementById('flashCard').className = 'card card_active';
@@ -62,7 +77,13 @@ class FlashCard extends Component {
           this.props.flashCardFaultyLearned(this.props.flashCard.id);
         }
       },
-      errorMessage => console.log(errorMessage),
+      errorMessage => {
+        this.setMicrophoneInActive();
+        console.log(errorMessage)
+      },
+      () => {
+        this.setMicrophoneInActive();
+      },
     );
   }
 
@@ -100,12 +121,13 @@ class FlashCard extends Component {
               <div className="pin">{this.props.flashCard.romanji}</div>
             </div>
           </div>
+          <div
+            className="microphone"
+            id="microphone-learning"
+            title="please click for record your voice"
+            onClick={event => this.recordVoice(event)}
+          />
         </div>
-
-        <div
-          className="microphone"
-          onClick={event => this.recordVoice(event)}
-        />
       </div>
     );
   }
