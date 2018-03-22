@@ -12,8 +12,6 @@ router.get('/google',
 router.get('/google/callback',
   passport.authenticate('google', { failureRedirect: '/auth/login' }),
   (request, response) => {
-    let randomNumber = Math.random().toString();
-    randomNumber = randomNumber.substring(2,randomNumber.length);
     let accessToken = response.req.user.accessToken;
     response.cookie('cookie', accessToken, { maxAge: 900000, httpOnly: false });
     response.redirect(`http://localhost:3000?code=${response.req.query.code}`);
