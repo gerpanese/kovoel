@@ -52,7 +52,7 @@ class FlashCard extends Component {
     this.showDeckPart();
     setTimeout(() => {
       this.props.flashCardSuccessfullyLearned(this.props.flashCard.id);
-      if (document.getElementById('next-flashcard-button').length === 1) {
+      if (document.getElementById('next-flashcard-button').length === undefined) {
         document.getElementById('next-flashcard-button').classList.add('d-none');
         document.getElementById('microphone').classList.remove('d-none');
       }
@@ -82,7 +82,7 @@ class FlashCard extends Component {
           this.showBackPart();
 
           document.getElementById('next-flashcard-button').classList.remove('d-none');
-          document.getElementById('microphone').classList.add('d-none');
+          document.getElementById('microphone-learning').classList.add('d-none');
         } else {
           this.webSpeechApi.speech(
             this.props.errorMessage,
@@ -138,11 +138,16 @@ class FlashCard extends Component {
           </div>
         </div>
 
-        <div id="next-flashcard-button" className="btn btn-success d-none" onClick={event => this.showNextFlashCard(event)}>
+        <div
+          id="next-flashcard-button"
+          className="btn btn-success d-none"
+          onClick={event => this.showNextFlashCard(event)}
+        >
           next flashcard
         </div>
         <div
           className="microphone"
+          id="microphone-learning"
           onClick={event => this.recordVoice(event)}
         />
       </div>

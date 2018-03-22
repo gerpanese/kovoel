@@ -1,5 +1,5 @@
 .card-container {
-  height: 420px;
+  height: 350px;
   width: 500px;
   perspective: 800px;
   position: relative;
@@ -55,6 +55,11 @@
 .pin {
     color: rgba(200, 10, 10, 1);
     font-size: 2em;
+}
+
+#next-flashcard-button {
+    margin-left: 46%;
+    margin-bottom: 30px;
 }
 
 .microphone {
