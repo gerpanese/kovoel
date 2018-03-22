@@ -71,7 +71,8 @@ app.use('/auth', [
 
 console.log(666);
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
+
 // catch 404 and forward to error handler
 app.use((request, response, next) => {
   console.log(777);
