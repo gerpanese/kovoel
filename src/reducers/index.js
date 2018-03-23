@@ -97,7 +97,10 @@ const reducer = (state = DefaultState, action) => {
       newState.flashCards = newState.flashCards
         .filter(flashcard => flashcard.id !== action.id);
 
-      if (newState.currentFlashCard.id === action.id) {
+      if (
+        newState.currentFlashCard !== null &&
+        newState.currentFlashCard.id === action.id
+      ) {
         newState.currentFlashCard = null;
       }
       return newState;

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import WebSpeechApi from '../utils/WebSpeechApi';
 
 import '../assets/css/administration.css';
@@ -28,7 +30,21 @@ class AdministrationFlashCards extends Component {
 
   handleDeleteCardChange(event, id) {
     event.preventDefault();
-    this.props.deleteCard(id);
+    confirmAlert({
+      title: 'Confirm to delete this flashcard?',
+      message: 'Are you sure to delete this.',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => {
+            this.props.deleteCard(id);
+          },
+        },
+        {
+          label: 'No',
+        },
+      ],
+    });
   }
 
   render() {

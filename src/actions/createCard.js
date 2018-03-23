@@ -1,3 +1,5 @@
+/* global fetch */
+
 const updateFrontText = frontText => ({
   type: 'UPDATE_FRONT_TEXT',
   frontText,
@@ -30,21 +32,14 @@ const saveCard = (flashCard) => {
   };
 };
 
-const deleteCardSuccess = id => ({
-  type: 'DELETE_CARD',
-  id,
-});
-
 const deleteCard = (id) => {
-  return async (dispatch) => {
-    try {
-      await fetch(`api/users/1/flashcards/${id}`, {
-        method: 'DELETE',
-      });
-      return deleteCardSuccess(id);
-    } catch (error) {
-      console.error(error);
-    }
+  fetch(`api/users/1/flashcards/${id}`, {
+    method: 'DELETE',
+  });
+
+  return {
+    type: 'DELETE_CARD',
+    id,
   };
 };
 
