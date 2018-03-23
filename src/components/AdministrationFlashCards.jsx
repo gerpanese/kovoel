@@ -67,14 +67,14 @@ class AdministrationFlashCards extends Component {
     }
     return (
       <div className="container administration">
-        <h2>manage your flashcards</h2>
+        <h2>Manage your flashcards</h2>
         <p>
           <button
             onClick={() => this.changePage('createCard')}
             type="button"
             className="btn btn-primary"
           >
-            create new flashcard
+            Create new flashcard
           </button>
         </p>
         <table className="table table-striped">
@@ -97,7 +97,7 @@ class AdministrationFlashCards extends Component {
                     <div className="btn-group btn-group-justified">
                       <button
                           type="button"
-                          className="btn btn-default"
+                          className="btn btn-success"
                           onClick={event => this.handleUpdateCardChange(event, card.id)}
                         >
                         update

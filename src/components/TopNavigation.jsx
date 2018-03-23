@@ -22,7 +22,7 @@ class TopNavigation extends Component {
           href="#"
           onClick={() => this.props.changePage('dashboard')}
           >
-          dashboard
+          Dashboard
         </a>
       );
     }
@@ -57,7 +57,7 @@ class TopNavigation extends Component {
             href="#"
             onClick={()=>this.props.changePage('landingpage')}
           >
-            kovoel
+            Kovoel
           </a>
           {loginButton}
           {dashboardButton}
