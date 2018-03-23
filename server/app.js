@@ -26,9 +26,6 @@ passport.use(localLoginStrategy);
 // Use the GoogleStrategy within Passport
 passport.use(googleLoginStrategy);
 
-// passport.serializeUser((user, done) => {
-//   done(null, user.user[0].id);
-// });
 passport.serializeUser((data, done) => {
   done(null, data);
 });

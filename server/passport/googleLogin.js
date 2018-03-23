@@ -2,12 +2,13 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const db = require('../db/index');
+const url = process.env.DATABASE_URL || 'http://localhost:8000';
 require('dotenv').config();
 
 module.exports = new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: 'http://localhost:8000/auth/google/callback'
+    callbackURL: `${url}/auth/google/callback`
   },
     async (accessToken, refreshToken, profile, done) => {
       try {

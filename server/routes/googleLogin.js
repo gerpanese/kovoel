@@ -2,6 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 const db = require('../db');
+const url = process.env.DATABASE_URL || 'http://localhost:3000';
 
 router.get('/google',
   passport.authenticate('google', { scope: ['email', 'profile'] })
@@ -12,7 +13,7 @@ router.get('/google/callback',
   (request, response) => {
     let accessToken = response.req.user.accessToken;
     response.cookie('cookie', accessToken, { maxAge: 900000, httpOnly: false });
-    response.redirect(`http://localhost:3000?code=${response.req.query.code}`);
+    response.redirect(`${url}?code=${response.req.query.code}`);
   }
 );
 
@@ -22,7 +23,7 @@ router.post('/google/isTokenValid',
       return response.status(400).send(false);
     };
     const user = await db.users.findByAccount(response.req.body.email);
-    console.log(user);
+    
     if (user) {
       return response.status(200).send({ result: true, userid: user[0].id });
     }
