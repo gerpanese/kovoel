@@ -8671,10 +8671,6 @@ react-addons-test-utils@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/react-addons-test-utils/-/react-addons-test-utils-15.6.2.tgz#c12b6efdc2247c10da7b8770d185080a7b047156"
 
-react-bubble@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/react-bubble/-/react-bubble-1.0.5.tgz#49096ac0e64f0947a939a697a9dfd337f474cc86"
-
 react-confirm-alert@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/react-confirm-alert/-/react-confirm-alert-2.0.2.tgz#8691d4f1b109e0b74022fe4d42ce0b7f985d19a5"

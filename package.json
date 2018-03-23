@@ -65,7 +65,6 @@
     "puppeteer": "^1.1.1",
     "raf": "^3.4.0",
     "react": "^16.2.0",
-    "react-bubble": "^1.0.5",
     "react-confirm-alert": "^2.0.2",
     "react-dom": "^16.2.0",
     "react-rangeslider": "^2.2.0",

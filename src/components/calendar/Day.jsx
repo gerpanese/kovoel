@@ -1,25 +1,21 @@
 import React, { Component } from 'react';
-import Bubble from 'react-bubble';
+import UserStatistics from '../../utils/UserStatistics';
 
 class Day extends Component {
   constructor(args) {
     super(args);
     this.showBubble = this.showBubble.bind(this);
+    this.userStatistic = new UserStatistics(this.props.userStatistic);
   }
-  showBubble(event) {
-    event.preventDefault();
-    console.log(event.target);
-  }
-  render() {
+
+  getClassName4DayField(learnedWords) {
     const {
       day,
       day: {
         date,
         isCurrentMonth,
         isToday,
-        number,
       },
-      select,
       selected,
     } = this.props;
 
@@ -33,16 +29,45 @@ class Day extends Component {
     if (date.isSame(selected)) {
       className += ' selected';
     }
-console.log(date);
+    if (learnedWords > 3) {
+      className += ' learn-more';
+    } else if (learnedWords > 2) {
+      className += ' learn-less';
+    }
+    return className;
+  }
+
+  showBubble(event) {
+    event.preventDefault();
+  }
+
+  render() {
+    const {
+      day,
+      day: {
+        date,
+        number,
+      },
+      select,
+    } = this.props;
+
+    const learnedWords = this.userStatistic.getPerDate(date.toDate());
+
+    let bubbleMessage = '';
+    if (learnedWords === 0) {
+      bubbleMessage = 'not learned';
+    } else {
+      bubbleMessage = `${learnedWords} learned words`; 
+    }
     return (
       <span 
         key={date.toString()} 
-        className={className}
+        className={this.getClassName4DayField(learnedWords)}
         onMouseOver={event => this.showBubble(event)}
         onClick={() => select(day)}>
         {number}
         <div class="bubble">
-          you have not been diligent! Learn more!
+          {bubbleMessage}
         </div>
       </span>
     );

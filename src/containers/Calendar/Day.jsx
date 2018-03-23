@@ -3,7 +3,7 @@ import Day from '../../components/Calendar/Day';
 
 
 const mapStateToProps = state => ({
-  currentPage: state.currentPage,
+  userStatistic: state.userStatistic,
 });
 
 
