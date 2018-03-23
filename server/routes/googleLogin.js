@@ -1,8 +1,6 @@
 const express = require('express');
 const passport = require('passport');
 const router = express.Router();
-// const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-// const googleLoginStrategy = require('../passport/googleLogin');
 const db = require('../db');
 
 router.get('/google',

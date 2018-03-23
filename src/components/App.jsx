@@ -28,7 +28,6 @@ class App extends Component {
         .then(email => {
           isTokenValid(email)
             .then(response => {
-              console.log('result', response)
               if (response.result) {
                 this.props.changePage('dashboard');
                 this.props.setIsLoggedIn();

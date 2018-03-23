@@ -30,7 +30,6 @@ module.exports = new GoogleStrategy({
           };
           return done(null, data);
         }
-        console.log('this is data', data);
         return done(null, data);
       } catch (error) {
         return done(error);
