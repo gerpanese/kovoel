@@ -17,7 +17,7 @@ module.exports = new GoogleStrategy({
           user,
           accessToken
         };
-        if (!user.length) {
+        if (user.length === 0) {
           const newUser = {
             name: profile.displayName,
             email: profile.emails[0].value,
