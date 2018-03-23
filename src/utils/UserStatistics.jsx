@@ -9,7 +9,9 @@ export default class UserStatistics {
    */
   getPerDate(date) {
     const key = this.getKeyPerDay(date);
-    return +this.prepareData(this.data)[key];
+    const data = this.prepareData(this.data)[key];
+
+    return (data === undefined) ? 0 : data;
   }
 
   /**
@@ -18,7 +20,9 @@ export default class UserStatistics {
    */
   getPerYear(date) {
     const key = this.getKeyPerYear(date);
-    return +this.prepareData(this.data)[key];
+    const data = this.prepareData(this.data)[key];
+
+    return (data === undefined) ? 0 : data;
   }
 
   /**
@@ -27,62 +31,67 @@ export default class UserStatistics {
    */
   getPerMonth(date) {
     const key = this.getKeyPerMonth(date);
-    return +this.prepareData(this.data)[key];
+    const data = this.prepareData(this.data)[key];
+
+    return (data === undefined) ? 0 : data;
   }
 
   prepareData(data) {
-    const preparedData = {};
+    if (this.preparedData !== undefined) {
+      return this.preparedData;
+    }
 
-    data.forEach((logEntry) => {
-      const keyPerDay = this.getKeyPerDay(logEntry.timestamp);
-      const keyPerMonth = this.getKeyPerMonth(logEntry.timestamp);
-      const keyPerYear = this.getKeyPerYear(logEntry.timestamp);
+    this.preparedData = {};
 
-      if (preparedData[keyPerDay] === undefined) {
-        preparedData[keyPerDay] = 0;
-      }
-      preparedData[keyPerDay] += 1;
+    data
+      .filter(date => date.state === 'SUCCESS')
+      .forEach((logEntry) => {
+        const keyPerDay = this.getKeyPerDay(logEntry.timestamp);
+        const keyPerMonth = this.getKeyPerMonth(logEntry.timestamp);
+        const keyPerYear = this.getKeyPerYear(logEntry.timestamp);
 
-      if (preparedData[keyPerMonth] === undefined) {
-        preparedData[keyPerMonth] = 0;
-      }
-      preparedData[keyPerMonth] += 1;
+        if (this.preparedData[keyPerDay] === undefined) {
+          this.preparedData[keyPerDay] = 0;
+        }
+        this.preparedData[keyPerDay] += 1;
 
-      if (preparedData[keyPerYear] === undefined) {
-        preparedData[keyPerYear] = 0;
-      }
-      preparedData[keyPerYear] += 1;
+        if (this.preparedData[keyPerMonth] === undefined) {
+          this.preparedData[keyPerMonth] = 0;
+        }
+        this.preparedData[keyPerMonth] += 1;
 
-      return preparedData;
-    });
+        if (this.preparedData[keyPerYear] === undefined) {
+          this.preparedData[keyPerYear] = 0;
+        }
+        this.preparedData[keyPerYear] += 1;
+      });
 
-    return preparedData;
+    return this.preparedData;
   }
 
   getKeyPerDay(date) {
-    if (!(date instanceof Date)) {
-      date = new Date(date);
-    }
-    
-    return date.getDate() + '-' +
-      date.getMonth() + '-' +
-      date.getYear();
+    const dateObject = this.getDateObject(date);
+
+    return `${dateObject.getDate()}-${dateObject.getMonth()}-${dateObject.getYear()}`;
   }
 
   getKeyPerMonth(date) {
-    if (!(date instanceof Date)) {
-      date = new Date(date);
-    }
+    const dateObject = this.getDateObject(date);
 
-    return date.getMonth() + '-' +
-      date.getYear();
+    return `${dateObject.getMonth()}-${dateObject.getYear()}`;
   }
 
   getKeyPerYear(date) {
+    const dateObject = this.getDateObject(date);
+
+    return dateObject.getYear();
+  }
+
+  getDateObject(date) {
     if (!(date instanceof Date)) {
       date = new Date(date);
     }
-    
-    return date.getYear();
+
+    return date;
   }
 }
