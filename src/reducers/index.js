@@ -12,12 +12,12 @@ const DefaultState = {
 
   userStatistic: [
     {
-      state: 'SUCCESS',
+      state: 'FAILED',
       timestamp: +new Date('2018-01-17T03:24:00'),
       id: 1,
     },
     {
-      state: 'SUCCESS',
+      state: 'FAILED',
       timestamp: +new Date('2018-02-17T03:24:00'),
       id: 3,
     },

@@ -1,0 +1,11 @@
+.statistic-charts .card {
+  border: black;
+  border: 1px solid #c3c3c3;
+  margin: 3px;
+  width: 30rem;
+  height: 25rem;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-left: 18px;
+}
+
