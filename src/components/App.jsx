@@ -14,42 +14,27 @@ import Dashboard from '../containers/Dashboard';
 import Login from '../containers/Login';
 import TopNavigation from '../containers/TopNavigation';
 import AdministrationFlashCards from '../containers/AdministrationFlashCards';
-
+import { googleOauth, isTokenValid } from '../utils/isTokenValid';
 import '../assets/css/landing-page.css';
 
 class App extends Component {
   componentWillMount() {
     const redirectedUrl = window.location.href;
-
     const accessToken = Cookies.get('cookie');
     const googleApi = 'https://www.googleapis.com/oauth2/v3/tokeninfo';
+
     if (redirectedUrl.includes('?code=')) {
-      fetch(`${googleApi}?access_token=${accessToken}`)
-        .then(response => response.json())
-        .then(json => {
-          return json.email
-        })
+      googleOauth(googleApi, accessToken)
         .then(email => {
-          fetch('auth/google/isTokenValid', {
-            method: 'POST',
-            body: JSON.stringify({
-              email
-            }),
-            headers: new Headers({
-              'Content-Type': 'application/json',
-              Accept: 'application/json',
+          isTokenValid(email)
+            .then(response => {
+              console.log('result', response)
+              if (response.result) {
+                this.props.changePage('dashboard');
+                this.props.setIsLoggedIn();
+                this.props.setUserId(response.userid);
+              }
             })
-          })
-          .then(response => {
-            return response.json();
-          })
-          .then(result => {
-            if (result) {
-              this.props.changePage('dashboard');
-              this.props.setIsLoggedIn();
-              // Cookies.remove('cookie');
-            }
-          })
         })      
     };
   }

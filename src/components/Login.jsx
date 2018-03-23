@@ -55,7 +55,7 @@ class Login extends Component {
           nodeErrorMessage.innerHTML = 'Your password or email is wrong.';
           return;
         }
-        response.response.then(res => console.log(res[0].id));
+        response.response.then(res => this.props.setUserId(res[0].id));
         this.closeModalBox();
         this.props.changePage('dashboard');
         this.props.setIsLoggedIn();

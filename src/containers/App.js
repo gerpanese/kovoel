@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import App from '../components/App';
-import { changePage, setIsLoggedIn } from '../actions/dashboard';
+import { changePage, setIsLoggedIn, setUserId } from '../actions/dashboard';
 
 const mapStateToProps = state => ({
   currentPage: state.currentPage,
@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
 
 
 const mapDispatchToProps = dispatch => bindActionCreators(
-  { changePage, setIsLoggedIn },
+  { changePage, setIsLoggedIn, setUserId },
   dispatch,
 );
 

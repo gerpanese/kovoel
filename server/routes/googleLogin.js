@@ -26,7 +26,7 @@ router.post('/google/isTokenValid',
     const user = await db.users.findByAccount(response.req.body.email);
     console.log(user);
     if (user) {
-      return response.status(200).send(true);
+      return response.status(200).send({ result: true, userid: user[0].id });
     }
   }
 );
