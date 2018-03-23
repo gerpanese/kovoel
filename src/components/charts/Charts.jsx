@@ -6,7 +6,7 @@ import '../../assets/css/charts.css';
 
 class Charts extends Component {
   componentDidMount() {
-
+    this.userStatistic
   }
 
   render() {
