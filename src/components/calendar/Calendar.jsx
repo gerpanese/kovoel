@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import Week from 'Week.jsx';
-import DayNames from 'DayNames.jsx';
+import Week from '../../containers/Calendar/Week';
+import DayNames from '../../containers/Calendar/DayNames';
 
 import '../../assets/css/statistic.css';
-
 
 class Calendar extends Component {
   constructor(props) {

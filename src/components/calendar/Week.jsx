@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import Day from 'Day.jsx';
+import Day from '../../containers/Calendar/Day';
 
 class Week extends Component {
-  render() {
+  getDays() {
     const days = [];
-    let {
-      date,
-    } = this.props;
-
+    let { date } = this.props;
     const {
       month,
       selected,
@@ -24,14 +21,20 @@ class Week extends Component {
       };
       days.push(
         <Day
-          day={day}
-          selected={selected}
-          select={select} />);
+        day={day}
+        selected={selected}
+        select={select}
+        />);
 
       date = date.clone();
       date.add(1, 'day');
     }
 
+    return days;
+  }
+
+  render() {
+    const days = this.getDays();
     return (
       <div className="row week" key={days[0]}>
         {days}
