@@ -9,7 +9,10 @@ const signIn = async (username, password) => {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     })
-  });
+  }).then(response => ({
+      status: response.status,
+      response: response.json()
+    }))
 }
 
 export { 

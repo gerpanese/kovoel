@@ -48,10 +48,18 @@ class Login extends Component {
       return;
     }
     // @todo implement the login
-    signIn(nodeEmail.value, nodePsw.value);
-    this.closeModalBox();
-    this.props.changePage('dashboard');
-    this.props.setIsLoggedIn();
+    signIn(nodeEmail.value, nodePsw.value)
+      .then(response => {
+        if (response.status !== 200) {
+          nodeErrorMessage.className = 'error-message';
+          nodeErrorMessage.innerHTML = 'Your password or email is wrong.';
+          return;
+        }
+        response.response.then(res => console.log(res[0].id));
+        this.closeModalBox();
+        this.props.changePage('dashboard');
+        this.props.setIsLoggedIn();
+      })
   }
 
 

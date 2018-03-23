@@ -47,7 +47,7 @@ class App extends Component {
             if (result) {
               this.props.changePage('dashboard');
               this.props.setIsLoggedIn();
-              Cookies.remove('cookie');
+              // Cookies.remove('cookie');
             }
           })
         })      

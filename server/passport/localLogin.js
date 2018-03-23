@@ -6,7 +6,8 @@ const db = require('../db');
 module.exports = new Strategy(async (username, password, done) => {
   try {
     const user = await db.users.findByAccount(username);
-    if (!user) {
+    console.log('this is user', user);
+    if (!user.length) {
       return done(null, false, { message: 'Incorrect account.' });
     }
 
