@@ -10,7 +10,7 @@ module.exports = new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
     // callbackURL: `${url}/auth/google/callback`
-    callbackURL: `/auth/google/callback`
+    callbackURL: `https://kovoel-pr-31.herokuapp.com/auth/google/callback`
   },
     async (accessToken, refreshToken, profile, done) => {
       try {
