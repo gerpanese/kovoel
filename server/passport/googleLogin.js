@@ -9,7 +9,8 @@ require('dotenv').config();
 module.exports = new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: `${url}/auth/google/callback`
+    // callbackURL: `${url}/auth/google/callback`
+    callbackURL: `/auth/google/callback`
   },
     async (accessToken, refreshToken, profile, done) => {
       try {
