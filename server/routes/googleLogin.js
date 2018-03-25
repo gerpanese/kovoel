@@ -2,7 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 const db = require('../db');
-const url = 'http://kovoel-pr-31.herokuapp.com' || 'http://localhost:3000';
+const url = process.env.APP_URL || 'http://localhost:3000';
 
 router.get('/google',
   passport.authenticate('google', { scope: ['email', 'profile'] })
