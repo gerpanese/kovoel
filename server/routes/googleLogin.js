@@ -2,7 +2,8 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 const db = require('../db');
-const url = process.env.DATABASE_URL || 'http://localhost:3000';
+// const url = process.env.DATABASE_URL || 'http://localhost:3000';
+const url = process.env.PORT || 'http://localhost:3000';
 
 router.get('/google',
   passport.authenticate('google', { scope: ['email', 'profile'] })
