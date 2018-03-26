@@ -4,7 +4,6 @@ import UserStatistics from '../../utils/UserStatistics';
 class Day extends Component {
   constructor(args) {
     super(args);
-    this.showBubble = this.showBubble.bind(this);
     this.userStatistic = new UserStatistics(this.props.userStatistic);
   }
 
@@ -37,10 +36,6 @@ class Day extends Component {
     return className;
   }
 
-  showBubble(event) {
-    event.preventDefault();
-  }
-
   render() {
     const {
       day,
@@ -63,7 +58,6 @@ class Day extends Component {
       <span 
         key={date.toString()} 
         className={this.getClassName4DayField(learnedWords)}
-        onMouseOver={event => this.showBubble(event)}
         onClick={() => select(day)}>
         {number}
         <div class="bubble">

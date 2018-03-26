@@ -77,6 +77,7 @@ const DefaultState = {
 
   // @todo we need to make this dynamic
   isUserLoggedIn: false,
+  userId: null,
 };
 
 const reducer = (state = DefaultState, action) => {
@@ -85,6 +86,12 @@ const reducer = (state = DefaultState, action) => {
     case 'SET_IS_LOGGED_IN': {
       const newState = getCopyOfState(state);
       newState.isUserLoggedIn = true;
+      return newState;
+    }
+
+    case 'SET_USER_ID': {
+      const newState = getCopyOfState(state);
+      newState.userId = action.userId;
       return newState;
     }
 

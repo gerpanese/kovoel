@@ -7,7 +7,6 @@ import React from 'react';
 import configureStore from 'redux-mock-store';
 import StatisticContainer from '../../containers/Statistic';
 
-
 const mockStore = configureStore();
 
 describe('StatisticContainer', () => {
