@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { RadialChart, Hint } from 'react-vis';
-
+import { RadialChart } from 'react-vis';
+import UserStatistics from '../../utils/UserStatistics';
 import '../../assets/css/charts.css';
 
 class Charts extends Component {
-  componentDidMount() {
-    this.userStatistic
+  constructor(props) {
+    super(props);
+    this.userStatistic = new UserStatistics(this.props.userStatistic);
   }
 
   render() {
+    const currentDate = Date.now();
+    const successWords = this.userStatistic.getPerMonth(currentDate);
+    const allLearnedWords = this.userStatistic.getAllLerningsPerMonth(currentDate);
+    const failedWords = allLearnedWords - successWords;
+
+    console.log(failedWords, successWords);
+  
     return (
       <section className="statistic-charts">
         <div className="card statistic-overview">
@@ -21,8 +29,8 @@ class Charts extends Component {
               radius={140}
               getAngle={d => d.theta}
               data={[
-                { theta: 1, className: 'custom-class' },
-                { theta: 1 },
+                { theta: failedWords, className: 'custom-class' },
+                { theta: successWords },
               ]}
               width={300}
               height={300}

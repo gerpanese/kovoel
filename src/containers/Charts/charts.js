@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Charts from '../../components/charts/Charts';
 
 const mapStateToProps = state => ({
-  userStatistics: state.userStatistics,
+  userStatistic: state.userStatistic,
 });
 
 const ChartsContainer = connect(

@@ -11,7 +11,7 @@ class Calendar extends Component {
 
     this.state = {
       month: moment(),
-      selected: moment().startOf('day')
+      selected: moment().startOf('day'),
     };
 
     this.previous = this.previous.bind(this);

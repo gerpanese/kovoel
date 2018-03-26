@@ -12,62 +12,62 @@ const DefaultState = {
 
   userStatistic: [
     {
+      state: 'SUCCESS',
+      timestamp: +new Date('2018-01-17T03:24:00'),
+      id: 1,
+    },
+    {
+      state: 'SUCCESS',
+      timestamp: +new Date('2018-02-17T03:24:00'),
+      id: 3,
+    },
+    {
+      state: 'SUCCESS',
+      timestamp: +new Date('2018-03-17T03:24:00'),
+      id: 2,
+    },
+    {
+      state: 'SUCCESS',
+      timestamp: +new Date('2018-01-17T03:24:00'),
+      id: 1,
+    },
+    {
+      state: 'SUCCESS',
+      timestamp: +new Date('2018-02-17T03:24:00'),
+      id: 3,
+    },
+    {
+      state: 'SUCCESS',
+      timestamp: +new Date('2018-03-17T03:24:00'),
+      id: 2,
+    },
+    {
+      state: 'SUCCESS',
+      timestamp: +new Date('2018-01-17T03:24:00'),
+      id: 1,
+    },
+    {
+      state: 'SUCCESS',
+      timestamp: +new Date('2018-02-17T03:24:00'),
+      id: 3,
+    },
+    {
       state: 'FAILED',
+      timestamp: +new Date('2018-03-17T03:24:00'),
+      id: 2,
+    },
+    {
+      state: 'SUCCESS',
       timestamp: +new Date('2018-01-17T03:24:00'),
       id: 1,
+    },
+    {
+      state: 'SUCCESS',
+      timestamp: +new Date('2018-02-17T03:24:00'),
+      id: 3,
     },
     {
       state: 'FAILED',
-      timestamp: +new Date('2018-02-17T03:24:00'),
-      id: 3,
-    },
-    {
-      state: 'SUCCESS',
-      timestamp: +new Date('2018-03-17T03:24:00'),
-      id: 2,
-    },
-    {
-      state: 'SUCCESS',
-      timestamp: +new Date('2018-01-17T03:24:00'),
-      id: 1,
-    },
-    {
-      state: 'SUCCESS',
-      timestamp: +new Date('2018-02-17T03:24:00'),
-      id: 3,
-    },
-    {
-      state: 'SUCCESS',
-      timestamp: +new Date('2018-03-17T03:24:00'),
-      id: 2,
-    },
-    {
-      state: 'SUCCESS',
-      timestamp: +new Date('2018-01-17T03:24:00'),
-      id: 1,
-    },
-    {
-      state: 'SUCCESS',
-      timestamp: +new Date('2018-02-17T03:24:00'),
-      id: 3,
-    },
-    {
-      state: 'SUCCESS',
-      timestamp: +new Date('2018-03-17T03:24:00'),
-      id: 2,
-    },
-    {
-      state: 'SUCCESS',
-      timestamp: +new Date('2018-01-17T03:24:00'),
-      id: 1,
-    },
-    {
-      state: 'SUCCESS',
-      timestamp: +new Date('2018-02-17T03:24:00'),
-      id: 3,
-    },
-    {
-      state: 'SUCCESS',
       timestamp: +new Date('2018-03-17T03:24:00'),
       id: 2,
     },
