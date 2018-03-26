@@ -32,10 +32,10 @@ export default class UserStatistics {
   getPerMonth(date) {
     const key = this.getKeyPerMonth(date);
     const data = this.prepareData(this.data)[key];
-
+    
     return (data === undefined) ? 0 : data;
   }
-
+  
   getAllLerningsPerMonth(date) {
     const key = this.getKeyPerMonth(date);
     const data = this.prepareAllLerningData(this.data)[key];
@@ -43,11 +43,11 @@ export default class UserStatistics {
   }
 
   prepareAllLerningData(data) {
-    if (this.preparedData !== undefined) {
-      return this.preparedData;
+    if (this.preparedAllData !== undefined) {
+      return this.preparedAllData;
     }
 
-    this.preparedData = {};
+    this.preparedAllData = {};
 
     data
       .forEach((logEntry) => {
@@ -55,23 +55,22 @@ export default class UserStatistics {
         const keyPerMonth = this.getKeyPerMonth(logEntry.timestamp);
         const keyPerYear = this.getKeyPerYear(logEntry.timestamp);
 
-        if (this.preparedData[keyPerDay] === undefined) {
-          this.preparedData[keyPerDay] = 0;
+        if (this.preparedAllData[keyPerDay] === undefined) {
+          this.preparedAllData[keyPerDay] = 0;
         }
-        this.preparedData[keyPerDay] += 1;
+        this.preparedAllData[keyPerDay] += 1;
 
-        if (this.preparedData[keyPerMonth] === undefined) {
-          this.preparedData[keyPerMonth] = 0;
+        if (this.preparedAllData[keyPerMonth] === undefined) {
+          this.preparedAllData[keyPerMonth] = 0;
         }
-        this.preparedData[keyPerMonth] += 1;
+        this.preparedAllData[keyPerMonth] += 1;
 
-        if (this.preparedData[keyPerYear] === undefined) {
-          this.preparedData[keyPerYear] = 0;
+        if (this.preparedAllData[keyPerYear] === undefined) {
+          this.preparedAllData[keyPerYear] = 0;
         }
-        this.preparedData[keyPerYear] += 1;
+        this.preparedAllData[keyPerYear] += 1;
       });
-
-    return this.preparedData;
+    return this.preparedAllData;
   }
 
   prepareData(data) {

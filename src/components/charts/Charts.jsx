@@ -16,8 +16,6 @@ class Charts extends Component {
     const allLearnedWords = this.userStatistic.getAllLerningsPerMonth(currentDate);
     const failedWords = allLearnedWords - successWords;
 
-    console.log(failedWords, successWords);
-  
     return (
       <section className="statistic-charts">
         <div className="card statistic-overview">
