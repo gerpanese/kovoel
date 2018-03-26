@@ -20,17 +20,19 @@ class Charts extends Component {
       <section className="statistic-charts">
         <div className="card statistic-overview">
           <div className="card-body">
-            <h4 className="card-title">Overview</h4>
+            <h4 className="card-title">Monthly Data</h4>
             <RadialChart
               className="donut-chart-example"
               innerRadius={100}
               radius={140}
               getAngle={d => d.theta}
               data={[
-                { theta: failedWords, className: 'custom-class' },
-                { theta: successWords },
+                { theta: successWords, label: 'SUCESS' },
+                { theta: failedWords, label: 'FAILED' },
               ]}
-              width={300}
+              labelsAboveChildren
+              showLabels
+              width={400}
               height={300}
             />
           </div>
