@@ -105,8 +105,5 @@
     "react-addons-test-utils": "^15.6.2",
     "redux-mock-store": "^1.5.1",
     "sinon": "^4.3.0"
-  },
-  "moduleNameMapper": {
-    "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.js"
   }
 }
