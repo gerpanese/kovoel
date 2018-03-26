@@ -108,3 +108,42 @@ header .arrow {
 header .arrow:hover {
   background: darken(#2875C7, 10%);
 }
+
+.calendar {
+  width: 700px;
+}
+
+.calendar .row {
+  margin-left: 0;
+}
+
+.calendar .day {
+  height: 50px;
+  line-height: 50px;
+  position: relative;
+}
+
+.calendar .learn-less {
+  background-color: #a3daf7;
+}
+
+.calendar .learn-more {
+  background-color: #15A1EC;;
+}
+
+.calendar .bubble {
+  position: absolute;
+  left: 80px;
+  top: 30px;
+  display: none;
+  opacity: 0.8;
+  width: 200px;
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #ccc;
+  z-index: 100;
+}
+
+.calendar .day:hover .bubble {
+  display: block;
+}

@@ -1,3 +1,7 @@
+/* global describe */
+/* global afterAll */
+/* global expect */
+/* global it */
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('../../app');
