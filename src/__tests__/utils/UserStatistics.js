@@ -7,15 +7,21 @@ describe('src/__tests__/utils/UserStatistics.js', () => {
   describe('UserStatistics.getDateObject()', () => {
     it('userStatistics.getDateObject() - unix-timestamp', () => {
       const userStatistics = new UserStatistics([]);
-      expect(userStatistics.getDateObject(1521789715).toString()).toEqual('Sun Jan 18 1970 23:43:09 GMT+0900 (Japanische Normalzeit)');
+      expect(getFormattedDate(userStatistics.getDateObject(1521789715))).toEqual('19700118144309');
     });
 
     it('userStatistics.getDateObject() - date-object', () => {
       const userStatistics = new UserStatistics([]);
       const dateString = '2017-03-16T17:46:53.677+07:00';
       const date = new Date(dateString);
-      expect(userStatistics.getDateObject(date).toString()).toEqual('Thu Mar 16 2017 19:46:53 GMT+0900 (Japanische Normalzeit)');
+      expect(getFormattedDate(userStatistics.getDateObject(date))).toEqual('20170316104653');
     });
+
+    function getFormattedDate(now) {
+      const regex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}).*$/;
+      const tokenArray = regex.exec(now.toJSON());
+      return tokenArray.slice(1).join('');
+    }
   });
 
   describe('UserStatistics.getKeyPerYear()', () => {
