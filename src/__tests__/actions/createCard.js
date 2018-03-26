@@ -1,6 +1,7 @@
 /* global expect */
 /* global it */
 /* global describe */
+/* global jest */
 import {
   updateFrontText,
   updateBackText,
@@ -57,8 +58,10 @@ describe('src/__tests__/actions/createCard.js', () => {
 
   describe('deleteCard', () => {
     it('should delete an action to delete card', () => {
+      global.fetch = jest.fn().mockImplementation(() => Promise.resolve({ ok: true, CorrelationId: '123' }));
+
       const actualAction = deleteCard(1);
-      expect(typeof actualAction).toEqual('function');
+      expect(typeof actualAction).toEqual('object');
     });
   });
 });

@@ -96,6 +96,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
     "fetch-mock": "^6.1.0",
+    "identity-obj-proxy": "^3.0.0",
     "jasmine": "^3.1.0",
     "jest": "^21.2.1",
     "json-loader": "^0.5.7",
@@ -104,5 +105,8 @@
     "react-addons-test-utils": "^15.6.2",
     "redux-mock-store": "^1.5.1",
     "sinon": "^4.3.0"
+  },
+  "moduleNameMapper": {
+    "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.js"
   }
 }

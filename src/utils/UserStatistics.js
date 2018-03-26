@@ -91,7 +91,7 @@ export default class UserStatistics {
     if (!(date instanceof Date)) {
       date = new Date(date);
     }
-
+console.log(date);
     return date;
   }
 }

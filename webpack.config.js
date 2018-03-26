@@ -37,7 +37,7 @@ module.exports = {
     path: path.resolve(__dirname, 'public'),
   },
   resolve: {
-    extensions: ['.webpack.js', '.js', '.jsx'],
+    extensions: ['', '.webpack.js', '.js', '.jsx'],
     alias: {
       src: path.resolve(__dirname, 'src'),
     },
