@@ -5,7 +5,7 @@
   "scripts": {
     "build": "webpack",
     "hack": "webpack && webpack-dev-server --inline",
-    "postinstall": "webpack && yarn resetdb",
+    "postinstall": "webpack && yarn rollback && yarn migrate && yarn seed",
     "start": "node server/bin/www",
     "test": "jest --forceExit",
     "test:watch": "yarn test -- --watch",
