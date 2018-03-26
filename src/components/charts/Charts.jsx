@@ -27,10 +27,9 @@ class Charts extends Component {
               radius={140}
               getAngle={d => d.theta}
               data={[
-                { theta: successWords, label: 'SUCESS' },
-                { theta: failedWords, label: 'FAILED' },
+                { theta: successWords, label: `SUCESS: ${successWords}` },
+                { theta: failedWords, label: `FAILED: ${failedWords}` },
               ]}
-              labelsAboveChildren
               showLabels
               width={400}
               height={300}
