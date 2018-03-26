@@ -20,20 +20,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 
-// Load passport strategy
+//Load passport strategy
 passport.use(localLoginStrategy);
 
 // Use the GoogleStrategy within Passport
 passport.use(googleLoginStrategy);
 
-passport.serializeUser((user, done) => {
-  done(null, user[0].id);
+passport.serializeUser((data, done) => {
+  done(null, data);
 });
 
-passport.deserializeUser((id, done) => {
+passport.deserializeUser((data, done) => {
   db
     .users
-    .findById(id)
+    .findById(data.user[0].id)
     .then(user => done(null, user))
     .catch(err => done(err));
 });

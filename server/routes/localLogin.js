@@ -1,15 +1,19 @@
 const express = require('express');
 const passport = require('passport');
 const router = express.Router();
-
-// login page
-router.get('/login', (request, response) => response.status(200).send('Login page!'));
+const db = require('../db');
 
 router.post(
   '/login',
-  passport.authenticate('local', { failureRedirect: '/auth/login' }),
-  (request, response) => {
-    response.redirect('http://localhost:3000');
+  passport.authenticate('local'),
+  
+  async (request, response) => {
+    const user = await db.users.findByAccount(response.req.body.username);
+    
+    if (!user) {
+      return response.status(400).send('Wrong password or email');
+    }
+    return response.status(200).send(user);
   },
 );
 
