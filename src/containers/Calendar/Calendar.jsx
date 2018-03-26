@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Calendar from '../../components/Calendar/Calendar';
+import Calendar from '../../components/Calendar/Calendar.jsx';
 
 const CalendarContainer = connect(
   null,
