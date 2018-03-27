@@ -141,7 +141,7 @@ class CreateCard extends Component {
           <div className="flashcards">
             <div className="flashcard">
               <div className="content">
-                <strong>front text</strong>
+                <strong>japanese text</strong>
                 <textarea
                   name="frontText"
                   id="frontText"
@@ -162,7 +162,7 @@ class CreateCard extends Component {
             </div>
             <div className="flashcard">
               <div className="content">
-                <strong>back text</strong>
+                <strong>english text</strong>
                 <textarea
                   name="backText"
                   id="backText"

@@ -81,8 +81,8 @@ class AdministrationFlashCards extends Component {
           <thead>
             <tr>
               <th>id</th>
-              <th>front-text</th>
-              <th>back-text</th>
+              <th>japanese-text</th>
+              <th>english-text</th>
               <th />
             </tr>
           </thead>
