@@ -32,8 +32,45 @@ export default class UserStatistics {
   getPerMonth(date) {
     const key = this.getKeyPerMonth(date);
     const data = this.prepareData(this.data)[key];
-
+    
     return (data === undefined) ? 0 : data;
+  }
+  
+  getAllLerningsPerMonth(date) {
+    const key = this.getKeyPerMonth(date);
+    const data = this.prepareAllLerningData(this.data)[key];
+    return data;
+  }
+
+  prepareAllLerningData(data) {
+    if (this.preparedAllData !== undefined) {
+      return this.preparedAllData;
+    }
+
+    this.preparedAllData = {};
+
+    data
+      .forEach((logEntry) => {
+        const keyPerDay = this.getKeyPerDay(logEntry.timestamp);
+        const keyPerMonth = this.getKeyPerMonth(logEntry.timestamp);
+        const keyPerYear = this.getKeyPerYear(logEntry.timestamp);
+
+        if (this.preparedAllData[keyPerDay] === undefined) {
+          this.preparedAllData[keyPerDay] = 0;
+        }
+        this.preparedAllData[keyPerDay] += 1;
+
+        if (this.preparedAllData[keyPerMonth] === undefined) {
+          this.preparedAllData[keyPerMonth] = 0;
+        }
+        this.preparedAllData[keyPerMonth] += 1;
+
+        if (this.preparedAllData[keyPerYear] === undefined) {
+          this.preparedAllData[keyPerYear] = 0;
+        }
+        this.preparedAllData[keyPerYear] += 1;
+      });
+    return this.preparedAllData;
   }
 
   prepareData(data) {
@@ -65,7 +102,6 @@ export default class UserStatistics {
         }
         this.preparedData[keyPerYear] += 1;
       });
-
     return this.preparedData;
   }
 

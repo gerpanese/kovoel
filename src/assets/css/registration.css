@@ -40,8 +40,8 @@
 .modal input[type=text],
 .modal input[type=password] {
   width: 100%;
-  padding: 10px;
-  margin: 0px 0 20px 0;
+  padding: 5px;
+  margin: 0px 0 13px 0;
   display: inline-block;
   border: none;
   background: #f1f1f1;
@@ -97,4 +97,8 @@
   display: block;
   color: red;
   font-weight: bold;
+}
+
+.terms-privacy {
+  font-size: 0.7em;
 }

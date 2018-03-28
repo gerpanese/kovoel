@@ -83,7 +83,6 @@ class Registration extends Component {
           <div className="container">
             <span onClick={() => this.closeModalBox()} className="close" title="Close Modal">&times;</span>
             <h1>Sign Up</h1>
-            <p>Please fill in this form to create an account.</p>
             <hr />
             <div id="error-message" ref='errorMsg'>
 
@@ -98,11 +97,7 @@ class Registration extends Component {
 
             <input type="password" placeholder="Repeat Password" name="psw-repeat" ref='pswRepeat' required />
 
-            <label>
-              <input type="checkbox" defaultChecked="checked" name="remember" /> Remember me
-            </label>
-
-            <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+            <p className="terms-privacy">By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
             <div className="btn-group btn-group-justified">
               <button type="button" onClick={() => this.closeModalBox()} className="btn btn-danger">Cancel</button>
