@@ -16,7 +16,7 @@ class AdministrationFlashCards extends Component {
   }
 
   componentDidMount() {
-    this.props.getFlashCards();
+    this.props.getFlashCards(this.props.userId);
   }
 
   changePage(page) {
@@ -51,17 +51,14 @@ class AdministrationFlashCards extends Component {
     if (this.props.flashCards.length === 0) {
       return (
         <div className="container administration">
-          <h2>manage your flashcards</h2>
-          <p>
-            Create your first flashcard!<br />
-            <button
-              onClick={() => this.changePage('createCard')}
-              type="button"
-              className="btn btn-primary"
-            >
-              create new flashcard
-            </button>
-          </p>
+          <h2>Manage your flashcards</h2>
+          <button
+            onClick={() => this.changePage('createCard')}
+            type="button"
+            className="btn btn-primary"
+          >
+            Create new flashcard
+          </button>
         </div>
       );
     }
@@ -80,9 +77,8 @@ class AdministrationFlashCards extends Component {
         <table className="table table-striped">
           <thead>
             <tr>
-              <th>id</th>
-              <th>japanese-text</th>
-              <th>english-text</th>
+              <th>Japanese</th>
+              <th>English</th>
               <th />
             </tr>
           </thead>
@@ -90,17 +86,16 @@ class AdministrationFlashCards extends Component {
             {
               this.props.flashCards.map((card, idx) => (
                 <tr key={idx}>
-                  <td>{card.id}</td>
                   <td>{card.preview}</td>
                   <td>{card.translation}</td>
                   <td>
                     <div className="btn-group btn-group-justified">
                       <button
-                          type="button"
-                          className="btn btn-success"
-                          onClick={event => this.handleUpdateCardChange(event, card.id)}
-                        >
-                        update
+                        type="button"
+                        className="btn btn-success"
+                        onClick={event => this.handleUpdateCardChange(event, card.id)}
+                      >
+                        Update
                       </button>
 
                       <button
@@ -108,7 +103,7 @@ class AdministrationFlashCards extends Component {
                         className="btn btn-danger"
                         onClick={event => this.handleDeleteCardChange(event, card.id)}
                       >
-                        delete
+                        Delete
                       </button>
                     </div>
                   </td>

@@ -17,7 +17,7 @@ class FlashCard extends Component {
   }
 
   componentWillMount() {
-    this.props.getFlashCards()
+    this.props.getFlashCards(this.props.userId)
       .then(() => {
         this.props.shuffleFlashCards();
       });
