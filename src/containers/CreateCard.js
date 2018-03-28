@@ -18,6 +18,8 @@ const mapStateToProps = state => ({
 
   backText: state.currentFlashCard === null ?
     state.backText : state.currentFlashCard.translation,
+
+  userId: state.userId,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(

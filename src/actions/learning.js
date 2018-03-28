@@ -21,7 +21,7 @@ const changePage = page => ({
 const getFlashCards = (userId) => {
   return async (dispatch) => {
     try {
-      const flashCardsResponse = await fetch('api/users/1/flashcards');
+      const flashCardsResponse = await fetch(`api/users/${userId}/flashcards`);
       const flashCards = await flashCardsResponse.json();
       dispatch(getFlashCardsSuccess(flashCards));
     } catch (error) {

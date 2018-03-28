@@ -14,17 +14,17 @@ router.get('/users/:userId/flashcards', async (request, response) => {
 router.post('/users/:userId/flashcards', (request, response) => {
   try {
     const flashcard = request.body;
-    const { user_id } = request.body;
+    const { userId } = request.params;
     const newFlashcard = {
-      user_id,
+      user_id: userId,
       preview: flashcard.preview,
       translation: flashcard.translation,
       romanji: flashcard.romanji,
       note: flashcard.note,
     };
     db.flashcards.create(newFlashcard);
-    response.json({
-      user_id,
+    response.status(200).json({
+      userId,
       status: 'success',
     });
   } catch (error) {

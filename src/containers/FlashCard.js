@@ -14,6 +14,7 @@ const mapStateToProps = state => ({
   languageCode: state.languageCode,
   hasStillFlashCardsToLearn: state.shuffledFlashCards.length > 0 || Boolean(state.currentFlashCard),
   flashCard: state.currentFlashCard,
+  userId: state.userId,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(
