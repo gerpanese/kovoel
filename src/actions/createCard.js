@@ -16,10 +16,10 @@ const saveCardSuccess = result => ({
 });
 
 // should use userId to detect userId
-const saveCard = (flashCard) => {
+const saveCard = (flashCard, userId) => {
   return async (dispatch) => {
     try {
-      const response = await fetch('api/users/1/flashcards', {
+      const response = await fetch(`api/users/${userId}/flashcards`, {
         body: JSON.stringify(flashCard),
         headers: { 'content-type': 'application/json' },
         method: 'POST',
@@ -32,8 +32,8 @@ const saveCard = (flashCard) => {
   };
 };
 
-const deleteCard = (id) => {
-  fetch(`api/users/1/flashcards/${id}`, {
+const deleteCard = (id, userId) => {
+  fetch(`api/users/${userId}/flashcards/${id}`, {
     method: 'DELETE',
   });
 

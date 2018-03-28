@@ -8,6 +8,7 @@ import { getFlashCards } from '../actions/learning';
 
 const mapStateToProps = state => ({
   flashCards: state.flashCards,
+  userId: state.userId,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(

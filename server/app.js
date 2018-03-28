@@ -31,6 +31,9 @@ passport.serializeUser((data, done) => {
 });
 
 passport.deserializeUser((data, done) => {
+  if (!data.user || !data.user[0]) {
+    return done(null, null);
+  }
   db
     .users
     .findById(data.user[0].id)

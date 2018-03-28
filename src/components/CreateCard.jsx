@@ -112,7 +112,7 @@ class CreateCard extends Component {
         romanji: this.props.backText,
         note: '',
       };
-      this.props.saveCard(newFlashCard);
+      this.props.saveCard(newFlashCard, this.props.userId);
     }
 
     const nodeSaveState = document.getElementById('save-state');
@@ -141,7 +141,7 @@ class CreateCard extends Component {
           <div className="flashcards">
             <div className="flashcard">
               <div className="content">
-                <strong>front text</strong>
+                <strong>Japanese</strong>
                 <textarea
                   name="frontText"
                   id="frontText"
