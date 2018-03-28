@@ -112,7 +112,7 @@ class CreateCard extends Component {
         romanji: this.props.backText,
         note: '',
       };
-      this.props.saveCard(newFlashCard);
+      this.props.saveCard(newFlashCard, this.props.userId);
     }
 
     const nodeSaveState = document.getElementById('save-state');
