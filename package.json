@@ -15,6 +15,9 @@
     "seed": "knex seed:run --knexfile server/db/knexfile.js",
     "resetdb": "yarn rollback && yarn migrate && yarn seed"
   },
+  "engines": {
+    "node": ">=9.5"
+  },
   "dependencies": {
     "@types/enzyme": "^3.1.9",
     "babel": "^6.23.0",
@@ -30,8 +33,6 @@
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
     "bootstrap": "^4.0.0",
-    "chai": "^4.1.2",
-    "chai-http": "^3.0.0",
     "chalk": "^2.3.2",
     "cookie-parser": "^1.4.3",
     "css-loader": "^0.28.9",
