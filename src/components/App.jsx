@@ -23,19 +23,23 @@ class App extends Component {
     const accessToken = Cookies.get('cookie');
     const googleApi = 'https://www.googleapis.com/oauth2/v3/tokeninfo';
 
+    if (location.protocol === 'http:') {
+      location.href = location.href.replace(/^http:/, 'https:');
+    };
+
     if (redirectedUrl.includes('?code=')) {
       googleOauth(googleApi, accessToken)
-        .then(email => {
+        .then((email) => {
           isTokenValid(email)
-            .then(response => {
+            .then((response) => {
               if (response.result) {
                 this.props.changePage('dashboard');
                 this.props.setIsLoggedIn();
                 this.props.setUserId(response.userid);
               }
-            })
-        })      
-    };
+            });
+        });
+    }
   }
 
   getPageContent() {
@@ -100,13 +104,13 @@ class App extends Component {
 
     return (
       <div>
-          <TopNavigation />
+        <TopNavigation />
 
-          {pageContent}
+        {pageContent}
 
-          <Footer />
+        <Footer />
 
-          <Login />
+        <Login />
       </div>
     );
   }
