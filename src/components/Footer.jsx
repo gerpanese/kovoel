@@ -24,7 +24,7 @@ class Footer extends Component {
                   <a href="#" onClick={event => this.changePage(event, 'landingPage')}>Homepage</a>
                 </li>
               </ul>
-              <p className="text-muted small mb-4 mb-lg-0">&copy; Your Website 2018. All Rights Reserved.</p>
+              <p className="text-muted small mb-4 mb-lg-0">&copy; Kovoel 2018. All Rights Reserved.</p>
             </div>
             <div className="col-lg-6 h-100 text-center text-lg-right my-auto">
               <ul className="list-inline mb-0">

@@ -15,7 +15,7 @@ exports.seed = knex => (
         {
           user_id: '1',
           preview: 'ドイツ',
-          translation: 'German',
+          translation: 'Germany',
           romanji: 'do i tsu',
           note: 'A friend contry of Japan',
         },
