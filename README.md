@@ -1,6 +1,11 @@
 # Information
 App generating flashcards with your voice
 
+# demo
+
+you found a demo here:
+- kovoel.herokuapp.com
+
 # Installation
 
 please download and install node.js
