@@ -4,7 +4,7 @@ App generating flashcards with your voice
 # demo
 
 you found a demo here:
-- kovoel.herokuapp.com
+- https://kovoel.herokuapp.com
 
 # Installation
 
