@@ -25,7 +25,7 @@ $ yarn install
 ```
 ### 2. Creating DB & Running migration & Seeding dummy data
 ```
-$ "CREATE DATABASE kovoel" | psql
+$ echo "CREATE DATABASE kovoel" | psql
 $ yarn migrate
 $ yarn seed
 ```
