@@ -1,5 +1,5 @@
 # Kovoel
-こえ(Koe / Voice)　+ おぼえる（Oboeru / Memorize）
+こえ(Koe / Voice) + おぼえる（Oboeru / Memorize）
 
 App generating flashcards with your voice
 
